@@ -1,0 +1,14 @@
+D:\code\OCR\OMFishOCR\OMFishOCR\bin\Debug\OMFishOCR.exe.config
+D:\code\OCR\OMFishOCR\OMFishOCR\bin\Debug\OMFishOCR.exe
+D:\code\OCR\OMFishOCR\OMFishOCR\bin\Debug\OMFishOCR.pdb
+D:\code\OCR\OMFishOCR\OMFishOCR\obj\Debug\OMFishOCR.csprojResolveAssemblyReference.cache
+D:\code\OCR\OMFishOCR\OMFishOCR\obj\Debug\OMFishOCR.Form1.resources
+D:\code\OCR\OMFishOCR\OMFishOCR\obj\Debug\OMFishOCR.Properties.Resources.resources
+D:\code\OCR\OMFishOCR\OMFishOCR\obj\Debug\OMFishOCR.csproj.GenerateResource.Cache
+D:\code\OCR\OMFishOCR\OMFishOCR\obj\Debug\OMFishOCR.exe
+D:\code\OCR\OMFishOCR\OMFishOCR\obj\Debug\OMFishOCR.pdb
+D:\code\OCR\OMFishOCR\OMFishOCR\bin\Debug\Newtonsoft.Json.dll
+D:\code\OCR\OMFishOCR\OMFishOCR\bin\Debug\Newtonsoft.Json.xml
+D:\code\OMFishOCR\OMFishOCR\bin\Debug\OMFishOCR.exe.config
+D:\code\OMFishOCR\OMFishOCR\obj\Debug\OMFishOCR.exe
+D:\code\OMFishOCR\OMFishOCR\obj\Debug\OMFishOCR.pdb
