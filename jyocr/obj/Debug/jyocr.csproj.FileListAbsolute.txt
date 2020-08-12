@@ -20,3 +20,4 @@ D:\code\jyocr\jyocr\obj\Debug\jyocr.csprojResolveAssemblyReference.cache
 D:\code\jyocr\jyocr\obj\Debug\jyocr.Form1.resources
 D:\code\jyocr\jyocr\obj\Debug\jyocr.Properties.Resources.resources
 D:\code\jyocr\jyocr\obj\Debug\jyocr.csproj.GenerateResource.Cache
+D:\code\jyocr\jyocr\obj\Debug\jyocr.CutPic.resources

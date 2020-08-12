@@ -7,22 +7,30 @@ using System.Text;
 using Newtonsoft.Json;
 using jyocr.Unit;
 using jyocr.Models;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using CutPic;
 
 namespace jyocr
 {
     public partial class Form1 : Form
     {
+
+        CutPic cutter = null;
+
+
         public Form1()
         {
             InitializeComponent();
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             textBox1.Text = generalBasic(textBox2.Text);
         }
 
-        // 通用文字识别
+        #region 通用文字识别
         public static string generalBasic(string filePath)
         {
             string returnStr = "";
@@ -49,7 +57,9 @@ namespace jyocr
             }
             return returnStr;
         }
+        #endregion
 
+        #region 浏览文件路径按钮
         private void button2_Click(object sender, EventArgs e)
         {
             //openFileDialog1.InitialDirectory = "C:\\";//初始加载路径为C盘；
@@ -59,6 +69,7 @@ namespace jyocr
                 textBox2.Text = openFileDialog1.FileName;
             }
         }
+        #endregion
 
         #region 用鼠标将某项拖动到该工作区时
         private void Form1_DragDrop(object sender, DragEventArgs e)
@@ -68,6 +79,7 @@ namespace jyocr
         }
         #endregion
 
+        #region 拖动结束
         private void Form1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -78,6 +90,31 @@ namespace jyocr
             {
                 e.Effect = DragDropEffects.None;
             }
+        }
+        #endregion
+
+
+        protected void ShowCutPic()
+        {
+            Bitmap CatchBmp = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
+            // 创建一个画板，让我们可以在画板上画图
+            // 这个画板也就是和屏幕大小一样大的图片
+            // 我们可以通过Graphics这个类在这个空白图片上画图
+            Graphics g = Graphics.FromImage(CatchBmp);
+            // 把屏幕图片拷贝到我们创建的空白图片 CatchBmp中
+            g.CopyFromScreen(new Point(0, 0), new Point(0, 0), new Size(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height));
+
+            cutter = new CutPic();
+
+            // 创建截图窗体
+            // cutter = new Cutter();
+            cutter.Image = CatchBmp;
+            cutter.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ShowCutPic();
         }
     }
 }
