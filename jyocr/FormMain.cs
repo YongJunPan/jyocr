@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Net;
 using System.Web;
-using System.Text;
 using Newtonsoft.Json;
 using jyocr.Unit;
 using jyocr.Models;
 using System.Drawing;
+using Newtonsoft.Json.Linq;
 
 namespace jyocr
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
 
         CutPic cutter = null;
 
-
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
         }
@@ -29,30 +26,33 @@ namespace jyocr
         }
 
         #region 通用文字识别
-        public static string generalBasic(string filePath)
+        public static string generalBasic(string filePath,Image img = null)
         {
+            string base64 = "";
             string returnStr = "";
             string token = "24.f4dda21cd3aed8bfb3c19a911abf75f6.2592000.1599808176.282335-21952800";
             string host = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" + token;
-            Encoding encoding = Encoding.Default;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(host);
-            request.Method = "post";
-            request.KeepAlive = true;
-            // 图片的base64编码
-            string base64 = Base64Helper.getFileBase64(filePath);
-            string str = "image=" + HttpUtility.UrlEncode(base64);
-            byte[] buffer = encoding.GetBytes(str);
-            request.ContentLength = buffer.Length;
-            request.GetRequestStream().Write(buffer, 0, buffer.Length);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            string result = reader.ReadToEnd();
-            TreeObejct rs = JsonConvert.DeserializeObject<TreeObejct>(result);
-            foreach (WordList ww in rs.words_result)
+
+            if (img == null)
             {
-                // Console.WriteLine(ww.words);
-                returnStr += ww.words + "\r\n";
+                base64 = Base64Helper.getFileBase64(filePath); // 图片文件的 base64 编码
             }
+            else
+            {
+                base64 = Base64Helper.getFileBase64("", Base64Helper.ImgToBytes(img)); // 剪切板图片的 base64 编码
+            }
+
+            string data = "image=" + HttpUtility.UrlEncode(base64);
+            string result = HttpClient.Post(data, host);
+            var jArray = JArray.Parse(((JObject)JsonConvert.DeserializeObject(result))["words_result"].ToString());
+            returnStr = OCRHelper.checked_txt(jArray, 1, "words");
+
+            //TreeObejct json = JsonConvert.DeserializeObject<TreeObejct>(result);
+            //foreach (WordList word in json.words_result)
+            //{
+            //    returnStr += word.words + "\r\n";
+            //}
+
             return returnStr;
         }
         #endregion
@@ -69,7 +69,7 @@ namespace jyocr
         }
         #endregion
 
-        #region 用鼠标将某项拖动到该工作区时
+        #region 文件拖动到该工作区时
         private void Form1_DragDrop(object sender, DragEventArgs e)
         {
             string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
@@ -77,7 +77,7 @@ namespace jyocr
         }
         #endregion
 
-        #region 拖动结束
+        #region 文件拖动结束
         private void Form1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -113,7 +113,18 @@ namespace jyocr
             this.Visible = false;
             System.Threading.Thread.Sleep(200);
             ShowCutPic();
-            this.Visible = true;
+
+            if (Clipboard.ContainsImage())
+            {
+                Image img = Clipboard.GetImage();
+                textBox1.Text = generalBasic("", img);
+                this.Visible = true;
+            }
+            else
+            {
+                this.Visible = true;
+            }
         }
+
     }
 }

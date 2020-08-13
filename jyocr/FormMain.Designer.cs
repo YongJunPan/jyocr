@@ -1,6 +1,6 @@
 ﻿namespace jyocr
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -38,11 +38,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(105, 159);
+            this.button1.Location = new System.Drawing.Point(74, 197);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 40);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "识别";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -52,7 +52,8 @@
             this.textBox1.Location = new System.Drawing.Point(12, 48);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(428, 96);
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(428, 136);
             this.textBox1.TabIndex = 1;
             this.textBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.textBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
@@ -83,15 +84,15 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(264, 168);
+            this.button3.Location = new System.Drawing.Point(207, 206);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 4;
-            this.button3.Text = "button3";
+            this.button3.Text = "截图";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // Form1
+            // FormMain
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -102,7 +103,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "Form1";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
