@@ -8,8 +8,6 @@ using Newtonsoft.Json;
 using jyocr.Unit;
 using jyocr.Models;
 using System.Drawing;
-using System.Runtime.InteropServices;
-using CutPic;
 
 namespace jyocr
 {
@@ -104,17 +102,18 @@ namespace jyocr
             // 把屏幕图片拷贝到我们创建的空白图片 CatchBmp中
             g.CopyFromScreen(new Point(0, 0), new Point(0, 0), new Size(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height));
 
-            cutter = new CutPic();
-
             // 创建截图窗体
-            // cutter = new Cutter();
+            cutter = new CutPic();
             cutter.Image = CatchBmp;
             cutter.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            this.Visible = false;
+            System.Threading.Thread.Sleep(200);
             ShowCutPic();
+            this.Visible = true;
         }
     }
 }

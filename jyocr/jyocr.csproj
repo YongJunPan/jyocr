@@ -82,7 +82,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Base64Helper.cs" />
-    <Compile Include="Unit\CutPicSet.cs" />
     <EmbeddedResource Include="CutPic.resx">
       <DependentUpon>CutPic.cs</DependentUpon>
     </EmbeddedResource>
