@@ -3,9 +3,9 @@ using System.Windows.Forms;
 using System.Web;
 using Newtonsoft.Json;
 using jyocr.Unit;
-using jyocr.Models;
 using System.Drawing;
 using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 namespace jyocr
 {
@@ -14,15 +14,99 @@ namespace jyocr
 
         CutPic cutter = null;
 
-        public FormMain()
+        #region 窗口四边透明阴影
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect, // x-coordinate of upper-left corner
+            int nTopRect, // y-coordinate of upper-left corner
+            int nRightRect, // x-coordinate of lower-right corner
+            int nBottomRect, // y-coordinate of lower-right corner
+            int nWidthEllipse, // height of ellipse
+            int nHeightEllipse // width of ellipse
+        );
+
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMarInset);
+
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmIsCompositionEnabled(ref int pfEnabled);
+
+        private bool m_aeroEnabled;                     // variables for box shadow
+        private const int CS_DROPSHADOW = 0x00020000;
+        private const int WM_NCPAINT = 0x0085;
+        private const int WM_ACTIVATEAPP = 0x001C;
+
+        public struct MARGINS                           // struct for box shadow
         {
-            InitializeComponent();
+            public int leftWidth;
+            public int rightWidth;
+            public int topHeight;
+            public int bottomHeight;
         }
 
+        private const int WM_NCHITTEST = 0x84;          // variables for dragging the form
+        private const int HTCLIENT = 0x1;
+        private const int HTCAPTION = 0x2;
 
-        private void button1_Click(object sender, EventArgs e)
+        protected override CreateParams CreateParams
         {
-            textBox1.Text = generalBasic(textBox2.Text);
+            get
+            {
+                m_aeroEnabled = CheckAeroEnabled();
+                CreateParams cp = base.CreateParams;
+                if (!m_aeroEnabled)
+                    cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+
+        private bool CheckAeroEnabled()
+        {
+            if (Environment.OSVersion.Version.Major >= 6)
+            {
+                int enabled = 0;
+                DwmIsCompositionEnabled(ref enabled);
+                return (enabled == 1) ? true : false;
+            }
+            return false;
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case WM_NCPAINT:                        // box shadow
+                    if (m_aeroEnabled)
+                    {
+                        var v = 2;
+                        DwmSetWindowAttribute(this.Handle, 2, ref v, 4);
+                        MARGINS margins = new MARGINS()
+                        {
+                            bottomHeight = 1,
+                            leftWidth = 1,
+                            rightWidth = 1,
+                            topHeight = 1
+                        };
+                        DwmExtendFrameIntoClientArea(this.Handle, ref margins);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            base.WndProc(ref m);
+            if (m.Msg == WM_NCHITTEST && (int)m.Result == HTCLIENT)     // drag the form
+                m.Result = (IntPtr)HTCAPTION;
+        }
+        #endregion
+
+        public FormMain()
+        {
+            m_aeroEnabled = false;
+            InitializeComponent();
         }
 
         #region 通用文字识别
@@ -47,12 +131,6 @@ namespace jyocr
             var jArray = JArray.Parse(((JObject)JsonConvert.DeserializeObject(result))["words_result"].ToString());
             returnStr = OCRHelper.checked_txt(jArray, 1, "words");
 
-            //TreeObejct json = JsonConvert.DeserializeObject<TreeObejct>(result);
-            //foreach (WordList word in json.words_result)
-            //{
-            //    returnStr += word.words + "\r\n";
-            //}
-
             return returnStr;
         }
         #endregion
@@ -60,25 +138,24 @@ namespace jyocr
         #region 浏览文件路径按钮
         private void button2_Click(object sender, EventArgs e)
         {
-            //openFileDialog1.InitialDirectory = "C:\\";//初始加载路径为C盘；
             openFileDialog1.Filter = "图片文件 (*.jpg,*.jpeg,*.png,*.bmp)|*.jgp;*.jpeg;*.png;*.bmp;"; //设置多文件格式
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                textBox2.Text = openFileDialog1.FileName;
+                RichTextBox_Value.Text = generalBasic(openFileDialog1.FileName);
             }
         }
         #endregion
 
         #region 文件拖动到该工作区时
-        private void Form1_DragDrop(object sender, DragEventArgs e)
+        private void FormMain_DragDrop(object sender, DragEventArgs e)
         {
             string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-            textBox2.Text = path;
+            RichTextBox_Value.Text = generalBasic(path);
         }
         #endregion
 
         #region 文件拖动结束
-        private void Form1_DragEnter(object sender, DragEventArgs e)
+        private void FormMain_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -117,7 +194,7 @@ namespace jyocr
             if (Clipboard.ContainsImage())
             {
                 Image img = Clipboard.GetImage();
-                textBox1.Text = generalBasic("", img);
+                RichTextBox_Value.Text = generalBasic("", img);
                 this.Visible = true;
             }
             else
@@ -126,5 +203,15 @@ namespace jyocr
             }
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            RichTextBox_Value.SelectionIndent = 40;
+            RichTextBox_Value.SelectionHangingIndent = -35;
+            //RichTextBox_Value.SelectionRightIndent = 0;
+
+            RichTextBox_Value.AllowDrop = true;
+            RichTextBox_Value.DragEnter += new DragEventHandler(FormMain_DragDrop);
+            RichTextBox_Value.DragDrop += new DragEventHandler(FormMain_DragEnter);
+        }
     }
 }
