@@ -30,68 +30,234 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.Button_File = new System.Windows.Forms.Button();
+            this.ButtonFile = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.Button_CutPic = new System.Windows.Forms.Button();
-            this.RichTextBox_Value = new System.Windows.Forms.RichTextBox();
+            this.ButtonCutPic = new System.Windows.Forms.Button();
+            this.RichTextBoxValue = new System.Windows.Forms.RichTextBox();
+            this.MenuTextBox = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.剪切ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.粘贴ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.全选ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ButtonDelete = new System.Windows.Forms.Button();
+            this.ButtonCopy = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.LabelWordCount = new System.Windows.Forms.Label();
+            this.ButtonPart = new System.Windows.Forms.Button();
+            this.MenuPart = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.自动分段ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.段落拆分ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.段落合并ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuTextBox.SuspendLayout();
+            this.MenuPart.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Button_File
+            // ButtonFile
             // 
-            this.Button_File.BackColor = System.Drawing.Color.Transparent;
-            this.Button_File.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Button_File.BackgroundImage")));
-            this.Button_File.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Button_File.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Button_File.FlatAppearance.BorderSize = 0;
-            this.Button_File.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_File.ForeColor = System.Drawing.SystemColors.Control;
-            this.Button_File.Location = new System.Drawing.Point(2, 2);
-            this.Button_File.Name = "Button_File";
-            this.Button_File.Size = new System.Drawing.Size(25, 25);
-            this.Button_File.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.Button_File, "浏览图片");
-            this.Button_File.UseVisualStyleBackColor = false;
-            this.Button_File.Click += new System.EventHandler(this.button2_Click);
+            this.ButtonFile.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonFile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonFile.BackgroundImage")));
+            this.ButtonFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonFile.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ButtonFile.FlatAppearance.BorderSize = 0;
+            this.ButtonFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonFile.ForeColor = System.Drawing.SystemColors.Control;
+            this.ButtonFile.Location = new System.Drawing.Point(2, 4);
+            this.ButtonFile.Name = "ButtonFile";
+            this.ButtonFile.Size = new System.Drawing.Size(25, 25);
+            this.ButtonFile.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.ButtonFile, "浏览图片");
+            this.ButtonFile.UseVisualStyleBackColor = false;
+            this.ButtonFile.Click += new System.EventHandler(this.ButtonFile_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.RestoreDirectory = true;
             // 
-            // Button_CutPic
+            // ButtonCutPic
             // 
-            this.Button_CutPic.BackColor = System.Drawing.Color.Transparent;
-            this.Button_CutPic.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Button_CutPic.BackgroundImage")));
-            this.Button_CutPic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Button_CutPic.FlatAppearance.BorderSize = 0;
-            this.Button_CutPic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_CutPic.Location = new System.Drawing.Point(30, 2);
-            this.Button_CutPic.Name = "Button_CutPic";
-            this.Button_CutPic.Size = new System.Drawing.Size(25, 25);
-            this.Button_CutPic.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.Button_CutPic, "截图识别");
-            this.Button_CutPic.UseVisualStyleBackColor = false;
-            this.Button_CutPic.Click += new System.EventHandler(this.button3_Click);
+            this.ButtonCutPic.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonCutPic.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonCutPic.BackgroundImage")));
+            this.ButtonCutPic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonCutPic.FlatAppearance.BorderSize = 0;
+            this.ButtonCutPic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonCutPic.Location = new System.Drawing.Point(30, 4);
+            this.ButtonCutPic.Name = "ButtonCutPic";
+            this.ButtonCutPic.Size = new System.Drawing.Size(25, 25);
+            this.ButtonCutPic.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.ButtonCutPic, "截图识别");
+            this.ButtonCutPic.UseVisualStyleBackColor = false;
+            this.ButtonCutPic.Click += new System.EventHandler(this.ButtonCutPic_Click);
             // 
-            // RichTextBox_Value
+            // RichTextBoxValue
             // 
-            this.RichTextBox_Value.AcceptsTab = true;
-            this.RichTextBox_Value.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RichTextBox_Value.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.RichTextBox_Value.Location = new System.Drawing.Point(0, 35);
-            this.RichTextBox_Value.Name = "RichTextBox_Value";
-            this.RichTextBox_Value.Size = new System.Drawing.Size(450, 320);
-            this.RichTextBox_Value.TabIndex = 3;
-            this.RichTextBox_Value.Text = "";
+            this.RichTextBoxValue.AcceptsTab = true;
+            this.RichTextBoxValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RichTextBoxValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RichTextBoxValue.ContextMenuStrip = this.MenuTextBox;
+            this.RichTextBoxValue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.RichTextBoxValue.Location = new System.Drawing.Point(0, 37);
+            this.RichTextBoxValue.Name = "RichTextBoxValue";
+            this.RichTextBoxValue.Size = new System.Drawing.Size(450, 300);
+            this.RichTextBoxValue.TabIndex = 1;
+            this.RichTextBoxValue.Text = "";
+            this.RichTextBoxValue.TextChanged += new System.EventHandler(this.RichTextBoxValue_TextChanged);
+            // 
+            // MenuTextBox
+            // 
+            this.MenuTextBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.复制ToolStripMenuItem,
+            this.剪切ToolStripMenuItem,
+            this.粘贴ToolStripMenuItem,
+            this.全选ToolStripMenuItem});
+            this.MenuTextBox.Name = "contextMenuStrip1";
+            this.MenuTextBox.Size = new System.Drawing.Size(103, 92);
+            // 
+            // 复制ToolStripMenuItem
+            // 
+            this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
+            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.复制ToolStripMenuItem.Text = "复制";
+            this.复制ToolStripMenuItem.Click += new System.EventHandler(this.复制ToolStripMenuItem_Click);
+            // 
+            // 剪切ToolStripMenuItem
+            // 
+            this.剪切ToolStripMenuItem.Name = "剪切ToolStripMenuItem";
+            this.剪切ToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.剪切ToolStripMenuItem.Text = "剪切";
+            this.剪切ToolStripMenuItem.Click += new System.EventHandler(this.剪切ToolStripMenuItem_Click);
+            // 
+            // 粘贴ToolStripMenuItem
+            // 
+            this.粘贴ToolStripMenuItem.Name = "粘贴ToolStripMenuItem";
+            this.粘贴ToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.粘贴ToolStripMenuItem.Text = "粘贴";
+            this.粘贴ToolStripMenuItem.Click += new System.EventHandler(this.粘贴ToolStripMenuItem_Click);
+            // 
+            // 全选ToolStripMenuItem
+            // 
+            this.全选ToolStripMenuItem.Name = "全选ToolStripMenuItem";
+            this.全选ToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.全选ToolStripMenuItem.Text = "全选";
+            this.全选ToolStripMenuItem.Click += new System.EventHandler(this.全选ToolStripMenuItem_Click);
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Silver;
-            this.panel1.Location = new System.Drawing.Point(2, 28);
+            this.panel1.Location = new System.Drawing.Point(2, 30);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(450, 1);
             this.panel1.TabIndex = 4;
+            // 
+            // ButtonDelete
+            // 
+            this.ButtonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonDelete.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
+            this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonDelete.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ButtonDelete.FlatAppearance.BorderSize = 0;
+            this.ButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonDelete.ForeColor = System.Drawing.SystemColors.Control;
+            this.ButtonDelete.Location = new System.Drawing.Point(395, 348);
+            this.ButtonDelete.Name = "ButtonDelete";
+            this.ButtonDelete.Size = new System.Drawing.Size(25, 25);
+            this.ButtonDelete.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.ButtonDelete, "清空");
+            this.ButtonDelete.UseVisualStyleBackColor = false;
+            this.ButtonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
+            // 
+            // ButtonCopy
+            // 
+            this.ButtonCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonCopy.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonCopy.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonCopy.BackgroundImage")));
+            this.ButtonCopy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonCopy.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ButtonCopy.FlatAppearance.BorderSize = 0;
+            this.ButtonCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonCopy.ForeColor = System.Drawing.SystemColors.Control;
+            this.ButtonCopy.Location = new System.Drawing.Point(425, 348);
+            this.ButtonCopy.Name = "ButtonCopy";
+            this.ButtonCopy.Size = new System.Drawing.Size(25, 25);
+            this.ButtonCopy.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.ButtonCopy, "复制");
+            this.ButtonCopy.UseVisualStyleBackColor = false;
+            this.ButtonCopy.Click += new System.EventHandler(this.ButtonCopy_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.Silver;
+            this.panel2.Location = new System.Drawing.Point(2, 342);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(450, 1);
+            this.panel2.TabIndex = 4;
+            // 
+            // LabelWordCount
+            // 
+            this.LabelWordCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LabelWordCount.AutoSize = true;
+            this.LabelWordCount.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LabelWordCount.Location = new System.Drawing.Point(3, 353);
+            this.LabelWordCount.Name = "LabelWordCount";
+            this.LabelWordCount.Size = new System.Drawing.Size(51, 17);
+            this.LabelWordCount.TabIndex = 5;
+            this.LabelWordCount.Text = "字数：0";
+            // 
+            // ButtonPart
+            // 
+            this.ButtonPart.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonPart.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonPart.BackgroundImage")));
+            this.ButtonPart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonPart.FlatAppearance.BorderSize = 0;
+            this.ButtonPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonPart.Location = new System.Drawing.Point(60, 4);
+            this.ButtonPart.Name = "ButtonPart";
+            this.ButtonPart.Size = new System.Drawing.Size(25, 25);
+            this.ButtonPart.TabIndex = 3;
+            this.ButtonPart.UseVisualStyleBackColor = false;
+            this.ButtonPart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButtonPart_MouseDown);
+            // 
+            // MenuPart
+            // 
+            this.MenuPart.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.自动分段ToolStripMenuItem,
+            this.段落拆分ToolStripMenuItem,
+            this.段落合并ToolStripMenuItem});
+            this.MenuPart.Name = "MenuPart";
+            this.MenuPart.Size = new System.Drawing.Size(129, 70);
+            // 
+            // 自动分段ToolStripMenuItem
+            // 
+            this.自动分段ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("自动分段ToolStripMenuItem.Image")));
+            this.自动分段ToolStripMenuItem.Name = "自动分段ToolStripMenuItem";
+            this.自动分段ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.自动分段ToolStripMenuItem.Text = "自动分段";
+            this.自动分段ToolStripMenuItem.Click += new System.EventHandler(this.自动分段ToolStripMenuItem_Click);
+            // 
+            // 段落拆分ToolStripMenuItem
+            // 
+            this.段落拆分ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("段落拆分ToolStripMenuItem.Image")));
+            this.段落拆分ToolStripMenuItem.Name = "段落拆分ToolStripMenuItem";
+            this.段落拆分ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.段落拆分ToolStripMenuItem.Text = "段落拆分";
+            this.段落拆分ToolStripMenuItem.Click += new System.EventHandler(this.段落拆分ToolStripMenuItem_Click);
+            // 
+            // 段落合并ToolStripMenuItem
+            // 
+            this.段落合并ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("段落合并ToolStripMenuItem.Image")));
+            this.段落合并ToolStripMenuItem.Name = "段落合并ToolStripMenuItem";
+            this.段落合并ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.段落合并ToolStripMenuItem.Text = "段落合并";
+            this.段落合并ToolStripMenuItem.Click += new System.EventHandler(this.段落合并ToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -99,29 +265,51 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(455, 361);
+            this.ClientSize = new System.Drawing.Size(454, 376);
+            this.Controls.Add(this.LabelWordCount);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.RichTextBox_Value);
-            this.Controls.Add(this.Button_CutPic);
-            this.Controls.Add(this.Button_File);
+            this.Controls.Add(this.RichTextBoxValue);
+            this.Controls.Add(this.ButtonPart);
+            this.Controls.Add(this.ButtonCutPic);
+            this.Controls.Add(this.ButtonCopy);
+            this.Controls.Add(this.ButtonDelete);
+            this.Controls.Add(this.ButtonFile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JYOCR";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormMain_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormMain_DragEnter);
+            this.MenuTextBox.ResumeLayout(false);
+            this.MenuPart.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button Button_File;
+        private System.Windows.Forms.Button ButtonFile;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button Button_CutPic;
-        private System.Windows.Forms.RichTextBox RichTextBox_Value;
+        private System.Windows.Forms.Button ButtonCutPic;
+        private System.Windows.Forms.RichTextBox RichTextBoxValue;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label LabelWordCount;
+        private System.Windows.Forms.Button ButtonDelete;
+        private System.Windows.Forms.Button ButtonCopy;
+        private System.Windows.Forms.ContextMenuStrip MenuTextBox;
+        private System.Windows.Forms.ToolStripMenuItem 复制ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 剪切ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 粘贴ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 全选ToolStripMenuItem;
+        private System.Windows.Forms.Button ButtonPart;
+        private System.Windows.Forms.ContextMenuStrip MenuPart;
+        private System.Windows.Forms.ToolStripMenuItem 自动分段ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 段落拆分ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 段落合并ToolStripMenuItem;
     }
 }
 

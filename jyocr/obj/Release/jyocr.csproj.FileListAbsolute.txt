@@ -1,0 +1,15 @@
+D:\code\jyocr\jyocr\bin\Release\jyocr.exe.config
+D:\code\jyocr\jyocr\bin\Release\jyocr.exe.manifest
+D:\code\jyocr\jyocr\bin\Release\jyocr.application
+D:\code\jyocr\jyocr\bin\Release\jyocr.exe
+D:\code\jyocr\jyocr\bin\Release\jyocr.pdb
+D:\code\jyocr\jyocr\bin\Release\Newtonsoft.Json.dll
+D:\code\jyocr\jyocr\bin\Release\Newtonsoft.Json.xml
+D:\code\jyocr\jyocr\obj\Release\jyocr.CutPic.resources
+D:\code\jyocr\jyocr\obj\Release\jyocr.FormMain.resources
+D:\code\jyocr\jyocr\obj\Release\jyocr.Properties.Resources.resources
+D:\code\jyocr\jyocr\obj\Release\jyocr.csproj.GenerateResource.Cache
+D:\code\jyocr\jyocr\obj\Release\jyocr.exe.manifest
+D:\code\jyocr\jyocr\obj\Release\jyocr.application
+D:\code\jyocr\jyocr\obj\Release\jyocr.exe
+D:\code\jyocr\jyocr\obj\Release\jyocr.pdb

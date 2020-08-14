@@ -1,14 +1,42 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Drawing;
 using System.Text.RegularExpressions;
-
+using System.Web;
 
 namespace jyocr.Unit
 {
     class OCRHelper
     {
-        //public static string split_txt;
-        //public static string typeset_txt;
+        public static string split_txt;
+        public static string typeset_txt;
+
+        #region 百度通用文字识别
+        public static string BaiduBasic(string filePath, Image img = null)
+        {
+            string base64 = "";
+            string returnStr = "";
+            string token = "24.f4dda21cd3aed8bfb3c19a911abf75f6.2592000.1599808176.282335-21952800";
+            string host = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" + token;
+
+            if (img == null)
+            {
+                base64 = Base64Helper.getFileBase64(filePath); // 图片文件的 base64 编码
+            }
+            else
+            {
+                base64 = Base64Helper.getFileBase64("", Base64Helper.ImgToBytes(img)); // 剪切板图片的 base64 编码
+            }
+
+            string data = "image=" + HttpUtility.UrlEncode(base64);
+            string result = HttpClient.Post(data, host);
+            var jArray = JArray.Parse(((JObject)JsonConvert.DeserializeObject(result))["words_result"].ToString());
+            returnStr = checked_txt(jArray, 1, "words");
+
+            return returnStr;
+        }
+        #endregion
 
         public static string checked_txt(JArray jarray, int lastlength, string words)
         {
@@ -127,8 +155,8 @@ namespace jyocr.Unit
                 }
                 str = str + jobject[words].ToString().Trim() + "\r\n";
             }
-            // split_txt = str + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
-            // typeset_txt = text.Replace("\r\n\r\n", "\r\n") + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
+            split_txt = str + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
+            typeset_txt = text.Replace("\r\n\r\n", "\r\n") + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
             return text.Replace("\r\n\r\n", "\r\n") + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
         }
         public static bool IsNum(string str)

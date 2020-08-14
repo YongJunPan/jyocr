@@ -15,6 +15,7 @@ Global
 		{93954C9D-C4B6-4604-B62C-67CF957809E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93954C9D-C4B6-4604-B62C-67CF957809E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93954C9D-C4B6-4604-B62C-67CF957809E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93954C9D-C4B6-4604-B62C-67CF957809E4}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

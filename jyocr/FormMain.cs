@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Web;
-using Newtonsoft.Json;
 using jyocr.Unit;
 using System.Drawing;
-using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
 
 namespace jyocr
@@ -109,69 +106,52 @@ namespace jyocr
             InitializeComponent();
         }
 
-        #region 通用文字识别
-        public static string generalBasic(string filePath,Image img = null)
+        private void FormMain_Load(object sender, EventArgs e)
         {
-            string base64 = "";
-            string returnStr = "";
-            string token = "24.f4dda21cd3aed8bfb3c19a911abf75f6.2592000.1599808176.282335-21952800";
-            string host = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" + token;
+            // RichTextBox 段落缩进
+            RichTextBoxValue.SelectionIndent = 40;
+            RichTextBoxValue.SelectionHangingIndent = -35;
 
-            if (img == null)
-            {
-                base64 = Base64Helper.getFileBase64(filePath); // 图片文件的 base64 编码
-            }
-            else
-            {
-                base64 = Base64Helper.getFileBase64("", Base64Helper.ImgToBytes(img)); // 剪切板图片的 base64 编码
-            }
-
-            string data = "image=" + HttpUtility.UrlEncode(base64);
-            string result = HttpClient.Post(data, host);
-            var jArray = JArray.Parse(((JObject)JsonConvert.DeserializeObject(result))["words_result"].ToString());
-            returnStr = OCRHelper.checked_txt(jArray, 1, "words");
-
-            return returnStr;
+            // RichTextBox 拖放事件绑定
+            RichTextBoxValue.AllowDrop = true;
+            RichTextBoxValue.DragEnter += new DragEventHandler(FormMain_DragEnter);
+            RichTextBoxValue.DragDrop += new DragEventHandler(FormMain_DragDrop);
         }
-        #endregion
 
-        #region 浏览文件路径按钮
-        private void button2_Click(object sender, EventArgs e)
+        #region 浏览文件按钮
+        private void ButtonFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "图片文件 (*.jpg,*.jpeg,*.png,*.bmp)|*.jgp;*.jpeg;*.png;*.bmp;"; //设置多文件格式
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                RichTextBox_Value.Text = generalBasic(openFileDialog1.FileName);
+                ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
+                RichTextBoxValue.Text = OCRHelper.BaiduBasic(openFileDialog1.FileName);
             }
         }
         #endregion
 
-        #region 文件拖动到该工作区时
-        private void FormMain_DragDrop(object sender, DragEventArgs e)
+        #region 截图识别按钮
+        private void ButtonCutPic_Click(object sender, EventArgs e)
         {
-            string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-            RichTextBox_Value.Text = generalBasic(path);
-        }
-        #endregion
+            this.Visible = false;
+            System.Threading.Thread.Sleep(200);
+            ShowCutPic();
 
-        #region 文件拖动结束
-        private void FormMain_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (Clipboard.ContainsImage())
             {
-                e.Effect = DragDropEffects.Link;
-                //string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-                //RichTextBox_Value.Text = "";
-                //RichTextBox_Value.Text = generalBasic(path);
+                ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
+                Image img = Clipboard.GetImage();
+                RichTextBoxValue.Text = OCRHelper.BaiduBasic("", img);
+                this.Visible = true;
             }
             else
             {
-                e.Effect = DragDropEffects.None;
+                this.Visible = true;
             }
         }
         #endregion
 
-
+        #region 截图功能
         protected void ShowCutPic()
         {
             Bitmap CatchBmp = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
@@ -187,34 +167,100 @@ namespace jyocr
             cutter.Image = CatchBmp;
             cutter.ShowDialog();
         }
+        #endregion
 
-        private void button3_Click(object sender, EventArgs e)
+        #region 文件拖动结束
+        private void FormMain_DragDrop(object sender, DragEventArgs e)
         {
-            this.Visible = false;
-            System.Threading.Thread.Sleep(200);
-            ShowCutPic();
+            ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
+            string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+            RichTextBoxValue.Text = OCRHelper.BaiduBasic(path);
+        }
+        #endregion
 
-            if (Clipboard.ContainsImage())
+        #region 文件拖动到工作区时
+        private void FormMain_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                Image img = Clipboard.GetImage();
-                RichTextBox_Value.Text = generalBasic("", img);
-                this.Visible = true;
+                e.Effect = DragDropEffects.Link;
             }
             else
             {
-                this.Visible = true;
+                e.Effect = DragDropEffects.None;
             }
         }
+        #endregion
 
-        private void FormMain_Load(object sender, EventArgs e)
+        #region 复制、清空按钮
+        private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            RichTextBox_Value.SelectionIndent = 40;
-            RichTextBox_Value.SelectionHangingIndent = -35;
-            //RichTextBox_Value.SelectionRightIndent = 0;
-
-            RichTextBox_Value.AllowDrop = true;
-            RichTextBox_Value.DragEnter += new DragEventHandler(FormMain_DragEnter);
-            RichTextBox_Value.DragDrop += new DragEventHandler(FormMain_DragDrop);
+            RichTextBoxValue.Text = "";
         }
+
+        private void ButtonCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, RichTextBoxValue.Text);
+        }
+        #endregion
+
+        #region TextBox右键菜单功能
+        private void 复制ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, RichTextBoxValue.Text);
+        }
+
+        private void 剪切ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, RichTextBoxValue.Text);
+            RichTextBoxValue.Text = "";
+        }
+
+        private void 全选ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RichTextBoxValue.SelectAll();
+        }
+
+        private void 粘贴ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RichTextBoxValue.Paste();
+        }
+        #endregion
+
+        #region 段落按钮菜单功能
+        private void 自动分段ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
+            RichTextBoxValue.Text = OCRHelper.typeset_txt;
+        }
+
+        private void 段落拆分ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonPart.BackgroundImage = 段落拆分ToolStripMenuItem.Image;
+            RichTextBoxValue.Text = OCRHelper.split_txt;
+        }
+
+        private void 段落合并ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonPart.BackgroundImage = 段落合并ToolStripMenuItem.Image;
+            RichTextBoxValue.Text = RichTextBoxValue.Text.Replace("\n", "").Replace("\r", "");
+        }
+
+        private void ButtonPart_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                MenuPart.Show((Button)sender, new Point(ButtonPart.Left - ButtonPart.Width - 30, ButtonPart.Top + ButtonPart.Height));
+            }
+        }
+        #endregion
+
+        private void RichTextBoxValue_TextChanged(object sender, EventArgs e)
+        {
+            LabelWordCount.Text = "字数：" + RichTextBoxValue.Text.Length.ToString();
+        }
+
+        
+
     }
 }

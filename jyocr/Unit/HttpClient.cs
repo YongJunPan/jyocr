@@ -57,6 +57,7 @@ namespace jyocr.Unit
             catch (System.Threading.ThreadAbortException e)
             {
                 System.Threading.Thread.ResetAbort();
+                throw e;
             }
             catch (Exception e)
             {
