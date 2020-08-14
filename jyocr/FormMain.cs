@@ -160,6 +160,9 @@ namespace jyocr
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 e.Effect = DragDropEffects.Link;
+                //string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+                //RichTextBox_Value.Text = "";
+                //RichTextBox_Value.Text = generalBasic(path);
             }
             else
             {
@@ -210,8 +213,8 @@ namespace jyocr
             //RichTextBox_Value.SelectionRightIndent = 0;
 
             RichTextBox_Value.AllowDrop = true;
-            RichTextBox_Value.DragEnter += new DragEventHandler(FormMain_DragDrop);
-            RichTextBox_Value.DragDrop += new DragEventHandler(FormMain_DragEnter);
+            RichTextBox_Value.DragEnter += new DragEventHandler(FormMain_DragEnter);
+            RichTextBox_Value.DragDrop += new DragEventHandler(FormMain_DragDrop);
         }
     }
 }
