@@ -81,17 +81,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CutPic.cs">
+    <Compile Include="FmCutPic.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CutPic.Designer.cs">
-      <DependentUpon>CutPic.cs</DependentUpon>
+    <Compile Include="FmCutPic.Designer.cs">
+      <DependentUpon>FmCutPic.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMain.cs">
+    <Compile Include="FmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
+    <Compile Include="FmMain.Designer.cs">
+      <DependentUpon>FmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmSetting.Designer.cs">
+      <DependentUpon>FmSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\TreeObejct.cs" />
     <Compile Include="Models\WordList.cs" />
@@ -100,12 +106,12 @@
     <Compile Include="Unit\Base64Helper.cs" />
     <Compile Include="Unit\HttpClient.cs" />
     <Compile Include="Unit\OCRHelper.cs" />
-    <EmbeddedResource Include="CutPic.resx">
-      <DependentUpon>CutPic.cs</DependentUpon>
+    <EmbeddedResource Include="FmCutPic.resx">
+      <DependentUpon>FmCutPic.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
+    <EmbeddedResource Include="FmMain.resx">
+      <DependentUpon>FmMain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

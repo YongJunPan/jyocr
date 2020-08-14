@@ -1,6 +1,6 @@
 ﻿namespace jyocr
 {
-    partial class CutPic
+    partial class FmCutPic
     {
         /// <summary>
         /// Required designer variable.

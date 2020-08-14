@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace jyocr
 {
-    public partial class CutPic : Form
+    public partial class FmCutPic : Form
     {
         private Point m_ptStart; //起始点位置
         private Image _Image;
@@ -40,7 +40,7 @@ namespace jyocr
         // 获取或设置悬着区域
         private Rectangle _SelectedRectangle;
 
-        public CutPic()
+        public FmCutPic()
         {
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.  

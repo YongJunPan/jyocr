@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 
 namespace jyocr
 {
-    public partial class FormMain : Form
+    public partial class FmMain : Form
     {
 
-        CutPic cutter = null;
+        FmCutPic cutter = null;
 
         #region 窗口四边透明阴影
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -100,7 +100,7 @@ namespace jyocr
         }
         #endregion
 
-        public FormMain()
+        public FmMain()
         {
             m_aeroEnabled = false;
             InitializeComponent();
@@ -163,7 +163,7 @@ namespace jyocr
             g.CopyFromScreen(new Point(0, 0), new Point(0, 0), new Size(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height));
 
             // 创建截图窗体
-            cutter = new CutPic();
+            cutter = new FmCutPic();
             cutter.Image = CatchBmp;
             cutter.ShowDialog();
         }
