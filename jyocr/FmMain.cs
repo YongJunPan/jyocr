@@ -116,6 +116,12 @@ namespace jyocr
             RichTextBoxValue.AllowDrop = true;
             RichTextBoxValue.DragEnter += new DragEventHandler(FormMain_DragEnter);
             RichTextBoxValue.DragDrop += new DragEventHandler(FormMain_DragDrop);
+
+            // 读取 ini 配置
+            IniHelper.IniLoad("Setting.ini");
+            OCRHelper.ApiKey = IniHelper.GetValue("百度接口", "API Key");
+            OCRHelper.SecretKey = IniHelper.GetValue("百度接口", "Secret Key");
+            OCRHelper.AccessToken = IniHelper.GetValue("百度接口", "Access Token");
         }
 
         #region 浏览文件按钮
@@ -140,6 +146,7 @@ namespace jyocr
             if (Clipboard.ContainsImage())
             {
                 ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
+                toolTip1.SetToolTip(ButtonPart, "自动分段");
                 Image img = Clipboard.GetImage();
                 RichTextBoxValue.Text = OCRHelper.BaiduBasic("", img);
                 this.Visible = true;
@@ -165,6 +172,7 @@ namespace jyocr
             // 创建截图窗体
             cutter = new FmCutPic();
             cutter.Image = CatchBmp;
+            cutter.Cursor = Cursors.Cross;
             cutter.ShowDialog();
         }
         #endregion
@@ -231,18 +239,21 @@ namespace jyocr
         private void 自动分段ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
+            toolTip1.SetToolTip(ButtonPart, "自动分段");
             RichTextBoxValue.Text = OCRHelper.typeset_txt;
         }
 
         private void 段落拆分ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ButtonPart.BackgroundImage = 段落拆分ToolStripMenuItem.Image;
+            toolTip1.SetToolTip(ButtonPart, "段落拆分");
             RichTextBoxValue.Text = OCRHelper.split_txt;
         }
 
         private void 段落合并ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ButtonPart.BackgroundImage = 段落合并ToolStripMenuItem.Image;
+            toolTip1.SetToolTip(ButtonPart, "段落合并");
             RichTextBoxValue.Text = RichTextBoxValue.Text.Replace("\n", "").Replace("\r", "");
         }
 
@@ -260,7 +271,10 @@ namespace jyocr
             LabelWordCount.Text = "字数：" + RichTextBoxValue.Text.Length.ToString();
         }
 
-        
-
+        private void ButtonSet_Click(object sender, EventArgs e)
+        {
+            Form frm = new FmSetting();
+            frm.ShowDialog();
+        }
     }
 }

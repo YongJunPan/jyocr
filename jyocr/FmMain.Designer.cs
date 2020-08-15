@@ -43,9 +43,10 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ButtonDelete = new System.Windows.Forms.Button();
             this.ButtonCopy = new System.Windows.Forms.Button();
+            this.ButtonPart = new System.Windows.Forms.Button();
+            this.ButtonSet = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.LabelWordCount = new System.Windows.Forms.Label();
-            this.ButtonPart = new System.Windows.Forms.Button();
             this.MenuPart = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.自动分段ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.段落拆分ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,33 +115,33 @@
             this.粘贴ToolStripMenuItem,
             this.全选ToolStripMenuItem});
             this.MenuTextBox.Name = "contextMenuStrip1";
-            this.MenuTextBox.Size = new System.Drawing.Size(103, 92);
+            this.MenuTextBox.Size = new System.Drawing.Size(101, 92);
             // 
             // 复制ToolStripMenuItem
             // 
             this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
-            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.复制ToolStripMenuItem.Text = "复制";
             this.复制ToolStripMenuItem.Click += new System.EventHandler(this.复制ToolStripMenuItem_Click);
             // 
             // 剪切ToolStripMenuItem
             // 
             this.剪切ToolStripMenuItem.Name = "剪切ToolStripMenuItem";
-            this.剪切ToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.剪切ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.剪切ToolStripMenuItem.Text = "剪切";
             this.剪切ToolStripMenuItem.Click += new System.EventHandler(this.剪切ToolStripMenuItem_Click);
             // 
             // 粘贴ToolStripMenuItem
             // 
             this.粘贴ToolStripMenuItem.Name = "粘贴ToolStripMenuItem";
-            this.粘贴ToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.粘贴ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.粘贴ToolStripMenuItem.Text = "粘贴";
             this.粘贴ToolStripMenuItem.Click += new System.EventHandler(this.粘贴ToolStripMenuItem_Click);
             // 
             // 全选ToolStripMenuItem
             // 
             this.全选ToolStripMenuItem.Name = "全选ToolStripMenuItem";
-            this.全选ToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.全选ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.全选ToolStripMenuItem.Text = "全选";
             this.全选ToolStripMenuItem.Click += new System.EventHandler(this.全选ToolStripMenuItem_Click);
             // 
@@ -167,7 +168,7 @@
             this.ButtonDelete.Location = new System.Drawing.Point(395, 348);
             this.ButtonDelete.Name = "ButtonDelete";
             this.ButtonDelete.Size = new System.Drawing.Size(25, 25);
-            this.ButtonDelete.TabIndex = 1;
+            this.ButtonDelete.TabIndex = 6;
             this.toolTip1.SetToolTip(this.ButtonDelete, "清空");
             this.ButtonDelete.UseVisualStyleBackColor = false;
             this.ButtonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
@@ -185,10 +186,41 @@
             this.ButtonCopy.Location = new System.Drawing.Point(425, 348);
             this.ButtonCopy.Name = "ButtonCopy";
             this.ButtonCopy.Size = new System.Drawing.Size(25, 25);
-            this.ButtonCopy.TabIndex = 1;
+            this.ButtonCopy.TabIndex = 7;
             this.toolTip1.SetToolTip(this.ButtonCopy, "复制");
             this.ButtonCopy.UseVisualStyleBackColor = false;
             this.ButtonCopy.Click += new System.EventHandler(this.ButtonCopy_Click);
+            // 
+            // ButtonPart
+            // 
+            this.ButtonPart.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonPart.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonPart.BackgroundImage")));
+            this.ButtonPart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonPart.FlatAppearance.BorderSize = 0;
+            this.ButtonPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonPart.Location = new System.Drawing.Point(60, 4);
+            this.ButtonPart.Name = "ButtonPart";
+            this.ButtonPart.Size = new System.Drawing.Size(25, 25);
+            this.ButtonPart.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.ButtonPart, "自动分段");
+            this.ButtonPart.UseVisualStyleBackColor = false;
+            this.ButtonPart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButtonPart_MouseDown);
+            // 
+            // ButtonSet
+            // 
+            this.ButtonSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonSet.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonSet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSet.BackgroundImage")));
+            this.ButtonSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonSet.FlatAppearance.BorderSize = 0;
+            this.ButtonSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonSet.Location = new System.Drawing.Point(425, 4);
+            this.ButtonSet.Name = "ButtonSet";
+            this.ButtonSet.Size = new System.Drawing.Size(25, 25);
+            this.ButtonSet.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.ButtonSet, "设置");
+            this.ButtonSet.UseVisualStyleBackColor = false;
+            this.ButtonSet.Click += new System.EventHandler(this.ButtonSet_Click);
             // 
             // panel2
             // 
@@ -212,20 +244,6 @@
             this.LabelWordCount.TabIndex = 5;
             this.LabelWordCount.Text = "字数：0";
             // 
-            // ButtonPart
-            // 
-            this.ButtonPart.BackColor = System.Drawing.Color.Transparent;
-            this.ButtonPart.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonPart.BackgroundImage")));
-            this.ButtonPart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ButtonPart.FlatAppearance.BorderSize = 0;
-            this.ButtonPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonPart.Location = new System.Drawing.Point(60, 4);
-            this.ButtonPart.Name = "ButtonPart";
-            this.ButtonPart.Size = new System.Drawing.Size(25, 25);
-            this.ButtonPart.TabIndex = 3;
-            this.ButtonPart.UseVisualStyleBackColor = false;
-            this.ButtonPart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButtonPart_MouseDown);
-            // 
             // MenuPart
             // 
             this.MenuPart.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -233,13 +251,13 @@
             this.段落拆分ToolStripMenuItem,
             this.段落合并ToolStripMenuItem});
             this.MenuPart.Name = "MenuPart";
-            this.MenuPart.Size = new System.Drawing.Size(129, 70);
+            this.MenuPart.Size = new System.Drawing.Size(125, 70);
             // 
             // 自动分段ToolStripMenuItem
             // 
             this.自动分段ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("自动分段ToolStripMenuItem.Image")));
             this.自动分段ToolStripMenuItem.Name = "自动分段ToolStripMenuItem";
-            this.自动分段ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.自动分段ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.自动分段ToolStripMenuItem.Text = "自动分段";
             this.自动分段ToolStripMenuItem.Click += new System.EventHandler(this.自动分段ToolStripMenuItem_Click);
             // 
@@ -247,7 +265,7 @@
             // 
             this.段落拆分ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("段落拆分ToolStripMenuItem.Image")));
             this.段落拆分ToolStripMenuItem.Name = "段落拆分ToolStripMenuItem";
-            this.段落拆分ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.段落拆分ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.段落拆分ToolStripMenuItem.Text = "段落拆分";
             this.段落拆分ToolStripMenuItem.Click += new System.EventHandler(this.段落拆分ToolStripMenuItem_Click);
             // 
@@ -255,11 +273,11 @@
             // 
             this.段落合并ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("段落合并ToolStripMenuItem.Image")));
             this.段落合并ToolStripMenuItem.Name = "段落合并ToolStripMenuItem";
-            this.段落合并ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.段落合并ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.段落合并ToolStripMenuItem.Text = "段落合并";
             this.段落合并ToolStripMenuItem.Click += new System.EventHandler(this.段落合并ToolStripMenuItem_Click);
             // 
-            // FormMain
+            // FmMain
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -270,13 +288,14 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RichTextBoxValue);
+            this.Controls.Add(this.ButtonSet);
             this.Controls.Add(this.ButtonPart);
             this.Controls.Add(this.ButtonCutPic);
             this.Controls.Add(this.ButtonCopy);
             this.Controls.Add(this.ButtonDelete);
             this.Controls.Add(this.ButtonFile);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormMain";
+            this.Name = "FmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JYOCR";
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -310,6 +329,7 @@
         private System.Windows.Forms.ToolStripMenuItem 自动分段ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 段落拆分ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 段落合并ToolStripMenuItem;
+        private System.Windows.Forms.Button ButtonSet;
     }
 }
 

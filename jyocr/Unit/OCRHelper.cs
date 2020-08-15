@@ -9,16 +9,27 @@ namespace jyocr.Unit
 {
     class OCRHelper
     {
+        
         public static string split_txt;
         public static string typeset_txt;
+
+        #pragma warning disable 0649
+        public static string ApiKey;
+        public static string SecretKey;
+        public static string AccessToken;
+        #pragma warning restore 0649
 
         #region 百度通用文字识别
         public static string BaiduBasic(string filePath, Image img = null)
         {
+            if (AccessToken == "")
+            {
+                return "错误：请检查接口设置！";
+            }
+
             string base64 = "";
             string returnStr = "";
-            string token = "24.f4dda21cd3aed8bfb3c19a911abf75f6.2592000.1599808176.282335-21952800";
-            string host = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" + token;
+            string host = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" + AccessToken;
 
             if (img == null)
             {
