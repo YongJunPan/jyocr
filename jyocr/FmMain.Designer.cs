@@ -45,6 +45,7 @@
             this.ButtonCopy = new System.Windows.Forms.Button();
             this.ButtonPart = new System.Windows.Forms.Button();
             this.ButtonSet = new System.Windows.Forms.Button();
+            this.ButtonTop = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.LabelWordCount = new System.Windows.Forms.Label();
             this.MenuPart = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -222,6 +223,22 @@
             this.ButtonSet.UseVisualStyleBackColor = false;
             this.ButtonSet.Click += new System.EventHandler(this.ButtonSet_Click);
             // 
+            // ButtonTop
+            // 
+            this.ButtonTop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonTop.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonTop.BackgroundImage = global::jyocr.Properties.Resources.置顶;
+            this.ButtonTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonTop.FlatAppearance.BorderSize = 0;
+            this.ButtonTop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonTop.Location = new System.Drawing.Point(400, 4);
+            this.ButtonTop.Name = "ButtonTop";
+            this.ButtonTop.Size = new System.Drawing.Size(25, 25);
+            this.ButtonTop.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.ButtonTop, "置顶");
+            this.ButtonTop.UseVisualStyleBackColor = false;
+            this.ButtonTop.Click += new System.EventHandler(this.ButtonTop_Click);
+            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -288,6 +305,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RichTextBoxValue);
+            this.Controls.Add(this.ButtonTop);
             this.Controls.Add(this.ButtonSet);
             this.Controls.Add(this.ButtonPart);
             this.Controls.Add(this.ButtonCutPic);
@@ -298,6 +316,8 @@
             this.Name = "FmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JYOCR";
+            this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FmMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormMain_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormMain_DragEnter);
@@ -330,6 +350,7 @@
         private System.Windows.Forms.ToolStripMenuItem 段落拆分ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 段落合并ToolStripMenuItem;
         private System.Windows.Forms.Button ButtonSet;
+        private System.Windows.Forms.Button ButtonTop;
     }
 }
 

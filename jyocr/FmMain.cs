@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using jyocr.Unit;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using jyocr.Properties;
 
 namespace jyocr
 {
@@ -91,6 +92,12 @@ namespace jyocr
                         DwmExtendFrameIntoClientArea(this.Handle, ref margins);
                     }
                     break;
+                case 0x0312:
+                    if (m.WParam.ToInt32() == 200)
+                    {
+                        ButtonCutPic_Click(null, null);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -122,6 +129,18 @@ namespace jyocr
             OCRHelper.ApiKey = IniHelper.GetValue("百度接口", "API Key");
             OCRHelper.SecretKey = IniHelper.GetValue("百度接口", "Secret Key");
             OCRHelper.AccessToken = IniHelper.GetValue("百度接口", "Access Token");
+
+            // 注册热键
+            string value = IniHelper.GetValue("热键", "截图识别");
+            if (value != "")
+            {
+                HotKey.SetHotkey(Handle, "None", "F4", value, 200);
+            }
+        }
+
+        private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            HotKey.UnregisterHotKey(Handle, 200);
         }
 
         #region 浏览文件按钮
@@ -142,19 +161,27 @@ namespace jyocr
             this.Visible = false;
             System.Threading.Thread.Sleep(200);
             ShowCutPic();
-
-            if (Clipboard.ContainsImage())
+            try
             {
-                ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
-                toolTip1.SetToolTip(ButtonPart, "自动分段");
-                Image img = Clipboard.GetImage();
-                RichTextBoxValue.Text = OCRHelper.BaiduBasic("", img);
-                this.Visible = true;
+                if (Clipboard.ContainsImage())
+                {
+                    ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
+                    toolTip1.SetToolTip(ButtonPart, "自动分段");
+                    Image img = Clipboard.GetImage();
+                    RichTextBoxValue.Text = OCRHelper.BaiduBasic("", img);
+                    this.Visible = true;
+                }
+                else
+                {
+                    this.Visible = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
                 this.Visible = true;
+                MessageBox.Show(this, ex.Message, "错误");
             }
+            
         }
         #endregion
 
@@ -180,9 +207,16 @@ namespace jyocr
         #region 文件拖动结束
         private void FormMain_DragDrop(object sender, DragEventArgs e)
         {
-            ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
-            string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-            RichTextBoxValue.Text = OCRHelper.BaiduBasic(path);
+            try
+            {
+                ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
+                string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+                RichTextBoxValue.Text = OCRHelper.BaiduBasic(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "错误");
+            }
         }
         #endregion
 
@@ -275,6 +309,29 @@ namespace jyocr
         {
             Form frm = new FmSetting();
             frm.ShowDialog();
+            string value = IniHelper.GetValue("热键", "截图识别");
+            HotKey.UnregisterHotKey(Handle, 200);
+            if (value != "")
+            {
+                HotKey.SetHotkey(Handle, "None", "F4", value, 200);
+            }
         }
+
+        private void ButtonTop_Click(object sender, EventArgs e)
+        {
+            if (this.TopMost)
+            {
+                this.TopMost = false;
+                ButtonTop.BackgroundImage = Resources.取消置顶;
+                toolTip1.SetToolTip(ButtonTop, "取消置顶");
+            }
+            else
+            {
+                this.TopMost = true;
+                ButtonTop.BackgroundImage = Resources.置顶;
+                toolTip1.SetToolTip(ButtonTop, "置顶");
+            }
+        }
+
     }
 }

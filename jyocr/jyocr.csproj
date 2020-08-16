@@ -100,6 +100,7 @@
       <DependentUpon>FmSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\BaiduToken.cs" />
+    <Compile Include="Unit\HotKey.cs" />
     <Compile Include="Models\TreeObejct.cs" />
     <Compile Include="Models\WordList.cs" />
     <Compile Include="Program.cs" />
@@ -157,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="OCR.ico" />
+    <None Include="Resources\置顶.png" />
+    <None Include="Resources\取消置顶.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
