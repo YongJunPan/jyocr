@@ -130,9 +130,33 @@ namespace jyocr
             OCRHelper.SecretKey = IniHelper.GetValue("百度接口", "Secret Key");
             OCRHelper.AccessToken = IniHelper.GetValue("百度接口", "Access Token");
 
+            // 判断 token 是否过期
+            OCRHelper.DateToken = IniHelper.GetValue("百度接口", "Date Token");
+            TimeSpan day = DateTime.Now - DateTime.Parse(OCRHelper.DateToken);
+            if (day.Days >= 30 && OCRHelper.ApiKey != "" && OCRHelper.SecretKey != "")
+            {
+                try
+                {
+                    string token = OCRHelper.GetBaiduToken(OCRHelper.ApiKey, OCRHelper.SecretKey);
+                    if (token.Contains("错误"))
+                    {
+                        MessageBox.Show(this, token, "错误");
+                    }
+                    else
+                    {
+                        IniHelper.SetValue("百度接口", "Access Token", token);
+                        IniHelper.SetValue("百度接口", "Date Token", DateTime.Now.ToString("yyyy-MM-dd"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "错误");
+                }
+            }
+
             // 注册热键
             string value = IniHelper.GetValue("热键", "截图识别");
-            if (value != "")
+            if (value != "" && value != "请按下快捷键")
             {
                 HotKey.SetHotkey(Handle, "None", "F4", value, 200);
             }
@@ -140,6 +164,7 @@ namespace jyocr
 
         private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
+            // 卸载热键
             HotKey.UnregisterHotKey(Handle, 200);
         }
 
@@ -158,30 +183,24 @@ namespace jyocr
         #region 截图识别按钮
         private void ButtonCutPic_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
-            System.Threading.Thread.Sleep(200);
-            ShowCutPic();
+            this.Visible = false; // 截图时隐藏本窗体
+            System.Threading.Thread.Sleep(200); // 延时，避免把本窗体也截下来
+            ShowCutPic();  // 截图功能
+            this.Visible = true;
             try
             {
                 if (Clipboard.ContainsImage())
                 {
                     ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
                     toolTip1.SetToolTip(ButtonPart, "自动分段");
-                    Image img = Clipboard.GetImage();
-                    RichTextBoxValue.Text = OCRHelper.BaiduBasic("", img);
-                    this.Visible = true;
-                }
-                else
-                {
-                    this.Visible = true;
+                    Image img = Clipboard.GetImage();  // 获取剪切板图片
+                    RichTextBoxValue.Text = OCRHelper.BaiduBasic("", img); // 识别剪切板图片的文字
                 }
             }
             catch (Exception ex)
             {
-                this.Visible = true;
                 MessageBox.Show(this, ex.Message, "错误");
             }
-            
         }
         #endregion
 
@@ -305,18 +324,23 @@ namespace jyocr
             LabelWordCount.Text = "字数：" + RichTextBoxValue.Text.Length.ToString();
         }
 
+        #region 设置按钮
         private void ButtonSet_Click(object sender, EventArgs e)
         {
             Form frm = new FmSetting();
             frm.ShowDialog();
+
+            // 卸载热键重新注册
             string value = IniHelper.GetValue("热键", "截图识别");
-            HotKey.UnregisterHotKey(Handle, 200);
-            if (value != "")
+            if (value != "" && value != "请按下快捷键")
             {
+                HotKey.UnregisterHotKey(Handle, 200);
                 HotKey.SetHotkey(Handle, "None", "F4", value, 200);
             }
         }
+        #endregion
 
+        #region 置顶按钮
         private void ButtonTop_Click(object sender, EventArgs e)
         {
             if (this.TopMost)
@@ -332,6 +356,7 @@ namespace jyocr
                 toolTip1.SetToolTip(ButtonTop, "置顶");
             }
         }
+        #endregion
 
     }
 }

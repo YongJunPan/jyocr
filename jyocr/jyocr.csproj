@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="OCR.ico" />
+    <None Include="Resources\OCR.png" />
     <None Include="Resources\置顶.png" />
     <None Include="Resources\取消置顶.png" />
   </ItemGroup>

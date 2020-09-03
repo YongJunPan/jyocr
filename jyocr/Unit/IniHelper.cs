@@ -71,6 +71,10 @@ namespace jyocr.Unit
         {
             StringBuilder result = new StringBuilder(255);
             int i = GetPrivateProfileString(section, key, "", result, 255, Path);
+            if (result.ToString() == "")
+            {
+                SetValue(section, key, "");
+            }
             return result.ToString();
         }
     }

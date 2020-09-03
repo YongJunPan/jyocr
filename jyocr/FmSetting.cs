@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace jyocr
 {
@@ -12,6 +13,15 @@ namespace jyocr
         public FmSetting()
         {
             InitializeComponent();
+        }
+
+        private void FmSetting_Load(object sender, EventArgs e)
+        {
+            TextBoxApiKey.Text = OCRHelper.ApiKey;
+            TextBoxSecretKey.Text = OCRHelper.SecretKey;
+            TextBoxToken.Text = OCRHelper.AccessToken;
+            TextBoxHotkey.Text = IniHelper.GetValue("热键", "截图识别");
+            PanelSet.AutoScroll = false;
         }
 
         private void ButtonAapply_Click(object sender, EventArgs e)
@@ -23,21 +33,26 @@ namespace jyocr
         {
             try
             {
-                string url = "https://aip.baidubce.com/oauth/2.0/token";
-                string data = string.Format("grant_type=client_credentials&client_id={0}&client_secret={1}", TextBoxApiKey.Text, TextBoxSecretKey.Text);
-                string result = HttpClient.Post(data, url);
-                BaiduToken token = JsonConvert.DeserializeObject<BaiduToken>(result);
-                if (string.IsNullOrEmpty(token.error) == false)
+                //string url = "https://aip.baidubce.com/oauth/2.0/token";
+                //string data = string.Format("grant_type=client_credentials&client_id={0}&client_secret={1}", TextBoxApiKey.Text, TextBoxSecretKey.Text);
+                //string result = HttpClient.Post(data, url);
+                //BaiduToken token = JsonConvert.DeserializeObject<BaiduToken>(result);
+                string token = OCRHelper.GetBaiduToken(TextBoxApiKey.Text, TextBoxSecretKey.Text);
+                if (token.Contains("错误"))
                 {
-                    MessageBox.Show(this, token.error + "：" + token.error_description, "错误");
+                    MessageBox.Show(this, token, "错误");
                 }
                 else
                 {
-                    TextBoxToken.Text = token.access_token.Trim();
-                    MessageBox.Show(this, "已生成密钥，有效期30天！", "提示");
+                    TextBoxToken.Text = token;
+                    IniHelper.SetValue("百度接口", "API Key", TextBoxApiKey.Text.Trim());
+                    IniHelper.SetValue("百度接口", "Secret Key", TextBoxSecretKey.Text.Trim());
+                    IniHelper.SetValue("百度接口", "Access Token", TextBoxToken.Text.Trim());
+                    IniHelper.SetValue("百度接口", "Date Token", DateTime.Now.ToString("yyyy-MM-dd"));
+                    MessageBox.Show(this, "已生成并保存密钥，有效期30天！", "提示");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, "错误");
             }
@@ -56,17 +71,12 @@ namespace jyocr
             OCRHelper.SecretKey = TextBoxSecretKey.Text.Trim();
             OCRHelper.AccessToken = TextBoxToken.Text.Trim();
 
-            MessageBox.Show(this, "配置已保存！", "提示");
+            //MessageBox.Show(this, "配置已保存！", "提示");
+            this.Close();
         }
 
-        private void FmSetting_Load(object sender, EventArgs e)
-        {
-            TextBoxApiKey.Text = OCRHelper.ApiKey;
-            TextBoxSecretKey.Text = OCRHelper.SecretKey;
-            TextBoxToken.Text = OCRHelper.AccessToken;
-            TextBoxHotkey.Text = IniHelper.GetValue("热键", "截图识别");
-        }
 
+        #region 识别按下的键盘值
         private void TextBoxHotkey_KeyDown(object sender, KeyEventArgs e)
         {
             e.SuppressKeyPress = true;
@@ -90,6 +100,39 @@ namespace jyocr
                     TextBoxHotkey.Text = array[1] + "+" + array[0];
                 }
             }
+        }
+        #endregion
+
+        #region 点击左侧导航菜单
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex == 0) // 百度接口
+            {
+                PanelHotkey.Visible = false;
+                PanelAbout.Visible = false;
+                PanelBaidu.Visible = true;
+                PanelBaidu.Top = listBox1.Top;
+            }
+            else if (listBox1.SelectedIndex == 1) // 热键
+            {
+                PanelBaidu.Visible = false;
+                PanelAbout.Visible = false;
+                PanelHotkey.Visible = true;
+                PanelHotkey.Top = listBox1.Top;
+            }
+            else if (listBox1.SelectedIndex == 2) // 关于
+            {
+                PanelBaidu.Visible = false;
+                PanelHotkey.Visible = false;
+                PanelAbout.Visible = true;
+                PanelAbout.Top = listBox1.Top;
+            }
+        }
+        #endregion
+
+        private void ButtonExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

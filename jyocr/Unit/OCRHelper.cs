@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using jyocr.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Drawing;
@@ -17,7 +18,33 @@ namespace jyocr.Unit
         public static string ApiKey;
         public static string SecretKey;
         public static string AccessToken;
+        public static string DateToken;
         #pragma warning restore 0649
+
+        #region 获取百度 access token
+        public static string GetBaiduToken(string api_key, string secret_key)
+        {
+            try
+            {
+                string url = "https://aip.baidubce.com/oauth/2.0/token";
+                string data = string.Format("grant_type=client_credentials&client_id={0}&client_secret={1}", api_key, secret_key);
+                string result = HttpClient.Post(data, url);
+                BaiduToken token = JsonConvert.DeserializeObject<BaiduToken>(result);
+                if (string.IsNullOrEmpty(token.error) == false)
+                {
+                    return "错误：" + token.error + "：" + token.error_description;
+                }
+                else
+                {
+                    return token.access_token.Trim();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
 
         #region 百度通用文字识别
         public static string BaiduBasic(string filePath, Image img = null)
@@ -49,6 +76,7 @@ namespace jyocr.Unit
         }
         #endregion
 
+        #region 智能段落合并
         public static string checked_txt(JArray jarray, int lastlength, string words)
         {
             var num = 0;
@@ -194,5 +222,7 @@ namespace jyocr.Unit
         {
             return Regex.IsMatch(str, "[a-zA-Z]");
         }
+        #endregion
+
     }
 }
