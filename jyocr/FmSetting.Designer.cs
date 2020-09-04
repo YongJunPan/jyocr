@@ -78,6 +78,8 @@
             this.TextBoxHotkey.Name = "TextBoxHotkey";
             this.TextBoxHotkey.Size = new System.Drawing.Size(225, 21);
             this.TextBoxHotkey.TabIndex = 6;
+            this.TextBoxHotkey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxHotkey_KeyDown);
+            this.TextBoxHotkey.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxHotkey_KeyUp);
             // 
             // label3
             // 
