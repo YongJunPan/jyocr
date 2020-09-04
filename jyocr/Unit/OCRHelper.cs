@@ -19,6 +19,7 @@ namespace jyocr.Unit
         public static string SecretKey;
         public static string AccessToken;
         public static string DateToken;
+        public static bool Accurate;
         #pragma warning restore 0649
 
         #region 获取百度 access token
@@ -56,7 +57,8 @@ namespace jyocr.Unit
 
             string base64 = "";
             string returnStr = "";
-            string host = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" + AccessToken;
+            string url = Accurate ? "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token=" + AccessToken : 
+                "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" + AccessToken;
 
             if (img == null)
             {
@@ -68,7 +70,7 @@ namespace jyocr.Unit
             }
 
             string data = "image=" + HttpUtility.UrlEncode(base64);
-            string result = HttpClient.Post(data, host);
+            string result = HttpClient.Post(data, url);
             var jArray = JArray.Parse(((JObject)JsonConvert.DeserializeObject(result))["words_result"].ToString());
             returnStr = checked_txt(jArray, 1, "words");
 

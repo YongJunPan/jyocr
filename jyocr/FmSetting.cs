@@ -1,10 +1,7 @@
 ﻿using jyocr.Unit;
-using jyocr.Models;
-using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace jyocr
 {
@@ -21,6 +18,7 @@ namespace jyocr
             TextBoxSecretKey.Text = OCRHelper.SecretKey;
             TextBoxToken.Text = OCRHelper.AccessToken;
             TextBoxHotkey.Text = IniHelper.GetValue("热键", "截图识别");
+            cbAccurate.Checked = OCRHelper.Accurate;
             PanelSet.AutoScroll = false;
         }
 
@@ -64,12 +62,14 @@ namespace jyocr
             IniHelper.SetValue("百度接口", "API Key", TextBoxApiKey.Text.Trim());
             IniHelper.SetValue("百度接口", "Secret Key", TextBoxSecretKey.Text.Trim());
             IniHelper.SetValue("百度接口", "Access Token", TextBoxToken.Text.Trim());
+            IniHelper.SetValue("百度接口", "使用高精度接口", cbAccurate.Checked.ToString());
             IniHelper.SetValue("热键", "截图识别", TextBoxHotkey.Text.Trim());
 
             // 刷新变量
             OCRHelper.ApiKey = TextBoxApiKey.Text.Trim();
             OCRHelper.SecretKey = TextBoxSecretKey.Text.Trim();
             OCRHelper.AccessToken = TextBoxToken.Text.Trim();
+            OCRHelper.Accurate = cbAccurate.Checked;
 
             //MessageBox.Show(this, "配置已保存！", "提示");
             this.Close();
@@ -104,28 +104,28 @@ namespace jyocr
         #endregion
 
         #region 点击左侧导航菜单
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBoxMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex == 0) // 百度接口
+            if (ListBoxMenu.SelectedIndex == 0) // 百度接口
             {
                 PanelHotkey.Visible = false;
                 PanelAbout.Visible = false;
+                PanelBaidu.Top = ListBoxMenu.Top;
                 PanelBaidu.Visible = true;
-                PanelBaidu.Top = listBox1.Top;
             }
-            else if (listBox1.SelectedIndex == 1) // 热键
+            else if (ListBoxMenu.SelectedIndex == 1) // 热键
             {
                 PanelBaidu.Visible = false;
                 PanelAbout.Visible = false;
+                PanelHotkey.Top = ListBoxMenu.Top;
                 PanelHotkey.Visible = true;
-                PanelHotkey.Top = listBox1.Top;
             }
-            else if (listBox1.SelectedIndex == 2) // 关于
+            else if (ListBoxMenu.SelectedIndex == 2) // 关于
             {
                 PanelBaidu.Visible = false;
                 PanelHotkey.Visible = false;
+                PanelAbout.Top = ListBoxMenu.Top;
                 PanelAbout.Visible = true;
-                PanelAbout.Top = listBox1.Top;
             }
         }
         #endregion

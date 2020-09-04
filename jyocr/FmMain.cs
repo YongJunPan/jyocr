@@ -113,6 +113,7 @@ namespace jyocr
             InitializeComponent();
         }
 
+        #region 软件加载
         private void FormMain_Load(object sender, EventArgs e)
         {
             // RichTextBox 段落缩进
@@ -129,6 +130,8 @@ namespace jyocr
             OCRHelper.ApiKey = IniHelper.GetValue("百度接口", "API Key");
             OCRHelper.SecretKey = IniHelper.GetValue("百度接口", "Secret Key");
             OCRHelper.AccessToken = IniHelper.GetValue("百度接口", "Access Token");
+            string check = IniHelper.GetValue("百度接口", "使用高精度接口");
+            OCRHelper.Accurate = check == "" ? false : bool.Parse(check);
 
             // 判断 token 是否过期
             OCRHelper.DateToken = IniHelper.GetValue("百度接口", "Date Token");
@@ -161,12 +164,15 @@ namespace jyocr
                 HotKey.SetHotkey(Handle, "None", "F4", value, 200);
             }
         }
+        #endregion
+
 
         private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             // 卸载热键
             HotKey.UnregisterHotKey(Handle, 200);
         }
+
 
         #region 浏览文件按钮
         private void ButtonFile_Click(object sender, EventArgs e)
@@ -187,6 +193,7 @@ namespace jyocr
             System.Threading.Thread.Sleep(200); // 延时，避免把本窗体也截下来
             ShowCutPic();  // 截图功能
             this.Visible = true;
+            Application.DoEvents(); // DoEvents()将强制处理消息队列中的所有消息
             try
             {
                 if (Clipboard.ContainsImage())

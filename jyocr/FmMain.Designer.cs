@@ -34,11 +34,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ButtonCutPic = new System.Windows.Forms.Button();
             this.RichTextBoxValue = new System.Windows.Forms.RichTextBox();
-            this.MenuTextBox = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.剪切ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.粘贴ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.全选ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ButtonDelete = new System.Windows.Forms.Button();
@@ -52,7 +47,6 @@
             this.自动分段ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.段落拆分ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.段落合并ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuTextBox.SuspendLayout();
             this.MenuPart.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,7 +93,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RichTextBoxValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RichTextBoxValue.ContextMenuStrip = this.MenuTextBox;
             this.RichTextBoxValue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.RichTextBoxValue.Location = new System.Drawing.Point(0, 37);
             this.RichTextBoxValue.Name = "RichTextBoxValue";
@@ -107,44 +100,6 @@
             this.RichTextBoxValue.TabIndex = 1;
             this.RichTextBoxValue.Text = "";
             this.RichTextBoxValue.TextChanged += new System.EventHandler(this.RichTextBoxValue_TextChanged);
-            // 
-            // MenuTextBox
-            // 
-            this.MenuTextBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.复制ToolStripMenuItem,
-            this.剪切ToolStripMenuItem,
-            this.粘贴ToolStripMenuItem,
-            this.全选ToolStripMenuItem});
-            this.MenuTextBox.Name = "contextMenuStrip1";
-            this.MenuTextBox.Size = new System.Drawing.Size(101, 92);
-            // 
-            // 复制ToolStripMenuItem
-            // 
-            this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
-            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.复制ToolStripMenuItem.Text = "复制";
-            this.复制ToolStripMenuItem.Click += new System.EventHandler(this.复制ToolStripMenuItem_Click);
-            // 
-            // 剪切ToolStripMenuItem
-            // 
-            this.剪切ToolStripMenuItem.Name = "剪切ToolStripMenuItem";
-            this.剪切ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.剪切ToolStripMenuItem.Text = "剪切";
-            this.剪切ToolStripMenuItem.Click += new System.EventHandler(this.剪切ToolStripMenuItem_Click);
-            // 
-            // 粘贴ToolStripMenuItem
-            // 
-            this.粘贴ToolStripMenuItem.Name = "粘贴ToolStripMenuItem";
-            this.粘贴ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.粘贴ToolStripMenuItem.Text = "粘贴";
-            this.粘贴ToolStripMenuItem.Click += new System.EventHandler(this.粘贴ToolStripMenuItem_Click);
-            // 
-            // 全选ToolStripMenuItem
-            // 
-            this.全选ToolStripMenuItem.Name = "全选ToolStripMenuItem";
-            this.全选ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.全选ToolStripMenuItem.Text = "全选";
-            this.全选ToolStripMenuItem.Click += new System.EventHandler(this.全选ToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -268,13 +223,13 @@
             this.段落拆分ToolStripMenuItem,
             this.段落合并ToolStripMenuItem});
             this.MenuPart.Name = "MenuPart";
-            this.MenuPart.Size = new System.Drawing.Size(125, 70);
+            this.MenuPart.Size = new System.Drawing.Size(129, 70);
             // 
             // 自动分段ToolStripMenuItem
             // 
             this.自动分段ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("自动分段ToolStripMenuItem.Image")));
             this.自动分段ToolStripMenuItem.Name = "自动分段ToolStripMenuItem";
-            this.自动分段ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.自动分段ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.自动分段ToolStripMenuItem.Text = "自动分段";
             this.自动分段ToolStripMenuItem.Click += new System.EventHandler(this.自动分段ToolStripMenuItem_Click);
             // 
@@ -282,7 +237,7 @@
             // 
             this.段落拆分ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("段落拆分ToolStripMenuItem.Image")));
             this.段落拆分ToolStripMenuItem.Name = "段落拆分ToolStripMenuItem";
-            this.段落拆分ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.段落拆分ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.段落拆分ToolStripMenuItem.Text = "段落拆分";
             this.段落拆分ToolStripMenuItem.Click += new System.EventHandler(this.段落拆分ToolStripMenuItem_Click);
             // 
@@ -290,7 +245,7 @@
             // 
             this.段落合并ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("段落合并ToolStripMenuItem.Image")));
             this.段落合并ToolStripMenuItem.Name = "段落合并ToolStripMenuItem";
-            this.段落合并ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.段落合并ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.段落合并ToolStripMenuItem.Text = "段落合并";
             this.段落合并ToolStripMenuItem.Click += new System.EventHandler(this.段落合并ToolStripMenuItem_Click);
             // 
@@ -321,7 +276,6 @@
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormMain_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormMain_DragEnter);
-            this.MenuTextBox.ResumeLayout(false);
             this.MenuPart.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -339,11 +293,6 @@
         private System.Windows.Forms.Label LabelWordCount;
         private System.Windows.Forms.Button ButtonDelete;
         private System.Windows.Forms.Button ButtonCopy;
-        private System.Windows.Forms.ContextMenuStrip MenuTextBox;
-        private System.Windows.Forms.ToolStripMenuItem 复制ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 剪切ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 粘贴ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 全选ToolStripMenuItem;
         private System.Windows.Forms.Button ButtonPart;
         private System.Windows.Forms.ContextMenuStrip MenuPart;
         private System.Windows.Forms.ToolStripMenuItem 自动分段ToolStripMenuItem;

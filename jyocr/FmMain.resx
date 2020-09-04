@@ -152,9 +152,6 @@
         vc0VBLnHyLmnXPuz2VGuQ/Iy/ifEYn8AR4WxQzva4XkAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="MenuTextBox.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>269, 17</value>
-  </metadata>
   <data name="ButtonDelete.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAO5JREFUWEft
@@ -204,7 +201,7 @@
 </value>
   </data>
   <metadata name="MenuPart.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>414, 17</value>
+    <value>274, 21</value>
   </metadata>
   <data name="自动分段ToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
