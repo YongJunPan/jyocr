@@ -245,7 +245,7 @@
             this.textBoxAbout.ReadOnly = true;
             this.textBoxAbout.Size = new System.Drawing.Size(229, 144);
             this.textBoxAbout.TabIndex = 1;
-            this.textBoxAbout.Text = "当前版本：1.03\r\n更新日期：2020-09-04\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n反馈邮箱：iPanYJ" +
+            this.textBoxAbout.Text = "当前版本：1.04\r\n更新日期：2020-09-07\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n反馈邮箱：iPanYJ" +
     "@outlook.com\r\n\r\n本软件仅供学习交流使用";
             // 
             // PictureBoxIcon

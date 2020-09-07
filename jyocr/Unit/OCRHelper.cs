@@ -20,6 +20,7 @@ namespace jyocr.Unit
         public static string AccessToken;
         public static string DateToken;
         public static bool Accurate;
+        public static string Language = "CHN_ENG";
         #pragma warning restore 0649
 
         #region 获取百度 access token
@@ -54,26 +55,13 @@ namespace jyocr.Unit
             {
                 return "错误：请检查接口设置！";
             }
-
-            string base64 = "";
-            string returnStr = "";
-            string url = Accurate ? "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token=" + AccessToken : 
+            string url = Accurate ? "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token=" + AccessToken :
                 "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" + AccessToken;
-
-            if (img == null)
-            {
-                base64 = Base64Helper.getFileBase64(filePath); // 图片文件的 base64 编码
-            }
-            else
-            {
-                base64 = Base64Helper.getFileBase64("", Base64Helper.ImgToBytes(img)); // 剪切板图片的 base64 编码
-            }
-
-            string data = "image=" + HttpUtility.UrlEncode(base64);
+            string base64 = img == null ? Base64Helper.getFileBase64(filePath) : Base64Helper.getFileBase64("", Base64Helper.ImgToBytes(img));
+            string data = "image=" + HttpUtility.UrlEncode(base64) + "&language_type=" + Language;
             string result = HttpClient.Post(data, url);
             var jArray = JArray.Parse(((JObject)JsonConvert.DeserializeObject(result))["words_result"].ToString());
-            returnStr = checked_txt(jArray, 1, "words");
-
+            string returnStr = checked_txt(jArray, 1, "words");
             return returnStr;
         }
         #endregion

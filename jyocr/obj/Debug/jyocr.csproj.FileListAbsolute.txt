@@ -25,3 +25,4 @@ D:\code\jyocr\jyocr\obj\Debug\jyocr.pdb
 D:\code\jyocr\jyocr\obj\Debug\jyocr.FmCutPic.resources
 D:\code\jyocr\jyocr\obj\Debug\jyocr.FmMain.resources
 D:\code\jyocr\jyocr\obj\Debug\jyocr.FmSetting.resources
+D:\code\jyocr\jyocr\obj\Debug\jyocr.csprojResolveAssemblyReference.cache

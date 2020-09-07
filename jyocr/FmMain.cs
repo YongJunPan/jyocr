@@ -135,7 +135,7 @@ namespace jyocr
 
             // 判断 token 是否过期
             OCRHelper.DateToken = IniHelper.GetValue("百度接口", "Date Token");
-            TimeSpan day = DateTime.Now - DateTime.Parse(OCRHelper.DateToken);
+            TimeSpan day = OCRHelper.DateToken == "" ? TimeSpan.MaxValue : DateTime.Now - DateTime.Parse(OCRHelper.DateToken);
             if (day.Days >= 30 && OCRHelper.ApiKey != "" && OCRHelper.SecretKey != "")
             {
                 try
@@ -272,29 +272,6 @@ namespace jyocr
         }
         #endregion
 
-        #region TextBox右键菜单功能
-        private void 复制ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetData(DataFormats.Text, RichTextBoxValue.Text);
-        }
-
-        private void 剪切ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetData(DataFormats.Text, RichTextBoxValue.Text);
-            RichTextBoxValue.Text = "";
-        }
-
-        private void 全选ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RichTextBoxValue.SelectAll();
-        }
-
-        private void 粘贴ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RichTextBoxValue.Paste();
-        }
-        #endregion
-
         #region 段落按钮菜单功能
         private void 自动分段ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -365,5 +342,147 @@ namespace jyocr
         }
         #endregion
 
+        #region 语言选项按钮
+        private void ButtonLang_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (OCRHelper.Accurate)
+                {
+                    MenuLangAccurate.Show((Button)sender, new Point(ButtonLang.Left - ButtonLang.Width - 10, ButtonLang.Top + ButtonLang.Height));
+                }
+                else
+                {
+                    MenuLangBasic.Show((Button)sender, new Point(ButtonLang.Left - ButtonLang.Width - 10, ButtonLang.Top + ButtonLang.Height));
+                }
+            }
+        }
+
+        private void 中英混合ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "中英混合";
+            OCRHelper.Language = "CHN_ENG";
+        }
+
+        private void 英文ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "英文";
+            OCRHelper.Language = "ENG";
+        }
+
+        private void 日语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "日语";
+            OCRHelper.Language = "JAP";
+        }
+
+        private void 韩语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "韩语";
+            OCRHelper.Language = "KOR";
+        }
+
+        private void 法语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "法语";
+            OCRHelper.Language = "FRE";
+        }
+
+        private void 西班牙语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "西班牙语";
+            OCRHelper.Language = "SPA";
+        }
+
+        private void 葡萄牙语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "葡萄牙语";
+            OCRHelper.Language = "POR";
+        }
+
+        private void 德语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "德语";
+            OCRHelper.Language = "GER";
+        }
+
+        private void 意大利语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "意大利语";
+            OCRHelper.Language = "ITA";
+        }
+
+        private void 俄语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "俄语";
+            OCRHelper.Language = "RUS";
+        }
+
+        private void 丹麦语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "丹麦语";
+            OCRHelper.Language = "DAN";
+        }
+
+        private void 荷兰语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "荷兰语";
+            OCRHelper.Language = "DUT";
+        }
+
+        private void 马来语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "马来语";
+            OCRHelper.Language = "MAL";
+        }
+
+        private void 瑞典语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "瑞典语";
+            OCRHelper.Language = "SWE";
+        }
+
+        private void 印尼语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "印尼语";
+            OCRHelper.Language = "IND";
+        }
+
+        private void 波兰语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "波兰语";
+            OCRHelper.Language = "POL";
+        }
+
+        private void 罗马尼亚语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "罗马尼亚";
+            OCRHelper.Language = "ROM";
+        }
+
+        private void 土耳其语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "土耳其语";
+            OCRHelper.Language = "TUR";
+        }
+
+        private void 希腊语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "希腊语";
+            OCRHelper.Language = "GRE";
+        }
+
+        private void 匈牙利语ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "匈牙利语";
+            OCRHelper.Language = "HUN";
+        }
+
+        private void 自动检测ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ButtonLang.Text = "自动检测";
+            OCRHelper.Language = "auto_detect";
+        }
+        #endregion
     }
 }

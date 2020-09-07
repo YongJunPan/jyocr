@@ -47,7 +47,43 @@
             this.自动分段ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.段落拆分ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.段落合并ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ButtonLang = new System.Windows.Forms.Button();
+            this.MenuLangBasic = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.中英混合ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.英文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.日语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.韩语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.法语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.西班牙语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.葡萄牙语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.德语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.意大利语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.俄语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuLangAccurate = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.中英混合ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.自动检测ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.英文ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.日语ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.韩语ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.法语ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.西班牙语ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.葡萄牙语ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.德语ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.意大利语ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.俄语ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.丹麦语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.荷兰语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.马来语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.瑞典语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.印尼语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.波兰语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.罗马尼亚语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.土耳其语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.希腊语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.匈牙利语ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuPart.SuspendLayout();
+            this.MenuLangBasic.SuspendLayout();
+            this.MenuLangAccurate.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonFile
@@ -249,6 +285,281 @@
             this.段落合并ToolStripMenuItem.Text = "段落合并";
             this.段落合并ToolStripMenuItem.Click += new System.EventHandler(this.段落合并ToolStripMenuItem_Click);
             // 
+            // ButtonLang
+            // 
+            this.ButtonLang.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonLang.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonLang.FlatAppearance.BorderSize = 0;
+            this.ButtonLang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonLang.Font = new System.Drawing.Font("方正黑体_GBK", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ButtonLang.Location = new System.Drawing.Point(90, 4);
+            this.ButtonLang.Name = "ButtonLang";
+            this.ButtonLang.Size = new System.Drawing.Size(80, 25);
+            this.ButtonLang.TabIndex = 4;
+            this.ButtonLang.Text = "中英混合";
+            this.ButtonLang.UseVisualStyleBackColor = false;
+            this.ButtonLang.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButtonLang_MouseDown);
+            // 
+            // MenuLangBasic
+            // 
+            this.MenuLangBasic.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.中英混合ToolStripMenuItem,
+            this.英文ToolStripMenuItem,
+            this.日语ToolStripMenuItem,
+            this.韩语ToolStripMenuItem,
+            this.法语ToolStripMenuItem,
+            this.西班牙语ToolStripMenuItem,
+            this.葡萄牙语ToolStripMenuItem,
+            this.德语ToolStripMenuItem,
+            this.意大利语ToolStripMenuItem,
+            this.俄语ToolStripMenuItem});
+            this.MenuLangBasic.Name = "MenuLangBasic";
+            this.MenuLangBasic.Size = new System.Drawing.Size(129, 224);
+            // 
+            // 中英混合ToolStripMenuItem
+            // 
+            this.中英混合ToolStripMenuItem.Name = "中英混合ToolStripMenuItem";
+            this.中英混合ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.中英混合ToolStripMenuItem.Text = "中英混合";
+            this.中英混合ToolStripMenuItem.Click += new System.EventHandler(this.中英混合ToolStripMenuItem_Click);
+            // 
+            // 英文ToolStripMenuItem
+            // 
+            this.英文ToolStripMenuItem.Name = "英文ToolStripMenuItem";
+            this.英文ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.英文ToolStripMenuItem.Text = "英文";
+            this.英文ToolStripMenuItem.Click += new System.EventHandler(this.英文ToolStripMenuItem_Click);
+            // 
+            // 日语ToolStripMenuItem
+            // 
+            this.日语ToolStripMenuItem.Name = "日语ToolStripMenuItem";
+            this.日语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.日语ToolStripMenuItem.Text = "日语";
+            this.日语ToolStripMenuItem.Click += new System.EventHandler(this.日语ToolStripMenuItem_Click);
+            // 
+            // 韩语ToolStripMenuItem
+            // 
+            this.韩语ToolStripMenuItem.Name = "韩语ToolStripMenuItem";
+            this.韩语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.韩语ToolStripMenuItem.Text = "韩语";
+            this.韩语ToolStripMenuItem.Click += new System.EventHandler(this.韩语ToolStripMenuItem_Click);
+            // 
+            // 法语ToolStripMenuItem
+            // 
+            this.法语ToolStripMenuItem.Name = "法语ToolStripMenuItem";
+            this.法语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.法语ToolStripMenuItem.Text = "法语";
+            this.法语ToolStripMenuItem.Click += new System.EventHandler(this.法语ToolStripMenuItem_Click);
+            // 
+            // 西班牙语ToolStripMenuItem
+            // 
+            this.西班牙语ToolStripMenuItem.Name = "西班牙语ToolStripMenuItem";
+            this.西班牙语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.西班牙语ToolStripMenuItem.Text = "西班牙语";
+            this.西班牙语ToolStripMenuItem.Click += new System.EventHandler(this.西班牙语ToolStripMenuItem_Click);
+            // 
+            // 葡萄牙语ToolStripMenuItem
+            // 
+            this.葡萄牙语ToolStripMenuItem.Name = "葡萄牙语ToolStripMenuItem";
+            this.葡萄牙语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.葡萄牙语ToolStripMenuItem.Text = "葡萄牙语";
+            this.葡萄牙语ToolStripMenuItem.Click += new System.EventHandler(this.葡萄牙语ToolStripMenuItem_Click);
+            // 
+            // 德语ToolStripMenuItem
+            // 
+            this.德语ToolStripMenuItem.Name = "德语ToolStripMenuItem";
+            this.德语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.德语ToolStripMenuItem.Text = "德语";
+            this.德语ToolStripMenuItem.Click += new System.EventHandler(this.德语ToolStripMenuItem_Click);
+            // 
+            // 意大利语ToolStripMenuItem
+            // 
+            this.意大利语ToolStripMenuItem.Name = "意大利语ToolStripMenuItem";
+            this.意大利语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.意大利语ToolStripMenuItem.Text = "意大利语";
+            this.意大利语ToolStripMenuItem.Click += new System.EventHandler(this.意大利语ToolStripMenuItem_Click);
+            // 
+            // 俄语ToolStripMenuItem
+            // 
+            this.俄语ToolStripMenuItem.Name = "俄语ToolStripMenuItem";
+            this.俄语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.俄语ToolStripMenuItem.Text = "俄语";
+            this.俄语ToolStripMenuItem.Click += new System.EventHandler(this.俄语ToolStripMenuItem_Click);
+            // 
+            // MenuLangAccurate
+            // 
+            this.MenuLangAccurate.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.中英混合ToolStripMenuItem1,
+            this.自动检测ToolStripMenuItem,
+            this.英文ToolStripMenuItem1,
+            this.日语ToolStripMenuItem1,
+            this.韩语ToolStripMenuItem1,
+            this.法语ToolStripMenuItem1,
+            this.西班牙语ToolStripMenuItem1,
+            this.葡萄牙语ToolStripMenuItem1,
+            this.德语ToolStripMenuItem1,
+            this.意大利语ToolStripMenuItem1,
+            this.俄语ToolStripMenuItem1,
+            this.丹麦语ToolStripMenuItem,
+            this.荷兰语ToolStripMenuItem,
+            this.马来语ToolStripMenuItem,
+            this.瑞典语ToolStripMenuItem,
+            this.印尼语ToolStripMenuItem,
+            this.波兰语ToolStripMenuItem,
+            this.罗马尼亚语ToolStripMenuItem,
+            this.土耳其语ToolStripMenuItem,
+            this.希腊语ToolStripMenuItem,
+            this.匈牙利语ToolStripMenuItem});
+            this.MenuLangAccurate.Name = "MenuLangAccurate";
+            this.MenuLangAccurate.Size = new System.Drawing.Size(153, 488);
+            // 
+            // 中英混合ToolStripMenuItem1
+            // 
+            this.中英混合ToolStripMenuItem1.Name = "中英混合ToolStripMenuItem1";
+            this.中英混合ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.中英混合ToolStripMenuItem1.Text = "中英混合";
+            this.中英混合ToolStripMenuItem1.Click += new System.EventHandler(this.中英混合ToolStripMenuItem_Click);
+            // 
+            // 自动检测ToolStripMenuItem
+            // 
+            this.自动检测ToolStripMenuItem.Name = "自动检测ToolStripMenuItem";
+            this.自动检测ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.自动检测ToolStripMenuItem.Text = "自动检测";
+            this.自动检测ToolStripMenuItem.Click += new System.EventHandler(this.自动检测ToolStripMenuItem_Click);
+            // 
+            // 英文ToolStripMenuItem1
+            // 
+            this.英文ToolStripMenuItem1.Name = "英文ToolStripMenuItem1";
+            this.英文ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.英文ToolStripMenuItem1.Text = "英文";
+            this.英文ToolStripMenuItem1.Click += new System.EventHandler(this.英文ToolStripMenuItem_Click);
+            // 
+            // 日语ToolStripMenuItem1
+            // 
+            this.日语ToolStripMenuItem1.Name = "日语ToolStripMenuItem1";
+            this.日语ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.日语ToolStripMenuItem1.Text = "日语";
+            this.日语ToolStripMenuItem1.Click += new System.EventHandler(this.日语ToolStripMenuItem_Click);
+            // 
+            // 韩语ToolStripMenuItem1
+            // 
+            this.韩语ToolStripMenuItem1.Name = "韩语ToolStripMenuItem1";
+            this.韩语ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.韩语ToolStripMenuItem1.Text = "韩语";
+            this.韩语ToolStripMenuItem1.Click += new System.EventHandler(this.韩语ToolStripMenuItem_Click);
+            // 
+            // 法语ToolStripMenuItem1
+            // 
+            this.法语ToolStripMenuItem1.Name = "法语ToolStripMenuItem1";
+            this.法语ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.法语ToolStripMenuItem1.Text = "法语";
+            this.法语ToolStripMenuItem1.Click += new System.EventHandler(this.法语ToolStripMenuItem_Click);
+            // 
+            // 西班牙语ToolStripMenuItem1
+            // 
+            this.西班牙语ToolStripMenuItem1.Name = "西班牙语ToolStripMenuItem1";
+            this.西班牙语ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.西班牙语ToolStripMenuItem1.Text = "西班牙语";
+            this.西班牙语ToolStripMenuItem1.Click += new System.EventHandler(this.西班牙语ToolStripMenuItem_Click);
+            // 
+            // 葡萄牙语ToolStripMenuItem1
+            // 
+            this.葡萄牙语ToolStripMenuItem1.Name = "葡萄牙语ToolStripMenuItem1";
+            this.葡萄牙语ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.葡萄牙语ToolStripMenuItem1.Text = "葡萄牙语";
+            this.葡萄牙语ToolStripMenuItem1.Click += new System.EventHandler(this.葡萄牙语ToolStripMenuItem_Click);
+            // 
+            // 德语ToolStripMenuItem1
+            // 
+            this.德语ToolStripMenuItem1.Name = "德语ToolStripMenuItem1";
+            this.德语ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.德语ToolStripMenuItem1.Text = "德语";
+            this.德语ToolStripMenuItem1.Click += new System.EventHandler(this.德语ToolStripMenuItem_Click);
+            // 
+            // 意大利语ToolStripMenuItem1
+            // 
+            this.意大利语ToolStripMenuItem1.Name = "意大利语ToolStripMenuItem1";
+            this.意大利语ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.意大利语ToolStripMenuItem1.Text = "意大利语";
+            this.意大利语ToolStripMenuItem1.Click += new System.EventHandler(this.意大利语ToolStripMenuItem_Click);
+            // 
+            // 俄语ToolStripMenuItem1
+            // 
+            this.俄语ToolStripMenuItem1.Name = "俄语ToolStripMenuItem1";
+            this.俄语ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.俄语ToolStripMenuItem1.Text = "俄语";
+            this.俄语ToolStripMenuItem1.Click += new System.EventHandler(this.俄语ToolStripMenuItem_Click);
+            // 
+            // 丹麦语ToolStripMenuItem
+            // 
+            this.丹麦语ToolStripMenuItem.Name = "丹麦语ToolStripMenuItem";
+            this.丹麦语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.丹麦语ToolStripMenuItem.Text = "丹麦语";
+            this.丹麦语ToolStripMenuItem.Click += new System.EventHandler(this.丹麦语ToolStripMenuItem_Click);
+            // 
+            // 荷兰语ToolStripMenuItem
+            // 
+            this.荷兰语ToolStripMenuItem.Name = "荷兰语ToolStripMenuItem";
+            this.荷兰语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.荷兰语ToolStripMenuItem.Text = "荷兰语";
+            this.荷兰语ToolStripMenuItem.Click += new System.EventHandler(this.荷兰语ToolStripMenuItem_Click);
+            // 
+            // 马来语ToolStripMenuItem
+            // 
+            this.马来语ToolStripMenuItem.Name = "马来语ToolStripMenuItem";
+            this.马来语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.马来语ToolStripMenuItem.Text = "马来语";
+            this.马来语ToolStripMenuItem.Click += new System.EventHandler(this.马来语ToolStripMenuItem_Click);
+            // 
+            // 瑞典语ToolStripMenuItem
+            // 
+            this.瑞典语ToolStripMenuItem.Name = "瑞典语ToolStripMenuItem";
+            this.瑞典语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.瑞典语ToolStripMenuItem.Text = "瑞典语";
+            this.瑞典语ToolStripMenuItem.Click += new System.EventHandler(this.瑞典语ToolStripMenuItem_Click);
+            // 
+            // 印尼语ToolStripMenuItem
+            // 
+            this.印尼语ToolStripMenuItem.Name = "印尼语ToolStripMenuItem";
+            this.印尼语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.印尼语ToolStripMenuItem.Text = "印尼语";
+            this.印尼语ToolStripMenuItem.Click += new System.EventHandler(this.印尼语ToolStripMenuItem_Click);
+            // 
+            // 波兰语ToolStripMenuItem
+            // 
+            this.波兰语ToolStripMenuItem.Name = "波兰语ToolStripMenuItem";
+            this.波兰语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.波兰语ToolStripMenuItem.Text = "波兰语";
+            this.波兰语ToolStripMenuItem.Click += new System.EventHandler(this.波兰语ToolStripMenuItem_Click);
+            // 
+            // 罗马尼亚语ToolStripMenuItem
+            // 
+            this.罗马尼亚语ToolStripMenuItem.Name = "罗马尼亚语ToolStripMenuItem";
+            this.罗马尼亚语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.罗马尼亚语ToolStripMenuItem.Text = "罗马尼亚语";
+            this.罗马尼亚语ToolStripMenuItem.Click += new System.EventHandler(this.罗马尼亚语ToolStripMenuItem_Click);
+            // 
+            // 土耳其语ToolStripMenuItem
+            // 
+            this.土耳其语ToolStripMenuItem.Name = "土耳其语ToolStripMenuItem";
+            this.土耳其语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.土耳其语ToolStripMenuItem.Text = "土耳其语";
+            this.土耳其语ToolStripMenuItem.Click += new System.EventHandler(this.土耳其语ToolStripMenuItem_Click);
+            // 
+            // 希腊语ToolStripMenuItem
+            // 
+            this.希腊语ToolStripMenuItem.Name = "希腊语ToolStripMenuItem";
+            this.希腊语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.希腊语ToolStripMenuItem.Text = "希腊语";
+            this.希腊语ToolStripMenuItem.Click += new System.EventHandler(this.希腊语ToolStripMenuItem_Click);
+            // 
+            // 匈牙利语ToolStripMenuItem
+            // 
+            this.匈牙利语ToolStripMenuItem.Name = "匈牙利语ToolStripMenuItem";
+            this.匈牙利语ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.匈牙利语ToolStripMenuItem.Text = "匈牙利语";
+            this.匈牙利语ToolStripMenuItem.Click += new System.EventHandler(this.匈牙利语ToolStripMenuItem_Click);
+            // 
             // FmMain
             // 
             this.AllowDrop = true;
@@ -262,6 +573,7 @@
             this.Controls.Add(this.RichTextBoxValue);
             this.Controls.Add(this.ButtonTop);
             this.Controls.Add(this.ButtonSet);
+            this.Controls.Add(this.ButtonLang);
             this.Controls.Add(this.ButtonPart);
             this.Controls.Add(this.ButtonCutPic);
             this.Controls.Add(this.ButtonCopy);
@@ -277,6 +589,8 @@
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormMain_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormMain_DragEnter);
             this.MenuPart.ResumeLayout(false);
+            this.MenuLangBasic.ResumeLayout(false);
+            this.MenuLangAccurate.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,6 +614,40 @@
         private System.Windows.Forms.ToolStripMenuItem 段落合并ToolStripMenuItem;
         private System.Windows.Forms.Button ButtonSet;
         private System.Windows.Forms.Button ButtonTop;
+        private System.Windows.Forms.Button ButtonLang;
+        private System.Windows.Forms.ContextMenuStrip MenuLangBasic;
+        private System.Windows.Forms.ToolStripMenuItem 中英混合ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 英文ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 日语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 韩语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 法语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 西班牙语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 葡萄牙语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 德语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 意大利语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 俄语ToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip MenuLangAccurate;
+        private System.Windows.Forms.ToolStripMenuItem 中英混合ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 自动检测ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 英文ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 日语ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 韩语ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 法语ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 西班牙语ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 葡萄牙语ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 德语ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 意大利语ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 俄语ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 丹麦语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 荷兰语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 马来语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 瑞典语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 印尼语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 波兰语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 罗马尼亚语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 土耳其语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 希腊语ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 匈牙利语ToolStripMenuItem;
     }
 }
 
