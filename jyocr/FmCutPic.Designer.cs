@@ -40,15 +40,16 @@
             this.ToolsPanel.TabIndex = 2;
             this.ToolsPanel.Visible = false;
             // 
-            // CutPic
+            // FmCutPic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.ToolsPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
-            this.Name = "CutPic";
+            this.Name = "FmCutPic";
             this.Text = "CutPic";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

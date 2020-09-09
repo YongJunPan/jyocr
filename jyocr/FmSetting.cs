@@ -106,24 +106,35 @@ namespace jyocr
         #region 点击左侧导航菜单
         private void ListBoxMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListBoxMenu.SelectedIndex == 0) // 百度接口
+            if (ListBoxMenu.SelectedIndex == 0) // 常规
+            {
+                PanelBaidu.Visible = false;
+                PanelHotkey.Visible = false;
+                PanelAbout.Visible = false;
+                PanelGeneral.Top = ListBoxMenu.Top;
+                PanelGeneral.Visible = true;
+            }
+            else if (ListBoxMenu.SelectedIndex == 1) // 百度接口
             {
                 PanelHotkey.Visible = false;
                 PanelAbout.Visible = false;
+                PanelGeneral.Visible = false;
                 PanelBaidu.Top = ListBoxMenu.Top;
                 PanelBaidu.Visible = true;
             }
-            else if (ListBoxMenu.SelectedIndex == 1) // 热键
+            else if (ListBoxMenu.SelectedIndex == 2) // 热键
             {
                 PanelBaidu.Visible = false;
                 PanelAbout.Visible = false;
+                PanelGeneral.Visible = false;
                 PanelHotkey.Top = ListBoxMenu.Top;
                 PanelHotkey.Visible = true;
             }
-            else if (ListBoxMenu.SelectedIndex == 2) // 关于
+            else if (ListBoxMenu.SelectedIndex == 3) // 关于
             {
                 PanelBaidu.Visible = false;
                 PanelHotkey.Visible = false;
+                PanelGeneral.Visible = false;
                 PanelAbout.Top = ListBoxMenu.Top;
                 PanelAbout.Visible = true;
             }

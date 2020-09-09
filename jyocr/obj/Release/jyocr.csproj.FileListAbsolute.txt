@@ -14,3 +14,4 @@ D:\code\jyocr\jyocr\obj\Release\jyocr.pdb
 D:\code\jyocr\jyocr\obj\Release\jyocr.FmCutPic.resources
 D:\code\jyocr\jyocr\obj\Release\jyocr.FmMain.resources
 D:\code\jyocr\jyocr\obj\Release\jyocr.FmSetting.resources
+D:\code\jyocr\jyocr\obj\Release\jyocr.csprojResolveAssemblyReference.cache

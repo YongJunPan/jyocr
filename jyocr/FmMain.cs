@@ -305,7 +305,7 @@ namespace jyocr
 
         private void RichTextBoxValue_TextChanged(object sender, EventArgs e)
         {
-            LabelWordCount.Text = "字数：" + RichTextBoxValue.Text.Length.ToString();
+            LabelWordCount.Text = "字符数：" + RichTextBoxValue.Text.Trim().Length.ToString();
         }
 
         #region 设置按钮

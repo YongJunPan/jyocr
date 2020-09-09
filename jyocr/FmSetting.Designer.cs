@@ -48,11 +48,17 @@
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.PictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.ButtonExit = new System.Windows.Forms.Button();
+            this.PanelGeneral = new System.Windows.Forms.Panel();
+            this.CheckBoxHide = new System.Windows.Forms.CheckBox();
+            this.CheckBoxCopy = new System.Windows.Forms.CheckBox();
+            this.CheckBoxPlus = new System.Windows.Forms.CheckBox();
+            this.CheckBoxTray = new System.Windows.Forms.CheckBox();
             this.PanelBaidu.SuspendLayout();
             this.PanelHotkey.SuspendLayout();
             this.PanelSet.SuspendLayout();
             this.PanelAbout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxIcon)).BeginInit();
+            this.PanelGeneral.SuspendLayout();
             this.SuspendLayout();
             // 
             // ListBoxMenu
@@ -62,7 +68,8 @@
             this.ListBoxMenu.FormattingEnabled = true;
             this.ListBoxMenu.ItemHeight = 21;
             this.ListBoxMenu.Items.AddRange(new object[] {
-            " 百度接口",
+            " 常规",
+            " 接口",
             " 热键",
             " 关于"});
             this.ListBoxMenu.Location = new System.Drawing.Point(5, 5);
@@ -74,7 +81,7 @@
             // TextBoxHotkey
             // 
             this.TextBoxHotkey.BackColor = System.Drawing.Color.White;
-            this.TextBoxHotkey.Location = new System.Drawing.Point(86, 11);
+            this.TextBoxHotkey.Location = new System.Drawing.Point(88, 11);
             this.TextBoxHotkey.Name = "TextBoxHotkey";
             this.TextBoxHotkey.Size = new System.Drawing.Size(225, 21);
             this.TextBoxHotkey.TabIndex = 6;
@@ -139,7 +146,7 @@
             // ButtonAapply
             // 
             this.ButtonAapply.BackColor = System.Drawing.Color.White;
-            this.ButtonAapply.Location = new System.Drawing.Point(86, 129);
+            this.ButtonAapply.Location = new System.Drawing.Point(88, 129);
             this.ButtonAapply.Name = "ButtonAapply";
             this.ButtonAapply.Size = new System.Drawing.Size(75, 23);
             this.ButtonAapply.TabIndex = 4;
@@ -185,15 +192,16 @@
             this.PanelBaidu.Controls.Add(this.TextBoxSecretKey);
             this.PanelBaidu.Controls.Add(this.ButtonApiTest);
             this.PanelBaidu.Controls.Add(this.TextBoxApiKey);
-            this.PanelBaidu.Location = new System.Drawing.Point(6, 5);
+            this.PanelBaidu.Location = new System.Drawing.Point(5, 71);
             this.PanelBaidu.Name = "PanelBaidu";
             this.PanelBaidu.Size = new System.Drawing.Size(318, 163);
             this.PanelBaidu.TabIndex = 30;
+            this.PanelBaidu.Visible = false;
             // 
             // cbAccurate
             // 
             this.cbAccurate.AutoSize = true;
-            this.cbAccurate.Location = new System.Drawing.Point(88, 104);
+            this.cbAccurate.Location = new System.Drawing.Point(88, 107);
             this.cbAccurate.Name = "cbAccurate";
             this.cbAccurate.Size = new System.Drawing.Size(108, 16);
             this.cbAccurate.TabIndex = 19;
@@ -204,18 +212,19 @@
             // 
             this.PanelHotkey.Controls.Add(this.label3);
             this.PanelHotkey.Controls.Add(this.TextBoxHotkey);
-            this.PanelHotkey.Location = new System.Drawing.Point(6, 174);
+            this.PanelHotkey.Location = new System.Drawing.Point(5, 240);
             this.PanelHotkey.Name = "PanelHotkey";
-            this.PanelHotkey.Size = new System.Drawing.Size(318, 41);
+            this.PanelHotkey.Size = new System.Drawing.Size(318, 45);
             this.PanelHotkey.TabIndex = 31;
             this.PanelHotkey.Visible = false;
             // 
             // PanelSet
             // 
             this.PanelSet.AutoScroll = true;
-            this.PanelSet.AutoScrollMinSize = new System.Drawing.Size(100, 500);
+            this.PanelSet.AutoScrollMinSize = new System.Drawing.Size(100, 800);
             this.PanelSet.BackColor = System.Drawing.Color.White;
             this.PanelSet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelSet.Controls.Add(this.PanelGeneral);
             this.PanelSet.Controls.Add(this.PanelAbout);
             this.PanelSet.Controls.Add(this.PanelBaidu);
             this.PanelSet.Controls.Add(this.PanelHotkey);
@@ -228,7 +237,7 @@
             // 
             this.PanelAbout.Controls.Add(this.textBoxAbout);
             this.PanelAbout.Controls.Add(this.PictureBoxIcon);
-            this.PanelAbout.Location = new System.Drawing.Point(6, 221);
+            this.PanelAbout.Location = new System.Drawing.Point(5, 291);
             this.PanelAbout.Name = "PanelAbout";
             this.PanelAbout.Size = new System.Drawing.Size(318, 162);
             this.PanelAbout.TabIndex = 32;
@@ -269,6 +278,57 @@
             this.ButtonExit.UseVisualStyleBackColor = false;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
+            // PanelGeneral
+            // 
+            this.PanelGeneral.Controls.Add(this.CheckBoxPlus);
+            this.PanelGeneral.Controls.Add(this.CheckBoxTray);
+            this.PanelGeneral.Controls.Add(this.CheckBoxCopy);
+            this.PanelGeneral.Controls.Add(this.CheckBoxHide);
+            this.PanelGeneral.Location = new System.Drawing.Point(5, 5);
+            this.PanelGeneral.Name = "PanelGeneral";
+            this.PanelGeneral.Size = new System.Drawing.Size(318, 60);
+            this.PanelGeneral.TabIndex = 33;
+            // 
+            // CheckBoxHide
+            // 
+            this.CheckBoxHide.AutoSize = true;
+            this.CheckBoxHide.Location = new System.Drawing.Point(151, 10);
+            this.CheckBoxHide.Name = "CheckBoxHide";
+            this.CheckBoxHide.Size = new System.Drawing.Size(108, 16);
+            this.CheckBoxHide.TabIndex = 31;
+            this.CheckBoxHide.Text = "截图时隐藏窗体";
+            this.CheckBoxHide.UseVisualStyleBackColor = true;
+            // 
+            // CheckBoxCopy
+            // 
+            this.CheckBoxCopy.AutoSize = true;
+            this.CheckBoxCopy.Location = new System.Drawing.Point(7, 32);
+            this.CheckBoxCopy.Name = "CheckBoxCopy";
+            this.CheckBoxCopy.Size = new System.Drawing.Size(108, 16);
+            this.CheckBoxCopy.TabIndex = 31;
+            this.CheckBoxCopy.Text = "识别后自动复制";
+            this.CheckBoxCopy.UseVisualStyleBackColor = true;
+            // 
+            // CheckBoxPlus
+            // 
+            this.CheckBoxPlus.AutoSize = true;
+            this.CheckBoxPlus.Location = new System.Drawing.Point(7, 10);
+            this.CheckBoxPlus.Name = "CheckBoxPlus";
+            this.CheckBoxPlus.Size = new System.Drawing.Size(108, 16);
+            this.CheckBoxPlus.TabIndex = 31;
+            this.CheckBoxPlus.Text = "识别后文本累加";
+            this.CheckBoxPlus.UseVisualStyleBackColor = true;
+            // 
+            // CheckBoxTray
+            // 
+            this.CheckBoxTray.AutoSize = true;
+            this.CheckBoxTray.Location = new System.Drawing.Point(151, 32);
+            this.CheckBoxTray.Name = "CheckBoxTray";
+            this.CheckBoxTray.Size = new System.Drawing.Size(108, 16);
+            this.CheckBoxTray.TabIndex = 31;
+            this.CheckBoxTray.Text = "右下角显示托盘";
+            this.CheckBoxTray.UseVisualStyleBackColor = true;
+            // 
             // FmSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -297,6 +357,8 @@
             this.PanelAbout.ResumeLayout(false);
             this.PanelAbout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxIcon)).EndInit();
+            this.PanelGeneral.ResumeLayout(false);
+            this.PanelGeneral.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -322,5 +384,10 @@
         private System.Windows.Forms.PictureBox PictureBoxIcon;
         private System.Windows.Forms.TextBox textBoxAbout;
         private System.Windows.Forms.CheckBox cbAccurate;
+        private System.Windows.Forms.Panel PanelGeneral;
+        private System.Windows.Forms.CheckBox CheckBoxPlus;
+        private System.Windows.Forms.CheckBox CheckBoxCopy;
+        private System.Windows.Forms.CheckBox CheckBoxHide;
+        private System.Windows.Forms.CheckBox CheckBoxTray;
     }
 }
