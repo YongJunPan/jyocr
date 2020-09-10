@@ -19,6 +19,10 @@ namespace jyocr
             TextBoxToken.Text = OCRHelper.AccessToken;
             TextBoxHotkey.Text = IniHelper.GetValue("热键", "截图识别");
             cbAccurate.Checked = OCRHelper.Accurate;
+            CheckBoxPlus.Checked = Setting.TextPlus;
+            CheckBoxCopy.Checked = Setting.TextCopy;
+            CheckBoxHide.Checked = Setting.FormHide;
+            CheckBoxTray.Checked = Setting.FormTray;
             PanelSet.AutoScroll = false;
         }
 
@@ -63,13 +67,26 @@ namespace jyocr
             IniHelper.SetValue("百度接口", "Secret Key", TextBoxSecretKey.Text.Trim());
             IniHelper.SetValue("百度接口", "Access Token", TextBoxToken.Text.Trim());
             IniHelper.SetValue("百度接口", "使用高精度接口", cbAccurate.Checked.ToString());
+
             IniHelper.SetValue("热键", "截图识别", TextBoxHotkey.Text.Trim());
+
+            IniHelper.SetValue("常规", "识别后文本累加", CheckBoxPlus.Checked.ToString());
+            IniHelper.SetValue("常规", "识别后自动复制", CheckBoxCopy.Checked.ToString());
+            IniHelper.SetValue("常规", "截图时隐藏窗体", CheckBoxHide.Checked.ToString());
+            IniHelper.SetValue("常规", "右下角显示托盘", CheckBoxTray.Checked.ToString());
+
 
             // 刷新变量
             OCRHelper.ApiKey = TextBoxApiKey.Text.Trim();
             OCRHelper.SecretKey = TextBoxSecretKey.Text.Trim();
             OCRHelper.AccessToken = TextBoxToken.Text.Trim();
             OCRHelper.Accurate = cbAccurate.Checked;
+
+            Setting.TextPlus = CheckBoxPlus.Checked;
+            Setting.TextCopy = CheckBoxCopy.Checked;
+            Setting.FormHide = CheckBoxHide.Checked;
+            Setting.FormTray = CheckBoxTray.Checked;
+            Setting.Hotkey = TextBoxHotkey.Text.Trim();
 
             //MessageBox.Show(this, "配置已保存！", "提示");
             this.Close();

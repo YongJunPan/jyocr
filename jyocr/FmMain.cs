@@ -127,11 +127,17 @@ namespace jyocr
 
             // 读取 ini 配置
             IniHelper.IniLoad("Setting.ini");
+
+            Setting.TextPlus = IniHelper.GetValue("常规", "识别后文本累加") == "" ? false : bool.Parse(IniHelper.GetValue("常规", "识别后文本累加"));
+            Setting.TextCopy = IniHelper.GetValue("常规", "识别后自动复制") == "" ? false : bool.Parse(IniHelper.GetValue("常规", "识别后自动复制"));
+            Setting.FormHide = IniHelper.GetValue("常规", "截图时隐藏窗体") == "" ? false : bool.Parse(IniHelper.GetValue("常规", "截图时隐藏窗体"));
+            Setting.FormTray = IniHelper.GetValue("常规", "右下角显示托盘") == "" ? false : bool.Parse(IniHelper.GetValue("常规", "右下角显示托盘"));
+            this.Notify.Visible = Setting.FormTray;
+
             OCRHelper.ApiKey = IniHelper.GetValue("百度接口", "API Key");
             OCRHelper.SecretKey = IniHelper.GetValue("百度接口", "Secret Key");
             OCRHelper.AccessToken = IniHelper.GetValue("百度接口", "Access Token");
-            string check = IniHelper.GetValue("百度接口", "使用高精度接口");
-            OCRHelper.Accurate = check == "" ? false : bool.Parse(check);
+            OCRHelper.Accurate = IniHelper.GetValue("百度接口", "使用高精度接口") == "" ? false : bool.Parse(IniHelper.GetValue("百度接口", "使用高精度接口"));
 
             // 判断 token 是否过期
             OCRHelper.DateToken = IniHelper.GetValue("百度接口", "Date Token");
@@ -158,10 +164,10 @@ namespace jyocr
             }
 
             // 注册热键
-            string value = IniHelper.GetValue("热键", "截图识别");
-            if (value != "" && value != "请按下快捷键")
+            Setting.Hotkey = IniHelper.GetValue("热键", "截图识别");
+            if (Setting.Hotkey != "" && Setting.Hotkey != "请按下快捷键")
             {
-                HotKey.SetHotkey(Handle, "None", "F4", value, 200);
+                HotKey.SetHotkey(Handle, "None", "F4", Setting.Hotkey, 200);
             }
         }
         #endregion
@@ -174,34 +180,44 @@ namespace jyocr
         }
 
 
-        #region 浏览文件按钮
+        #region 浏览文件识别
         private void ButtonFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "图片文件 (*.jpg,*.jpeg,*.png,*.bmp)|*.jgp;*.jpeg;*.png;*.bmp;"; //设置多文件格式
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
+                ButtonPart.Text = "自动分段";
                 RichTextBoxValue.Text = OCRHelper.BaiduBasic(openFileDialog1.FileName);
+                if (Setting.TextCopy)
+                    ButtonCopy_Click(null, null);
             }
         }
         #endregion
 
-        #region 截图识别按钮
+        #region 截图识别
         private void ButtonCutPic_Click(object sender, EventArgs e)
         {
-            this.Visible = false; // 截图时隐藏本窗体
-            System.Threading.Thread.Sleep(200); // 延时，避免把本窗体也截下来
-            ShowCutPic();  // 截图功能
-            this.Visible = true;
-            Application.DoEvents(); // DoEvents()将强制处理消息队列中的所有消息
+            if(Setting.FormHide)
+            {
+                this.Visible = false; // 截图时隐藏本窗体
+                System.Threading.Thread.Sleep(200); // 延时，避免把本窗体也截下来
+                ShowCutPic();  // 截图功能
+                this.Visible = true;
+                Application.DoEvents(); // DoEvents()将强制处理消息队列中的所有消息
+            }
+            else
+            {
+                ShowCutPic();
+            }
             try
             {
                 if (Clipboard.ContainsImage())
                 {
-                    ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
-                    toolTip1.SetToolTip(ButtonPart, "自动分段");
+                    ButtonPart.Text = "自动分段";
                     Image img = Clipboard.GetImage();  // 获取剪切板图片
                     RichTextBoxValue.Text = OCRHelper.BaiduBasic("", img); // 识别剪切板图片的文字
+                    if (Setting.TextCopy)
+                        ButtonCopy_Click(null, null);
                 }
             }
             catch (Exception ex)
@@ -209,44 +225,68 @@ namespace jyocr
                 MessageBox.Show(this, ex.Message, "错误");
             }
         }
-        #endregion
 
-        #region 截图功能
+        /// <summary>
+        /// 截图功能
+        /// </summary>
         protected void ShowCutPic()
         {
-            Bitmap CatchBmp = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
+            // 通过Graphics的CopyFromScreen方法把全屏图片的拷贝到我们定义好的一个和屏幕大小相同的空白图片中，
+            // 拷贝完成之后，CatchBmp就是全屏图片的拷贝了，然后指定为截图窗体背景图片就好了。
+            // 新建一个和屏幕大小相同的图片
+            //Bitmap CatchBmp = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
+            Size Si = ScreenHelper.DESKTOP; // 获取屏幕真实分辨率
+            Bitmap CatchBmp = new Bitmap(Si.Width, Si.Height);
+
             // 创建一个画板，让我们可以在画板上画图
             // 这个画板也就是和屏幕大小一样大的图片
             // 我们可以通过Graphics这个类在这个空白图片上画图
-            Graphics g = Graphics.FromImage(CatchBmp);
+            Graphics gra = Graphics.FromImage(CatchBmp);
+
             // 把屏幕图片拷贝到我们创建的空白图片 CatchBmp中
-            g.CopyFromScreen(new Point(0, 0), new Point(0, 0), new Size(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height));
+            //g.CopyFromScreen(new Point(0, 0), new Point(0, 0), new Size(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height));
+            gra.CopyFromScreen(new Point(0, 0), new Point(0, 0), new Size(Si.Width, Si.Height));
 
             // 创建截图窗体
             cutter = new FmCutPic();
-            cutter.Image = CatchBmp;
+
+            // 指示窗体的背景图片为屏幕图片
+            //cutter.Image = CatchBmp;
+            // 如果分辨率进行了缩放，图片相应需要缩放
+            cutter.Image = ScreenHelper.ScaleX > 1 ? CatchBmp : shrinkTo(CatchBmp, Screen.AllScreens[0].Bounds.Size, true);
             cutter.Cursor = Cursors.Cross;
             cutter.ShowDialog();
         }
-        #endregion
 
-        #region 文件拖动结束
-        private void FormMain_DragDrop(object sender, DragEventArgs e)
+        /// <summary>
+        /// 按指定尺寸对图像pic进行非拉伸缩放
+        /// </summary>
+        public static Bitmap shrinkTo(Image pic, Size S, Boolean cutting)
         {
-            try
-            {
-                ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
-                string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-                RichTextBoxValue.Text = OCRHelper.BaiduBasic(path);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, "错误");
-            }
+            //创建图像
+            Bitmap tmp = new Bitmap(S.Width, S.Height);     //按指定大小创建位图
+
+            //绘制
+            Graphics g = Graphics.FromImage(tmp);           //从位图创建Graphics对象
+            g.Clear(Color.FromArgb(0, 0, 0, 0));            //清空
+
+            Boolean mode = (float)pic.Width / S.Width > (float)pic.Height / S.Height;   //zoom缩放
+            if (cutting) mode = !mode;                      //裁切缩放
+
+            //计算Zoom绘制区域             
+            if (mode)
+                S.Height = (int)((float)pic.Height * S.Width / pic.Width);
+            else
+                S.Width = (int)((float)pic.Width * S.Height / pic.Height);
+            Point P = new Point((tmp.Width - S.Width) / 2, (tmp.Height - S.Height) / 2);
+
+            g.DrawImage(pic, new Rectangle(P, S));
+
+            return tmp;     //返回构建的新图像
         }
         #endregion
 
-        #region 文件拖动到工作区时
+        #region 文件拖动识别
         private void FormMain_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -258,12 +298,30 @@ namespace jyocr
                 e.Effect = DragDropEffects.None;
             }
         }
+
+        private void FormMain_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                ButtonPart.Text = "自动分段";
+                string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+                RichTextBoxValue.Text = OCRHelper.BaiduBasic(path);
+                if (Setting.TextCopy)
+                    ButtonCopy_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "错误");
+            }
+        }
         #endregion
 
         #region 复制、清空按钮
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             RichTextBoxValue.Text = "";
+            OCRHelper.split_txt = "";
+            OCRHelper.typeset_txt = "";
         }
 
         private void ButtonCopy_Click(object sender, EventArgs e)
@@ -273,33 +331,29 @@ namespace jyocr
         #endregion
 
         #region 段落按钮菜单功能
+        private void ButtonPart_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                MenuPart.Show((Button)sender, new Point(ButtonPart.Left - ButtonPart.Width + 20, ButtonPart.Top + ButtonPart.Height));
+            }
+        }
         private void 自动分段ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ButtonPart.BackgroundImage = 自动分段ToolStripMenuItem.Image;
-            toolTip1.SetToolTip(ButtonPart, "自动分段");
+            ButtonPart.Text = "自动分段";
             RichTextBoxValue.Text = OCRHelper.typeset_txt;
         }
 
         private void 段落拆分ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ButtonPart.BackgroundImage = 段落拆分ToolStripMenuItem.Image;
-            toolTip1.SetToolTip(ButtonPart, "段落拆分");
+            ButtonPart.Text = "段落拆分";
             RichTextBoxValue.Text = OCRHelper.split_txt;
         }
 
         private void 段落合并ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ButtonPart.BackgroundImage = 段落合并ToolStripMenuItem.Image;
-            toolTip1.SetToolTip(ButtonPart, "段落合并");
+            ButtonPart.Text = "段落合并";
             RichTextBoxValue.Text = RichTextBoxValue.Text.Replace("\n", "").Replace("\r", "");
-        }
-
-        private void ButtonPart_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                MenuPart.Show((Button)sender, new Point(ButtonPart.Left - ButtonPart.Width - 30, ButtonPart.Top + ButtonPart.Height));
-            }
         }
         #endregion
 
@@ -315,12 +369,12 @@ namespace jyocr
             frm.ShowDialog();
 
             // 卸载热键重新注册
-            string value = IniHelper.GetValue("热键", "截图识别");
-            if (value != "" && value != "请按下快捷键")
+            if (Setting.Hotkey != "" && Setting.Hotkey != "请按下快捷键")
             {
                 HotKey.UnregisterHotKey(Handle, 200);
-                HotKey.SetHotkey(Handle, "None", "F4", value, 200);
+                HotKey.SetHotkey(Handle, "None", "F4", Setting.Hotkey, 200);
             }
+            this.Notify.Visible = Setting.FormTray;
         }
         #endregion
 
@@ -349,11 +403,11 @@ namespace jyocr
             {
                 if (OCRHelper.Accurate)
                 {
-                    MenuLangAccurate.Show((Button)sender, new Point(ButtonLang.Left - ButtonLang.Width - 10, ButtonLang.Top + ButtonLang.Height));
+                    MenuLangAccurate.Show((Button)sender, new Point(ButtonLang.Left - ButtonLang.Width - 60, ButtonLang.Top + ButtonLang.Height));
                 }
                 else
                 {
-                    MenuLangBasic.Show((Button)sender, new Point(ButtonLang.Left - ButtonLang.Width - 10, ButtonLang.Top + ButtonLang.Height));
+                    MenuLangBasic.Show((Button)sender, new Point(ButtonLang.Left - ButtonLang.Width - 60, ButtonLang.Top + ButtonLang.Height));
                 }
             }
         }
@@ -482,6 +536,41 @@ namespace jyocr
         {
             ButtonLang.Text = "自动检测";
             OCRHelper.Language = "auto_detect";
+        }
+        #endregion
+
+        #region 托盘
+        private void Notify_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                this.WindowState = FormWindowState.Minimized;
+                this.Hide();
+            }
+            else
+            {
+                this.Visible = true;
+                this.WindowState = FormWindowState.Normal;
+                this.Activate();
+            }
+        }
+
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "你确定要退出？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                this.Notify.Visible = false;
+                this.Close();
+                this.Dispose();
+                System.Environment.Exit(System.Environment.ExitCode);
+            }
+        }
+
+        private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Visible = true;
+            this.WindowState = FormWindowState.Normal;
+            this.Activate();
         }
         #endregion
     }

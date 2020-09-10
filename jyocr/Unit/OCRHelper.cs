@@ -184,9 +184,20 @@ namespace jyocr.Unit
                 }
                 str = str + jobject[words].ToString().Trim() + "\r\n";
             }
-            split_txt = str + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
-            typeset_txt = text.Replace("\r\n\r\n", "\r\n") + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
-            return text.Replace("\r\n\r\n", "\r\n") + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
+            //split_txt = str + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
+            //typeset_txt = text.Replace("\r\n\r\n", "\r\n") + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
+
+            if (Setting.TextPlus == false || string.IsNullOrEmpty(split_txt))
+                split_txt = str + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
+            else
+                split_txt = split_txt + "\r\n" + str + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
+
+            if (Setting.TextPlus == false || string.IsNullOrEmpty(typeset_txt)) 
+                typeset_txt = text.Replace("\r\n\r\n", "\r\n") + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
+            else
+                typeset_txt = typeset_txt + "\r\n" + text.Replace("\r\n\r\n", "\r\n") + JObject.Parse(jarray[jarray.Count - 1].ToString())[words];
+
+            return typeset_txt;
         }
         public static bool IsNum(string str)
         {

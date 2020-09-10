@@ -109,6 +109,8 @@
     <Compile Include="Unit\HttpClient.cs" />
     <Compile Include="Unit\IniHelper.cs" />
     <Compile Include="Unit\OCRHelper.cs" />
+    <Compile Include="Unit\ScreenHelper.cs" />
+    <Compile Include="Unit\Setting.cs" />
     <EmbeddedResource Include="FmCutPic.resx">
       <DependentUpon>FmCutPic.cs</DependentUpon>
       <SubType>Designer</SubType>

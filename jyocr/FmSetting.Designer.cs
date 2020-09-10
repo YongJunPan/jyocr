@@ -44,21 +44,21 @@
             this.cbAccurate = new System.Windows.Forms.CheckBox();
             this.PanelHotkey = new System.Windows.Forms.Panel();
             this.PanelSet = new System.Windows.Forms.Panel();
+            this.PanelGeneral = new System.Windows.Forms.Panel();
+            this.CheckBoxPlus = new System.Windows.Forms.CheckBox();
+            this.CheckBoxTray = new System.Windows.Forms.CheckBox();
+            this.CheckBoxCopy = new System.Windows.Forms.CheckBox();
+            this.CheckBoxHide = new System.Windows.Forms.CheckBox();
             this.PanelAbout = new System.Windows.Forms.Panel();
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.PictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.ButtonExit = new System.Windows.Forms.Button();
-            this.PanelGeneral = new System.Windows.Forms.Panel();
-            this.CheckBoxHide = new System.Windows.Forms.CheckBox();
-            this.CheckBoxCopy = new System.Windows.Forms.CheckBox();
-            this.CheckBoxPlus = new System.Windows.Forms.CheckBox();
-            this.CheckBoxTray = new System.Windows.Forms.CheckBox();
             this.PanelBaidu.SuspendLayout();
             this.PanelHotkey.SuspendLayout();
             this.PanelSet.SuspendLayout();
+            this.PanelGeneral.SuspendLayout();
             this.PanelAbout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxIcon)).BeginInit();
-            this.PanelGeneral.SuspendLayout();
             this.SuspendLayout();
             // 
             // ListBoxMenu
@@ -233,6 +233,57 @@
             this.PanelSet.Size = new System.Drawing.Size(346, 233);
             this.PanelSet.TabIndex = 32;
             // 
+            // PanelGeneral
+            // 
+            this.PanelGeneral.Controls.Add(this.CheckBoxPlus);
+            this.PanelGeneral.Controls.Add(this.CheckBoxTray);
+            this.PanelGeneral.Controls.Add(this.CheckBoxCopy);
+            this.PanelGeneral.Controls.Add(this.CheckBoxHide);
+            this.PanelGeneral.Location = new System.Drawing.Point(5, 5);
+            this.PanelGeneral.Name = "PanelGeneral";
+            this.PanelGeneral.Size = new System.Drawing.Size(318, 60);
+            this.PanelGeneral.TabIndex = 33;
+            // 
+            // CheckBoxPlus
+            // 
+            this.CheckBoxPlus.AutoSize = true;
+            this.CheckBoxPlus.Location = new System.Drawing.Point(7, 10);
+            this.CheckBoxPlus.Name = "CheckBoxPlus";
+            this.CheckBoxPlus.Size = new System.Drawing.Size(108, 16);
+            this.CheckBoxPlus.TabIndex = 31;
+            this.CheckBoxPlus.Text = "识别后文本累加";
+            this.CheckBoxPlus.UseVisualStyleBackColor = true;
+            // 
+            // CheckBoxTray
+            // 
+            this.CheckBoxTray.AutoSize = true;
+            this.CheckBoxTray.Location = new System.Drawing.Point(151, 32);
+            this.CheckBoxTray.Name = "CheckBoxTray";
+            this.CheckBoxTray.Size = new System.Drawing.Size(108, 16);
+            this.CheckBoxTray.TabIndex = 31;
+            this.CheckBoxTray.Text = "右下角显示托盘";
+            this.CheckBoxTray.UseVisualStyleBackColor = true;
+            // 
+            // CheckBoxCopy
+            // 
+            this.CheckBoxCopy.AutoSize = true;
+            this.CheckBoxCopy.Location = new System.Drawing.Point(7, 32);
+            this.CheckBoxCopy.Name = "CheckBoxCopy";
+            this.CheckBoxCopy.Size = new System.Drawing.Size(108, 16);
+            this.CheckBoxCopy.TabIndex = 31;
+            this.CheckBoxCopy.Text = "识别后自动复制";
+            this.CheckBoxCopy.UseVisualStyleBackColor = true;
+            // 
+            // CheckBoxHide
+            // 
+            this.CheckBoxHide.AutoSize = true;
+            this.CheckBoxHide.Location = new System.Drawing.Point(151, 10);
+            this.CheckBoxHide.Name = "CheckBoxHide";
+            this.CheckBoxHide.Size = new System.Drawing.Size(108, 16);
+            this.CheckBoxHide.TabIndex = 31;
+            this.CheckBoxHide.Text = "截图时隐藏窗体";
+            this.CheckBoxHide.UseVisualStyleBackColor = true;
+            // 
             // PanelAbout
             // 
             this.PanelAbout.Controls.Add(this.textBoxAbout);
@@ -254,7 +305,7 @@
             this.textBoxAbout.ReadOnly = true;
             this.textBoxAbout.Size = new System.Drawing.Size(229, 144);
             this.textBoxAbout.TabIndex = 1;
-            this.textBoxAbout.Text = "当前版本：1.04\r\n更新日期：2020-09-07\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n反馈邮箱：iPanYJ" +
+            this.textBoxAbout.Text = "当前版本：1.07\r\n更新日期：2020-09-10\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n反馈邮箱：iPanYJ" +
     "@outlook.com\r\n\r\n本软件仅供学习交流使用";
             // 
             // PictureBoxIcon
@@ -277,57 +328,6 @@
             this.ButtonExit.Text = "取消";
             this.ButtonExit.UseVisualStyleBackColor = false;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
-            // 
-            // PanelGeneral
-            // 
-            this.PanelGeneral.Controls.Add(this.CheckBoxPlus);
-            this.PanelGeneral.Controls.Add(this.CheckBoxTray);
-            this.PanelGeneral.Controls.Add(this.CheckBoxCopy);
-            this.PanelGeneral.Controls.Add(this.CheckBoxHide);
-            this.PanelGeneral.Location = new System.Drawing.Point(5, 5);
-            this.PanelGeneral.Name = "PanelGeneral";
-            this.PanelGeneral.Size = new System.Drawing.Size(318, 60);
-            this.PanelGeneral.TabIndex = 33;
-            // 
-            // CheckBoxHide
-            // 
-            this.CheckBoxHide.AutoSize = true;
-            this.CheckBoxHide.Location = new System.Drawing.Point(151, 10);
-            this.CheckBoxHide.Name = "CheckBoxHide";
-            this.CheckBoxHide.Size = new System.Drawing.Size(108, 16);
-            this.CheckBoxHide.TabIndex = 31;
-            this.CheckBoxHide.Text = "截图时隐藏窗体";
-            this.CheckBoxHide.UseVisualStyleBackColor = true;
-            // 
-            // CheckBoxCopy
-            // 
-            this.CheckBoxCopy.AutoSize = true;
-            this.CheckBoxCopy.Location = new System.Drawing.Point(7, 32);
-            this.CheckBoxCopy.Name = "CheckBoxCopy";
-            this.CheckBoxCopy.Size = new System.Drawing.Size(108, 16);
-            this.CheckBoxCopy.TabIndex = 31;
-            this.CheckBoxCopy.Text = "识别后自动复制";
-            this.CheckBoxCopy.UseVisualStyleBackColor = true;
-            // 
-            // CheckBoxPlus
-            // 
-            this.CheckBoxPlus.AutoSize = true;
-            this.CheckBoxPlus.Location = new System.Drawing.Point(7, 10);
-            this.CheckBoxPlus.Name = "CheckBoxPlus";
-            this.CheckBoxPlus.Size = new System.Drawing.Size(108, 16);
-            this.CheckBoxPlus.TabIndex = 31;
-            this.CheckBoxPlus.Text = "识别后文本累加";
-            this.CheckBoxPlus.UseVisualStyleBackColor = true;
-            // 
-            // CheckBoxTray
-            // 
-            this.CheckBoxTray.AutoSize = true;
-            this.CheckBoxTray.Location = new System.Drawing.Point(151, 32);
-            this.CheckBoxTray.Name = "CheckBoxTray";
-            this.CheckBoxTray.Size = new System.Drawing.Size(108, 16);
-            this.CheckBoxTray.TabIndex = 31;
-            this.CheckBoxTray.Text = "右下角显示托盘";
-            this.CheckBoxTray.UseVisualStyleBackColor = true;
             // 
             // FmSetting
             // 
@@ -354,11 +354,11 @@
             this.PanelHotkey.ResumeLayout(false);
             this.PanelHotkey.PerformLayout();
             this.PanelSet.ResumeLayout(false);
+            this.PanelGeneral.ResumeLayout(false);
+            this.PanelGeneral.PerformLayout();
             this.PanelAbout.ResumeLayout(false);
             this.PanelAbout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxIcon)).EndInit();
-            this.PanelGeneral.ResumeLayout(false);
-            this.PanelGeneral.PerformLayout();
             this.ResumeLayout(false);
 
         }
