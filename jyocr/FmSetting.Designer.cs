@@ -43,6 +43,8 @@
             this.PanelBaidu = new System.Windows.Forms.Panel();
             this.cbAccurate = new System.Windows.Forms.CheckBox();
             this.PanelHotkey = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbHotkeyShow = new System.Windows.Forms.TextBox();
             this.PanelSet = new System.Windows.Forms.Panel();
             this.PanelGeneral = new System.Windows.Forms.Panel();
             this.CheckBoxPlus = new System.Windows.Forms.CheckBox();
@@ -53,8 +55,6 @@
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.PictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.ButtonExit = new System.Windows.Forms.Button();
-            this.tbHotkeyShow = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.PanelBaidu.SuspendLayout();
             this.PanelHotkey.SuspendLayout();
             this.PanelSet.SuspendLayout();
@@ -222,6 +222,25 @@
             this.PanelHotkey.TabIndex = 31;
             this.PanelHotkey.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 12);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "显示/隐藏：";
+            // 
+            // tbHotkeyShow
+            // 
+            this.tbHotkeyShow.BackColor = System.Drawing.Color.White;
+            this.tbHotkeyShow.Location = new System.Drawing.Point(88, 44);
+            this.tbHotkeyShow.Name = "tbHotkeyShow";
+            this.tbHotkeyShow.Size = new System.Drawing.Size(225, 21);
+            this.tbHotkeyShow.TabIndex = 6;
+            this.tbHotkeyShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbHotkeyShow_KeyDown);
+            this.tbHotkeyShow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbHotkeyShow_KeyUp);
+            // 
             // PanelSet
             // 
             this.PanelSet.AutoScroll = true;
@@ -309,8 +328,8 @@
             this.textBoxAbout.ReadOnly = true;
             this.textBoxAbout.Size = new System.Drawing.Size(229, 144);
             this.textBoxAbout.TabIndex = 1;
-            this.textBoxAbout.Text = "当前版本：1.08\r\n更新日期：2020-09-10\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n反馈邮箱：iPanYJ" +
-    "@outlook.com\r\n\r\n本软件仅供学习交流使用";
+            this.textBoxAbout.Text = "当前版本：1.08\r\n更新日期：2020-09-10\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n\r\n本软件仅供学习交流" +
+    "使用";
             // 
             // PictureBoxIcon
             // 
@@ -332,25 +351,6 @@
             this.ButtonExit.Text = "取消";
             this.ButtonExit.UseVisualStyleBackColor = false;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
-            // 
-            // tbHotkeyShow
-            // 
-            this.tbHotkeyShow.BackColor = System.Drawing.Color.White;
-            this.tbHotkeyShow.Location = new System.Drawing.Point(88, 44);
-            this.tbHotkeyShow.Name = "tbHotkeyShow";
-            this.tbHotkeyShow.Size = new System.Drawing.Size(225, 21);
-            this.tbHotkeyShow.TabIndex = 6;
-            this.tbHotkeyShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbHotkeyShow_KeyDown);
-            this.tbHotkeyShow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbHotkeyShow_KeyUp);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 12);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "显示/隐藏：";
             // 
             // FmSetting
             // 
