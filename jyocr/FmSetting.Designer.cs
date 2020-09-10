@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.ListBoxMenu = new System.Windows.Forms.ListBox();
-            this.TextBoxHotkey = new System.Windows.Forms.TextBox();
+            this.tbHotkeyCut = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TextBoxToken = new System.Windows.Forms.TextBox();
             this.TextBoxSecretKey = new System.Windows.Forms.TextBox();
@@ -53,6 +53,8 @@
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.PictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.ButtonExit = new System.Windows.Forms.Button();
+            this.tbHotkeyShow = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.PanelBaidu.SuspendLayout();
             this.PanelHotkey.SuspendLayout();
             this.PanelSet.SuspendLayout();
@@ -78,15 +80,15 @@
             this.ListBoxMenu.TabIndex = 9;
             this.ListBoxMenu.SelectedIndexChanged += new System.EventHandler(this.ListBoxMenu_SelectedIndexChanged);
             // 
-            // TextBoxHotkey
+            // tbHotkeyCut
             // 
-            this.TextBoxHotkey.BackColor = System.Drawing.Color.White;
-            this.TextBoxHotkey.Location = new System.Drawing.Point(88, 11);
-            this.TextBoxHotkey.Name = "TextBoxHotkey";
-            this.TextBoxHotkey.Size = new System.Drawing.Size(225, 21);
-            this.TextBoxHotkey.TabIndex = 6;
-            this.TextBoxHotkey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxHotkey_KeyDown);
-            this.TextBoxHotkey.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxHotkey_KeyUp);
+            this.tbHotkeyCut.BackColor = System.Drawing.Color.White;
+            this.tbHotkeyCut.Location = new System.Drawing.Point(88, 11);
+            this.tbHotkeyCut.Name = "tbHotkeyCut";
+            this.tbHotkeyCut.Size = new System.Drawing.Size(225, 21);
+            this.tbHotkeyCut.TabIndex = 6;
+            this.tbHotkeyCut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxHotkey_KeyDown);
+            this.tbHotkeyCut.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxHotkey_KeyUp);
             // 
             // label3
             // 
@@ -210,11 +212,13 @@
             // 
             // PanelHotkey
             // 
+            this.PanelHotkey.Controls.Add(this.label1);
+            this.PanelHotkey.Controls.Add(this.tbHotkeyShow);
             this.PanelHotkey.Controls.Add(this.label3);
-            this.PanelHotkey.Controls.Add(this.TextBoxHotkey);
+            this.PanelHotkey.Controls.Add(this.tbHotkeyCut);
             this.PanelHotkey.Location = new System.Drawing.Point(5, 240);
             this.PanelHotkey.Name = "PanelHotkey";
-            this.PanelHotkey.Size = new System.Drawing.Size(318, 45);
+            this.PanelHotkey.Size = new System.Drawing.Size(318, 79);
             this.PanelHotkey.TabIndex = 31;
             this.PanelHotkey.Visible = false;
             // 
@@ -288,7 +292,7 @@
             // 
             this.PanelAbout.Controls.Add(this.textBoxAbout);
             this.PanelAbout.Controls.Add(this.PictureBoxIcon);
-            this.PanelAbout.Location = new System.Drawing.Point(5, 291);
+            this.PanelAbout.Location = new System.Drawing.Point(5, 325);
             this.PanelAbout.Name = "PanelAbout";
             this.PanelAbout.Size = new System.Drawing.Size(318, 162);
             this.PanelAbout.TabIndex = 32;
@@ -305,7 +309,7 @@
             this.textBoxAbout.ReadOnly = true;
             this.textBoxAbout.Size = new System.Drawing.Size(229, 144);
             this.textBoxAbout.TabIndex = 1;
-            this.textBoxAbout.Text = "当前版本：1.07\r\n更新日期：2020-09-10\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n反馈邮箱：iPanYJ" +
+            this.textBoxAbout.Text = "当前版本：1.08\r\n更新日期：2020-09-10\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n反馈邮箱：iPanYJ" +
     "@outlook.com\r\n\r\n本软件仅供学习交流使用";
             // 
             // PictureBoxIcon
@@ -328,6 +332,25 @@
             this.ButtonExit.Text = "取消";
             this.ButtonExit.UseVisualStyleBackColor = false;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
+            // 
+            // tbHotkeyShow
+            // 
+            this.tbHotkeyShow.BackColor = System.Drawing.Color.White;
+            this.tbHotkeyShow.Location = new System.Drawing.Point(88, 44);
+            this.tbHotkeyShow.Name = "tbHotkeyShow";
+            this.tbHotkeyShow.Size = new System.Drawing.Size(225, 21);
+            this.tbHotkeyShow.TabIndex = 6;
+            this.tbHotkeyShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbHotkeyShow_KeyDown);
+            this.tbHotkeyShow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbHotkeyShow_KeyUp);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 12);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "显示/隐藏：";
             // 
             // FmSetting
             // 
@@ -364,7 +387,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox TextBoxHotkey;
+        private System.Windows.Forms.TextBox tbHotkeyCut;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TextBoxToken;
         private System.Windows.Forms.TextBox TextBoxSecretKey;
@@ -389,5 +412,7 @@
         private System.Windows.Forms.CheckBox CheckBoxCopy;
         private System.Windows.Forms.CheckBox CheckBoxHide;
         private System.Windows.Forms.CheckBox CheckBoxTray;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbHotkeyShow;
     }
 }

@@ -17,7 +17,8 @@ namespace jyocr
             TextBoxApiKey.Text = OCRHelper.ApiKey;
             TextBoxSecretKey.Text = OCRHelper.SecretKey;
             TextBoxToken.Text = OCRHelper.AccessToken;
-            TextBoxHotkey.Text = IniHelper.GetValue("热键", "截图识别");
+            tbHotkeyCut.Text = Setting.HotkeyCut;
+            tbHotkeyShow.Text = Setting.HotkeyShow;
             cbAccurate.Checked = OCRHelper.Accurate;
             CheckBoxPlus.Checked = Setting.TextPlus;
             CheckBoxCopy.Checked = Setting.TextCopy;
@@ -68,7 +69,8 @@ namespace jyocr
             IniHelper.SetValue("百度接口", "Access Token", TextBoxToken.Text.Trim());
             IniHelper.SetValue("百度接口", "使用高精度接口", cbAccurate.Checked.ToString());
 
-            IniHelper.SetValue("热键", "截图识别", TextBoxHotkey.Text.Trim());
+            IniHelper.SetValue("热键", "截图识别", tbHotkeyCut.Text.Trim());
+            IniHelper.SetValue("热键", "显示/隐藏", tbHotkeyShow.Text.Trim());
 
             IniHelper.SetValue("常规", "识别后文本累加", CheckBoxPlus.Checked.ToString());
             IniHelper.SetValue("常规", "识别后自动复制", CheckBoxCopy.Checked.ToString());
@@ -86,7 +88,9 @@ namespace jyocr
             Setting.TextCopy = CheckBoxCopy.Checked;
             Setting.FormHide = CheckBoxHide.Checked;
             Setting.FormTray = CheckBoxTray.Checked;
-            Setting.Hotkey = TextBoxHotkey.Text.Trim();
+
+            Setting.HotkeyCut = tbHotkeyCut.Text.Trim();
+            Setting.HotkeyShow = tbHotkeyShow.Text.Trim();
 
             //MessageBox.Show(this, "配置已保存！", "提示");
             this.Close();
@@ -94,6 +98,7 @@ namespace jyocr
 
 
         #region 识别按下的键盘值
+        // 截图识别
         private void TextBoxHotkey_KeyDown(object sender, KeyEventArgs e)
         {
             e.SuppressKeyPress = true;
@@ -103,18 +108,43 @@ namespace jyocr
         {
             if (e.KeyData == Keys.Back)
             {
-                TextBoxHotkey.Text = "请按下快捷键";
+                tbHotkeyCut.Text = "请按下快捷键";
             }
             else if (e.KeyValue != 16 && e.KeyValue != 17 && e.KeyValue != 18)
             {
                 var array = e.KeyData.ToString().Replace(" ", "").Replace("Control", "Ctrl").Split(',');
                 if (array.Length == 1)
                 {
-                    TextBoxHotkey.Text = array[0];
+                    tbHotkeyCut.Text = array[0];
                 }
                 if (array.Length == 2)
                 {
-                    TextBoxHotkey.Text = array[1] + "+" + array[0];
+                    tbHotkeyCut.Text = array[1] + "+" + array[0];
+                }
+            }
+        }
+
+        // 显示界面
+        private void tbHotkeyShow_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
+        }
+        private void tbHotkeyShow_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Back)
+            {
+                tbHotkeyShow.Text = "请按下快捷键";
+            }
+            else if (e.KeyValue != 16 && e.KeyValue != 17 && e.KeyValue != 18)
+            {
+                var array = e.KeyData.ToString().Replace(" ", "").Replace("Control", "Ctrl").Split(',');
+                if (array.Length == 1)
+                {
+                    tbHotkeyShow.Text = array[0];
+                }
+                if (array.Length == 2)
+                {
+                    tbHotkeyShow.Text = array[1] + "+" + array[0];
                 }
             }
         }
@@ -162,5 +192,7 @@ namespace jyocr
         {
             this.Close();
         }
+
+        
     }
 }

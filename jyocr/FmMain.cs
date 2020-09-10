@@ -97,6 +97,10 @@ namespace jyocr
                     {
                         ButtonCutPic_Click(null, null);
                     }
+                    if (m.WParam.ToInt32() == 201)
+                    {
+                        Notify_DoubleClick(null, null);
+                    }
                     break;
                 default:
                     break;
@@ -164,21 +168,46 @@ namespace jyocr
             }
 
             // 注册热键
-            Setting.Hotkey = IniHelper.GetValue("热键", "截图识别");
-            if (Setting.Hotkey != "" && Setting.Hotkey != "请按下快捷键")
+            Setting.HotkeyCut = IniHelper.GetValue("热键", "截图识别");
+            if (Setting.HotkeyCut != "" && Setting.HotkeyCut != "请按下快捷键")
             {
-                HotKey.SetHotkey(Handle, "None", "F4", Setting.Hotkey, 200);
+                HotKey.SetHotkey(Handle, "None", "F4", Setting.HotkeyCut, 200);
+            }
+            Setting.HotkeyShow = IniHelper.GetValue("热键", "显示/隐藏");
+            if (Setting.HotkeyShow != "" && Setting.HotkeyShow != "请按下快捷键")
+            {
+                HotKey.SetHotkey(Handle, "None", "F4", Setting.HotkeyShow, 201);
             }
         }
         #endregion
 
+        #region 软件关闭
+        // 关闭前判断
+        private void FmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 注意判断关闭事件reason来源于窗体按钮，否则用菜单退出时无法退出!
+            if (e.CloseReason == CloseReason.UserClosing && Setting.FormTray)
+            {
+                // 取消"关闭窗口"事件
+                // 只有 Form_Closing 事件中 e.Cancel可以用
+                // Form_Closed 事件时窗口已关了，Cancel没用了
+                // Form_Closing 是窗口即将关闭时询问你是不是真的关闭才有 Cancel 事件
+                e.Cancel = true; // 取消关闭窗体 
+
+                //使关闭时窗口向右下角缩小的效果
+                this.WindowState = FormWindowState.Minimized;
+                this.Notify.Visible = true;
+                this.Hide();
+                return;
+            }
+        }
 
         private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             // 卸载热键
             HotKey.UnregisterHotKey(Handle, 200);
         }
-
+        #endregion
 
         #region 浏览文件识别
         private void ButtonFile_Click(object sender, EventArgs e)
@@ -369,10 +398,15 @@ namespace jyocr
             frm.ShowDialog();
 
             // 卸载热键重新注册
-            if (Setting.Hotkey != "" && Setting.Hotkey != "请按下快捷键")
+            if (Setting.HotkeyCut != "" && Setting.HotkeyCut != "请按下快捷键")
             {
                 HotKey.UnregisterHotKey(Handle, 200);
-                HotKey.SetHotkey(Handle, "None", "F4", Setting.Hotkey, 200);
+                HotKey.SetHotkey(Handle, "None", "F4", Setting.HotkeyCut, 200);
+            }
+            if (Setting.HotkeyShow != "" && Setting.HotkeyShow != "请按下快捷键")
+            {
+                HotKey.UnregisterHotKey(Handle, 201);
+                HotKey.SetHotkey(Handle, "None", "F4", Setting.HotkeyShow, 201);
             }
             this.Notify.Visible = Setting.FormTray;
         }
@@ -557,7 +591,7 @@ namespace jyocr
 
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "你确定要退出？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            if (MessageBox.Show(this, "你确定要退出？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
                 this.Notify.Visible = false;
                 this.Close();
@@ -573,5 +607,6 @@ namespace jyocr
             this.Activate();
         }
         #endregion
+ 
     }
 }

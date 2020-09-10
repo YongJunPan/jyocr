@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="jyocr.exe" size="269776">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="jyocr.exe" size="270800">
       <assemblyIdentity name="jyocr" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Z3xaiTZFjsl5fmowPAvwaq4hZk/v4Kz/+cb9l1EB3no=</dsig:DigestValue>
+        <dsig:DigestValue>wxMqmaRI+p3G1J2o1khZE3ikrUfOJCOTeIqvHf25L8M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

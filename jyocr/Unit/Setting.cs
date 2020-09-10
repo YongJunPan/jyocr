@@ -7,6 +7,7 @@ namespace jyocr.Unit
         public static bool TextCopy;
         public static bool FormHide;
         public static bool FormTray;
-        public static string Hotkey;
+        public static string HotkeyCut;
+        public static string HotkeyShow;
     }
 }
