@@ -137,6 +137,7 @@ namespace jyocr
             Setting.FormHide = IniHelper.GetValue("常规", "截图时隐藏窗体") == "" ? false : bool.Parse(IniHelper.GetValue("常规", "截图时隐藏窗体"));
             Setting.FormTray = IniHelper.GetValue("常规", "右下角显示托盘") == "" ? false : bool.Parse(IniHelper.GetValue("常规", "右下角显示托盘"));
             this.Notify.Visible = Setting.FormTray;
+            Setting.SelfStart = IniHelper.GetValue("常规", "开机自启") == "" ? false : bool.Parse(IniHelper.GetValue("常规", "开机自启"));
 
             OCRHelper.ApiKey = IniHelper.GetValue("百度接口", "API Key");
             OCRHelper.SecretKey = IniHelper.GetValue("百度接口", "Secret Key");
@@ -230,14 +231,12 @@ namespace jyocr
             {
                 this.Visible = false; // 截图时隐藏本窗体
                 System.Threading.Thread.Sleep(200); // 延时，避免把本窗体也截下来
-                ShowCutPic();  // 截图功能
-                this.Visible = true;
-                Application.DoEvents(); // DoEvents()将强制处理消息队列中的所有消息
             }
-            else
-            {
-                ShowCutPic();
-            }
+            ShowCutPic();
+            this.Visible = true;
+            this.WindowState = FormWindowState.Normal;
+            this.Activate();
+            Application.DoEvents(); // DoEvents()将强制处理消息队列中的所有消息
             try
             {
                 if (Clipboard.ContainsImage())
@@ -282,7 +281,7 @@ namespace jyocr
             // 指示窗体的背景图片为屏幕图片
             //cutter.Image = CatchBmp;
             // 如果分辨率进行了缩放，图片相应需要缩放
-            cutter.Image = ScreenHelper.ScaleX > 1 ? CatchBmp : shrinkTo(CatchBmp, Screen.AllScreens[0].Bounds.Size, true);
+            cutter.Image = ScreenHelper.ScaleX > 1 ? shrinkTo(CatchBmp, Screen.AllScreens[0].Bounds.Size, true) : CatchBmp;
             cutter.Cursor = Cursors.Cross;
             cutter.ShowDialog();
         }

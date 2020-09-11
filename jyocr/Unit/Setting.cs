@@ -9,5 +9,6 @@ namespace jyocr.Unit
         public static bool FormTray;
         public static string HotkeyCut;
         public static string HotkeyShow;
+        public static bool SelfStart;
     }
 }

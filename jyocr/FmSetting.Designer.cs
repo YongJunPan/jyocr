@@ -55,6 +55,7 @@
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.PictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.ButtonExit = new System.Windows.Forms.Button();
+            this.CheckBoxStar = new System.Windows.Forms.CheckBox();
             this.PanelBaidu.SuspendLayout();
             this.PanelHotkey.SuspendLayout();
             this.PanelSet.SuspendLayout();
@@ -194,7 +195,7 @@
             this.PanelBaidu.Controls.Add(this.TextBoxSecretKey);
             this.PanelBaidu.Controls.Add(this.ButtonApiTest);
             this.PanelBaidu.Controls.Add(this.TextBoxApiKey);
-            this.PanelBaidu.Location = new System.Drawing.Point(5, 71);
+            this.PanelBaidu.Location = new System.Drawing.Point(5, 92);
             this.PanelBaidu.Name = "PanelBaidu";
             this.PanelBaidu.Size = new System.Drawing.Size(318, 163);
             this.PanelBaidu.TabIndex = 30;
@@ -216,7 +217,7 @@
             this.PanelHotkey.Controls.Add(this.tbHotkeyShow);
             this.PanelHotkey.Controls.Add(this.label3);
             this.PanelHotkey.Controls.Add(this.tbHotkeyCut);
-            this.PanelHotkey.Location = new System.Drawing.Point(5, 240);
+            this.PanelHotkey.Location = new System.Drawing.Point(5, 261);
             this.PanelHotkey.Name = "PanelHotkey";
             this.PanelHotkey.Size = new System.Drawing.Size(318, 79);
             this.PanelHotkey.TabIndex = 31;
@@ -260,11 +261,12 @@
             // 
             this.PanelGeneral.Controls.Add(this.CheckBoxPlus);
             this.PanelGeneral.Controls.Add(this.CheckBoxTray);
+            this.PanelGeneral.Controls.Add(this.CheckBoxStar);
             this.PanelGeneral.Controls.Add(this.CheckBoxCopy);
             this.PanelGeneral.Controls.Add(this.CheckBoxHide);
             this.PanelGeneral.Location = new System.Drawing.Point(5, 5);
             this.PanelGeneral.Name = "PanelGeneral";
-            this.PanelGeneral.Size = new System.Drawing.Size(318, 60);
+            this.PanelGeneral.Size = new System.Drawing.Size(318, 81);
             this.PanelGeneral.TabIndex = 33;
             // 
             // CheckBoxPlus
@@ -311,7 +313,7 @@
             // 
             this.PanelAbout.Controls.Add(this.textBoxAbout);
             this.PanelAbout.Controls.Add(this.PictureBoxIcon);
-            this.PanelAbout.Location = new System.Drawing.Point(5, 325);
+            this.PanelAbout.Location = new System.Drawing.Point(5, 346);
             this.PanelAbout.Name = "PanelAbout";
             this.PanelAbout.Size = new System.Drawing.Size(318, 162);
             this.PanelAbout.TabIndex = 32;
@@ -328,7 +330,7 @@
             this.textBoxAbout.ReadOnly = true;
             this.textBoxAbout.Size = new System.Drawing.Size(229, 144);
             this.textBoxAbout.TabIndex = 1;
-            this.textBoxAbout.Text = "当前版本：1.08\r\n更新日期：2020-09-10\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n\r\n本软件仅供学习交流" +
+            this.textBoxAbout.Text = "当前版本：1.09\r\n更新日期：2020-09-10\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n\r\n本软件仅供学习交流" +
     "使用";
             // 
             // PictureBoxIcon
@@ -351,6 +353,16 @@
             this.ButtonExit.Text = "取消";
             this.ButtonExit.UseVisualStyleBackColor = false;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
+            // 
+            // CheckBoxStar
+            // 
+            this.CheckBoxStar.AutoSize = true;
+            this.CheckBoxStar.Location = new System.Drawing.Point(7, 54);
+            this.CheckBoxStar.Name = "CheckBoxStar";
+            this.CheckBoxStar.Size = new System.Drawing.Size(72, 16);
+            this.CheckBoxStar.TabIndex = 31;
+            this.CheckBoxStar.Text = "开机自启";
+            this.CheckBoxStar.UseVisualStyleBackColor = true;
             // 
             // FmSetting
             // 
@@ -414,5 +426,6 @@
         private System.Windows.Forms.CheckBox CheckBoxTray;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbHotkeyShow;
+        private System.Windows.Forms.CheckBox CheckBoxStar;
     }
 }

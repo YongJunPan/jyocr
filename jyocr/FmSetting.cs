@@ -1,6 +1,8 @@
 ﻿using jyocr.Unit;
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace jyocr
@@ -24,6 +26,7 @@ namespace jyocr
             CheckBoxCopy.Checked = Setting.TextCopy;
             CheckBoxHide.Checked = Setting.FormHide;
             CheckBoxTray.Checked = Setting.FormTray;
+            CheckBoxStar.Checked = Setting.SelfStart;
             PanelSet.AutoScroll = false;
         }
 
@@ -76,7 +79,7 @@ namespace jyocr
             IniHelper.SetValue("常规", "识别后自动复制", CheckBoxCopy.Checked.ToString());
             IniHelper.SetValue("常规", "截图时隐藏窗体", CheckBoxHide.Checked.ToString());
             IniHelper.SetValue("常规", "右下角显示托盘", CheckBoxTray.Checked.ToString());
-
+            IniHelper.SetValue("常规", "开机自启", CheckBoxStar.Checked.ToString());
 
             // 刷新变量
             OCRHelper.ApiKey = TextBoxApiKey.Text.Trim();
@@ -88,9 +91,28 @@ namespace jyocr
             Setting.TextCopy = CheckBoxCopy.Checked;
             Setting.FormHide = CheckBoxHide.Checked;
             Setting.FormTray = CheckBoxTray.Checked;
+            Setting.SelfStart = CheckBoxStar.Checked;
 
             Setting.HotkeyCut = tbHotkeyCut.Text.Trim();
             Setting.HotkeyShow = tbHotkeyShow.Text.Trim();
+
+            if (Setting.SelfStart)
+            {
+                string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);//返回用户的“启动”程序组的目录
+                if (File.Exists(FilePath + "\\煎鱼OCR.lnk") == false)
+                {
+                    
+                    CreateShortcut(FilePath + "\\煎鱼OCR.lnk");// 创建快捷方式
+                }
+            }
+            else
+            {
+                string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+                if (File.Exists(FilePath + "\\煎鱼OCR.lnk"))
+                {
+                    File.Delete(FilePath + "\\煎鱼OCR.lnk");
+                }
+            }
 
             //MessageBox.Show(this, "配置已保存！", "提示");
             this.Close();
@@ -193,6 +215,23 @@ namespace jyocr
             this.Close();
         }
 
-        
+        #region 创建快捷方式
+        /// <summary>
+        /// 为当前正在运行的程序创建一个快捷方式。
+        /// </summary>
+        /// <param name="lnkFilePath">快捷方式的完全限定路径。</param>
+        /// <param name="args">快捷方式启动程序时需要使用的参数。</param>
+        private static void CreateShortcut(string lnkFilePath, string args = "")
+        {
+            var shellType = Type.GetTypeFromProgID("WScript.Shell");
+            dynamic shell = Activator.CreateInstance(shellType);
+            var shortcut = shell.CreateShortcut(lnkFilePath);
+            shortcut.TargetPath = Assembly.GetEntryAssembly().Location;
+            shortcut.Arguments = args;
+            shortcut.WorkingDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            shortcut.Save();
+        }
+        #endregion
+
     }
 }
