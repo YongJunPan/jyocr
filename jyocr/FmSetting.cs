@@ -16,17 +16,23 @@ namespace jyocr
 
         private void FmSetting_Load(object sender, EventArgs e)
         {
-            TextBoxApiKey.Text = OCRHelper.ApiKey;
-            TextBoxSecretKey.Text = OCRHelper.SecretKey;
-            TextBoxToken.Text = OCRHelper.AccessToken;
-            tbHotkeyCut.Text = Setting.HotkeyCut;
-            tbHotkeyShow.Text = Setting.HotkeyShow;
-            cbAccurate.Checked = OCRHelper.Accurate;
             CheckBoxPlus.Checked = Setting.TextPlus;
             CheckBoxCopy.Checked = Setting.TextCopy;
             CheckBoxHide.Checked = Setting.FormHide;
             CheckBoxTray.Checked = Setting.FormTray;
             CheckBoxStar.Checked = Setting.SelfStart;
+
+            TextBoxApiKey.Text = OCRHelper.ApiKey;
+            TextBoxSecretKey.Text = OCRHelper.SecretKey;
+            TextBoxToken.Text = OCRHelper.AccessToken;
+
+            tbHotkeyCut.Text = Setting.HotkeyCut;
+            tbHotkeyShow.Text = Setting.HotkeyShow;
+            cbAccurate.Checked = OCRHelper.Accurate;
+
+            ComboBoxTranList.SelectedIndex = Setting.TranItem;
+            ComboBoxTranOption.SelectedIndex = Setting.TranOption;
+
             PanelSet.AutoScroll = false;
         }
 
@@ -81,6 +87,9 @@ namespace jyocr
             IniHelper.SetValue("常规", "右下角显示托盘", CheckBoxTray.Checked.ToString());
             IniHelper.SetValue("常规", "开机自启", CheckBoxStar.Checked.ToString());
 
+            IniHelper.SetValue("翻译", "默认网址", ComboBoxTranList.SelectedIndex.ToString());
+            IniHelper.SetValue("翻译", "翻译选项", ComboBoxTranOption.SelectedIndex.ToString());
+
             // 刷新变量
             OCRHelper.ApiKey = TextBoxApiKey.Text.Trim();
             OCRHelper.SecretKey = TextBoxSecretKey.Text.Trim();
@@ -95,6 +104,9 @@ namespace jyocr
 
             Setting.HotkeyCut = tbHotkeyCut.Text.Trim();
             Setting.HotkeyShow = tbHotkeyShow.Text.Trim();
+
+            Setting.TranItem = ComboBoxTranList.SelectedIndex;
+            Setting.TranOption = ComboBoxTranOption.SelectedIndex;
 
             if (Setting.SelfStart)
             {
@@ -175,37 +187,48 @@ namespace jyocr
         #region 点击左侧导航菜单
         private void ListBoxMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListBoxMenu.SelectedIndex == 0) // 常规
+            switch (ListBoxMenu.SelectedIndex)
             {
-                PanelBaidu.Visible = false;
-                PanelHotkey.Visible = false;
-                PanelAbout.Visible = false;
-                PanelGeneral.Top = ListBoxMenu.Top;
-                PanelGeneral.Visible = true;
-            }
-            else if (ListBoxMenu.SelectedIndex == 1) // 百度接口
-            {
-                PanelHotkey.Visible = false;
-                PanelAbout.Visible = false;
-                PanelGeneral.Visible = false;
-                PanelBaidu.Top = ListBoxMenu.Top;
-                PanelBaidu.Visible = true;
-            }
-            else if (ListBoxMenu.SelectedIndex == 2) // 热键
-            {
-                PanelBaidu.Visible = false;
-                PanelAbout.Visible = false;
-                PanelGeneral.Visible = false;
-                PanelHotkey.Top = ListBoxMenu.Top;
-                PanelHotkey.Visible = true;
-            }
-            else if (ListBoxMenu.SelectedIndex == 3) // 关于
-            {
-                PanelBaidu.Visible = false;
-                PanelHotkey.Visible = false;
-                PanelGeneral.Visible = false;
-                PanelAbout.Top = ListBoxMenu.Top;
-                PanelAbout.Visible = true;
+                case 0:  // 常规
+                    PanelBaidu.Visible = false;
+                    PanelHotkey.Visible = false;
+                    PanelTranslate.Visible = false;
+                    PanelAbout.Visible = false;
+                    PanelGeneral.Top = ListBoxMenu.Top;
+                    PanelGeneral.Visible = true;
+                    break;
+                case 1:  // 百度接口
+                    PanelGeneral.Visible = false;
+                    PanelHotkey.Visible = false;
+                    PanelTranslate.Visible = false;
+                    PanelAbout.Visible = false;
+                    PanelBaidu.Top = ListBoxMenu.Top;
+                    PanelBaidu.Visible = true;
+                    break;
+                case 2:  // 热键
+                    PanelGeneral.Visible = false;
+                    PanelBaidu.Visible = false;
+                    PanelTranslate.Visible = false;
+                    PanelAbout.Visible = false;
+                    PanelHotkey.Top = ListBoxMenu.Top;
+                    PanelHotkey.Visible = true;
+                    break;
+                case 3:
+                    PanelGeneral.Visible = false;
+                    PanelBaidu.Visible = false;
+                    PanelHotkey.Visible = false;
+                    PanelAbout.Visible = false;
+                    PanelTranslate.Top = ListBoxMenu.Top;
+                    PanelTranslate.Visible = true;
+                    break;
+                case 4:  // 关于
+                    PanelGeneral.Visible = false;
+                    PanelBaidu.Visible = false;
+                    PanelHotkey.Visible = false;
+                    PanelTranslate.Visible = false;
+                    PanelAbout.Top = ListBoxMenu.Top;
+                    PanelAbout.Visible = true;
+                    break;
             }
         }
         #endregion

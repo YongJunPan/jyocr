@@ -24,7 +24,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -111,6 +111,7 @@
     <Compile Include="Unit\OCRHelper.cs" />
     <Compile Include="Unit\ScreenHelper.cs" />
     <Compile Include="Unit\Setting.cs" />
+    <Compile Include="Unit\Translate.cs" />
     <EmbeddedResource Include="FmCutPic.resx">
       <DependentUpon>FmCutPic.cs</DependentUpon>
       <SubType>Designer</SubType>

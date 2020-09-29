@@ -168,6 +168,9 @@ namespace jyocr
                 }
             }
 
+            Setting.TranItem = IniHelper.GetValue("翻译", "默认网址") == "" ? 0 : int.Parse(IniHelper.GetValue("翻译", "默认网址"));
+            Setting.TranOption = IniHelper.GetValue("翻译", "翻译选项") == "" ? 0 : int.Parse(IniHelper.GetValue("翻译", "翻译选项"));
+
             // 注册热键
             Setting.HotkeyCut = IniHelper.GetValue("热键", "截图识别");
             if (Setting.HotkeyCut != "" && Setting.HotkeyCut != "请按下快捷键")
@@ -217,7 +220,7 @@ namespace jyocr
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 ButtonPart.Text = "自动分段";
-                RichTextBoxValue.Text = OCRHelper.BaiduBasic(openFileDialog1.FileName);
+                RichTextBoxValue.Text = OCRHelper.BaiduBasic(openFileDialog1.FileName).Trim();
                 if (Setting.TextCopy)
                     ButtonCopy_Click(null, null);
             }
@@ -243,7 +246,7 @@ namespace jyocr
                 {
                     ButtonPart.Text = "自动分段";
                     Image img = Clipboard.GetImage();  // 获取剪切板图片
-                    RichTextBoxValue.Text = OCRHelper.BaiduBasic("", img); // 识别剪切板图片的文字
+                    RichTextBoxValue.Text = OCRHelper.BaiduBasic("", img).Trim(); // 识别剪切板图片的文字
                     if (Setting.TextCopy)
                         ButtonCopy_Click(null, null);
                 }
@@ -333,7 +336,7 @@ namespace jyocr
             {
                 ButtonPart.Text = "自动分段";
                 string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-                RichTextBoxValue.Text = OCRHelper.BaiduBasic(path);
+                RichTextBoxValue.Text = OCRHelper.BaiduBasic(path).Trim();
                 if (Setting.TextCopy)
                     ButtonCopy_Click(null, null);
             }
@@ -606,6 +609,11 @@ namespace jyocr
             this.Activate();
         }
         #endregion
- 
+
+        private void ButtonTranslate_Click(object sender, EventArgs e)
+        {
+            if (RichTextBoxValue.Text != "")
+                Translate.goTranslate(RichTextBoxValue.Text);
+        }
     }
 }

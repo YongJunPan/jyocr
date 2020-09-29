@@ -46,19 +46,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbHotkeyShow = new System.Windows.Forms.TextBox();
             this.PanelSet = new System.Windows.Forms.Panel();
+            this.PanelTranslate = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.PanelGeneral = new System.Windows.Forms.Panel();
             this.CheckBoxPlus = new System.Windows.Forms.CheckBox();
             this.CheckBoxTray = new System.Windows.Forms.CheckBox();
+            this.CheckBoxStar = new System.Windows.Forms.CheckBox();
             this.CheckBoxCopy = new System.Windows.Forms.CheckBox();
             this.CheckBoxHide = new System.Windows.Forms.CheckBox();
             this.PanelAbout = new System.Windows.Forms.Panel();
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.PictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.ButtonExit = new System.Windows.Forms.Button();
-            this.CheckBoxStar = new System.Windows.Forms.CheckBox();
+            this.ComboBoxTranList = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ComboBoxTranOption = new System.Windows.Forms.ComboBox();
             this.PanelBaidu.SuspendLayout();
             this.PanelHotkey.SuspendLayout();
             this.PanelSet.SuspendLayout();
+            this.PanelTranslate.SuspendLayout();
             this.PanelGeneral.SuspendLayout();
             this.PanelAbout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxIcon)).BeginInit();
@@ -74,6 +80,7 @@
             " 常规",
             " 接口",
             " 热键",
+            " 翻译",
             " 关于"});
             this.ListBoxMenu.Location = new System.Drawing.Point(5, 5);
             this.ListBoxMenu.Name = "ListBoxMenu";
@@ -248,6 +255,7 @@
             this.PanelSet.AutoScrollMinSize = new System.Drawing.Size(100, 800);
             this.PanelSet.BackColor = System.Drawing.Color.White;
             this.PanelSet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelSet.Controls.Add(this.PanelTranslate);
             this.PanelSet.Controls.Add(this.PanelGeneral);
             this.PanelSet.Controls.Add(this.PanelAbout);
             this.PanelSet.Controls.Add(this.PanelBaidu);
@@ -256,6 +264,27 @@
             this.PanelSet.Name = "PanelSet";
             this.PanelSet.Size = new System.Drawing.Size(346, 233);
             this.PanelSet.TabIndex = 32;
+            // 
+            // PanelTranslate
+            // 
+            this.PanelTranslate.Controls.Add(this.ComboBoxTranOption);
+            this.PanelTranslate.Controls.Add(this.ComboBoxTranList);
+            this.PanelTranslate.Controls.Add(this.label5);
+            this.PanelTranslate.Controls.Add(this.label2);
+            this.PanelTranslate.Location = new System.Drawing.Point(5, 346);
+            this.PanelTranslate.Name = "PanelTranslate";
+            this.PanelTranslate.Size = new System.Drawing.Size(318, 80);
+            this.PanelTranslate.TabIndex = 34;
+            this.PanelTranslate.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "默认网址：";
             // 
             // PanelGeneral
             // 
@@ -289,6 +318,16 @@
             this.CheckBoxTray.Text = "右下角显示托盘";
             this.CheckBoxTray.UseVisualStyleBackColor = true;
             // 
+            // CheckBoxStar
+            // 
+            this.CheckBoxStar.AutoSize = true;
+            this.CheckBoxStar.Location = new System.Drawing.Point(7, 54);
+            this.CheckBoxStar.Name = "CheckBoxStar";
+            this.CheckBoxStar.Size = new System.Drawing.Size(72, 16);
+            this.CheckBoxStar.TabIndex = 31;
+            this.CheckBoxStar.Text = "开机自启";
+            this.CheckBoxStar.UseVisualStyleBackColor = true;
+            // 
             // CheckBoxCopy
             // 
             this.CheckBoxCopy.AutoSize = true;
@@ -313,7 +352,7 @@
             // 
             this.PanelAbout.Controls.Add(this.textBoxAbout);
             this.PanelAbout.Controls.Add(this.PictureBoxIcon);
-            this.PanelAbout.Location = new System.Drawing.Point(5, 346);
+            this.PanelAbout.Location = new System.Drawing.Point(5, 432);
             this.PanelAbout.Name = "PanelAbout";
             this.PanelAbout.Size = new System.Drawing.Size(318, 162);
             this.PanelAbout.TabIndex = 32;
@@ -330,7 +369,7 @@
             this.textBoxAbout.ReadOnly = true;
             this.textBoxAbout.Size = new System.Drawing.Size(229, 144);
             this.textBoxAbout.TabIndex = 1;
-            this.textBoxAbout.Text = "当前版本：1.09\r\n更新日期：2020-09-10\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n\r\n本软件仅供学习交流" +
+            this.textBoxAbout.Text = "当前版本：1.10\r\n更新日期：2020-09-29\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n\r\n本软件仅供学习交流" +
     "使用";
             // 
             // PictureBoxIcon
@@ -354,15 +393,40 @@
             this.ButtonExit.UseVisualStyleBackColor = false;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
-            // CheckBoxStar
+            // ComboBoxTranList
             // 
-            this.CheckBoxStar.AutoSize = true;
-            this.CheckBoxStar.Location = new System.Drawing.Point(7, 54);
-            this.CheckBoxStar.Name = "CheckBoxStar";
-            this.CheckBoxStar.Size = new System.Drawing.Size(72, 16);
-            this.CheckBoxStar.TabIndex = 31;
-            this.CheckBoxStar.Text = "开机自启";
-            this.CheckBoxStar.UseVisualStyleBackColor = true;
+            this.ComboBoxTranList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxTranList.FormattingEnabled = true;
+            this.ComboBoxTranList.Items.AddRange(new object[] {
+            "谷歌翻译",
+            "百度翻译",
+            "搜狗翻译"});
+            this.ComboBoxTranList.Location = new System.Drawing.Point(88, 11);
+            this.ComboBoxTranList.Name = "ComboBoxTranList";
+            this.ComboBoxTranList.Size = new System.Drawing.Size(225, 20);
+            this.ComboBoxTranList.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(5, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "翻译选项：";
+            // 
+            // ComboBoxTranOption
+            // 
+            this.ComboBoxTranOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxTranOption.FormattingEnabled = true;
+            this.ComboBoxTranOption.Items.AddRange(new object[] {
+            "中文 -> 英文",
+            "英文 -> 中文",
+            "检测 -> 中文"});
+            this.ComboBoxTranOption.Location = new System.Drawing.Point(88, 44);
+            this.ComboBoxTranOption.Name = "ComboBoxTranOption";
+            this.ComboBoxTranOption.Size = new System.Drawing.Size(225, 20);
+            this.ComboBoxTranOption.TabIndex = 1;
             // 
             // FmSetting
             // 
@@ -389,6 +453,8 @@
             this.PanelHotkey.ResumeLayout(false);
             this.PanelHotkey.PerformLayout();
             this.PanelSet.ResumeLayout(false);
+            this.PanelTranslate.ResumeLayout(false);
+            this.PanelTranslate.PerformLayout();
             this.PanelGeneral.ResumeLayout(false);
             this.PanelGeneral.PerformLayout();
             this.PanelAbout.ResumeLayout(false);
@@ -427,5 +493,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbHotkeyShow;
         private System.Windows.Forms.CheckBox CheckBoxStar;
+        private System.Windows.Forms.Panel PanelTranslate;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox ComboBoxTranList;
+        private System.Windows.Forms.ComboBox ComboBoxTranOption;
+        private System.Windows.Forms.Label label5;
     }
 }
