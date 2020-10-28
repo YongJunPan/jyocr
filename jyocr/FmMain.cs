@@ -158,6 +158,7 @@ namespace jyocr
                     }
                     else
                     {
+                        OCRHelper.AccessToken = token;
                         IniHelper.SetValue("百度接口", "Access Token", token);
                         IniHelper.SetValue("百度接口", "Date Token", DateTime.Now.ToString("yyyy-MM-dd"));
                     }

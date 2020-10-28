@@ -47,6 +47,9 @@
             this.tbHotkeyShow = new System.Windows.Forms.TextBox();
             this.PanelSet = new System.Windows.Forms.Panel();
             this.PanelTranslate = new System.Windows.Forms.Panel();
+            this.ComboBoxTranOption = new System.Windows.Forms.ComboBox();
+            this.ComboBoxTranList = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.PanelGeneral = new System.Windows.Forms.Panel();
             this.CheckBoxPlus = new System.Windows.Forms.CheckBox();
@@ -58,9 +61,6 @@
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.PictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.ButtonExit = new System.Windows.Forms.Button();
-            this.ComboBoxTranList = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ComboBoxTranOption = new System.Windows.Forms.ComboBox();
             this.PanelBaidu.SuspendLayout();
             this.PanelHotkey.SuspendLayout();
             this.PanelSet.SuspendLayout();
@@ -277,6 +277,41 @@
             this.PanelTranslate.TabIndex = 34;
             this.PanelTranslate.Visible = false;
             // 
+            // ComboBoxTranOption
+            // 
+            this.ComboBoxTranOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxTranOption.FormattingEnabled = true;
+            this.ComboBoxTranOption.Items.AddRange(new object[] {
+            "中文 -> 英文",
+            "英文 -> 中文",
+            "检测 -> 中文"});
+            this.ComboBoxTranOption.Location = new System.Drawing.Point(88, 44);
+            this.ComboBoxTranOption.Name = "ComboBoxTranOption";
+            this.ComboBoxTranOption.Size = new System.Drawing.Size(225, 20);
+            this.ComboBoxTranOption.TabIndex = 1;
+            // 
+            // ComboBoxTranList
+            // 
+            this.ComboBoxTranList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxTranList.FormattingEnabled = true;
+            this.ComboBoxTranList.Items.AddRange(new object[] {
+            "谷歌翻译",
+            "百度翻译",
+            "搜狗翻译"});
+            this.ComboBoxTranList.Location = new System.Drawing.Point(88, 11);
+            this.ComboBoxTranList.Name = "ComboBoxTranList";
+            this.ComboBoxTranList.Size = new System.Drawing.Size(225, 20);
+            this.ComboBoxTranList.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(5, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "翻译选项：";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -369,7 +404,7 @@
             this.textBoxAbout.ReadOnly = true;
             this.textBoxAbout.Size = new System.Drawing.Size(229, 144);
             this.textBoxAbout.TabIndex = 1;
-            this.textBoxAbout.Text = "当前版本：1.10\r\n更新日期：2020-09-29\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n\r\n本软件仅供学习交流" +
+            this.textBoxAbout.Text = "当前版本：1.11\r\n更新日期：2020-10-28\r\n发布地址：仅在吾爱破解论坛发布\r\n                 @旋律丶小飞\r\n\r\n本软件仅供学习交流" +
     "使用";
             // 
             // PictureBoxIcon
@@ -392,41 +427,6 @@
             this.ButtonExit.Text = "取消";
             this.ButtonExit.UseVisualStyleBackColor = false;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
-            // 
-            // ComboBoxTranList
-            // 
-            this.ComboBoxTranList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxTranList.FormattingEnabled = true;
-            this.ComboBoxTranList.Items.AddRange(new object[] {
-            "谷歌翻译",
-            "百度翻译",
-            "搜狗翻译"});
-            this.ComboBoxTranList.Location = new System.Drawing.Point(88, 11);
-            this.ComboBoxTranList.Name = "ComboBoxTranList";
-            this.ComboBoxTranList.Size = new System.Drawing.Size(225, 20);
-            this.ComboBoxTranList.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 49);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "翻译选项：";
-            // 
-            // ComboBoxTranOption
-            // 
-            this.ComboBoxTranOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxTranOption.FormattingEnabled = true;
-            this.ComboBoxTranOption.Items.AddRange(new object[] {
-            "中文 -> 英文",
-            "英文 -> 中文",
-            "检测 -> 中文"});
-            this.ComboBoxTranOption.Location = new System.Drawing.Point(88, 44);
-            this.ComboBoxTranOption.Name = "ComboBoxTranOption";
-            this.ComboBoxTranOption.Size = new System.Drawing.Size(225, 20);
-            this.ComboBoxTranOption.TabIndex = 1;
             // 
             // FmSetting
             // 
