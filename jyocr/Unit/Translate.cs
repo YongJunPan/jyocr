@@ -6,7 +6,7 @@ namespace jyocr.Unit
     {
         public static void goTranslate(string originalText)
         {
-            switch(Setting.TranItem)
+            switch (Setting.TranItem)
             {
                 case 0:
                     TranslateGoogle(originalText);

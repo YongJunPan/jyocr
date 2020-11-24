@@ -60,8 +60,18 @@ namespace jyocr.Unit
             string base64 = img == null ? Base64Helper.getFileBase64(filePath) : Base64Helper.getFileBase64("", Base64Helper.ImgToBytes(img));
             string data = "image=" + HttpUtility.UrlEncode(base64) + "&language_type=" + Language;
             string result = HttpClient.Post(data, url);
-            var jArray = JArray.Parse(((JObject)JsonConvert.DeserializeObject(result))["words_result"].ToString());
-            string returnStr = checked_txt(jArray, 1, "words");
+            string returnStr;
+            if (result.Contains("error"))
+            {
+                split_txt = result;
+                typeset_txt = result;
+                returnStr = result;
+            }
+            else
+            {
+                var jArray = JArray.Parse(((JObject)JsonConvert.DeserializeObject(result))["words_result"].ToString());
+                returnStr = checked_txt(jArray, 1, "words");
+            }
             return returnStr;
         }
         #endregion
