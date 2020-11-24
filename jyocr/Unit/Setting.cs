@@ -10,7 +10,8 @@ namespace jyocr.Unit
         public static string HotkeyCut;     // 截图热键
         public static string HotkeyShow;    // 显示/隐藏热键
         public static bool SelfStart;       // 开机自启
-        public static int TranItem;        // 翻译网址
-        public static int TranOption;      // 翻译选项
+        public static int TranItem;         // 翻译网址
+        public static int TranOption;       // 翻译选项
+        public static int Paragraph = 1;    // 段落选项
     }
 }

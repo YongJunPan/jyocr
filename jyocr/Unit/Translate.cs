@@ -26,13 +26,13 @@ namespace jyocr.Unit
             switch (Setting.TranOption)
             {
                 case 0:
-                    url = string.Format("https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en&text={0}", originalText);
+                    url = string.Format("https://translate.google.cn/?sl=zh-CN&tl=en&text={0}&op=translate", originalText);
                     break;
                 case 1:
-                    url = string.Format("https://translate.google.cn/#view=home&op=translate&sl=en&tl=zh-CN&text={0}", originalText);
+                    url = string.Format("https://translate.google.cn/?sl=en&tl=zh-CN&text={0}&op=translate", originalText);
                     break;
                 case 2:
-                    url = string.Format("https://translate.google.cn/#view=home&op=translate&sl=auto&tl=zh-CN&text={0}", originalText);
+                    url = string.Format("https://translate.google.cn/?sl=auto&tl=zh-CN&text={0}&op=translate", originalText);
                     break;
             }
             Process.Start(url);
