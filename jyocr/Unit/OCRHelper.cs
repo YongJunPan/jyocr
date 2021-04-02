@@ -61,7 +61,7 @@ namespace jyocr.Unit
             string data = "image=" + HttpUtility.UrlEncode(base64) + "&language_type=" + Language;
             string result = HttpClient.Post(data, url);
             string returnStr;
-            if (result.Contains("error"))
+            if (result.Contains("error_msg"))
             {
                 split_txt = result;
                 typeset_txt = result;
@@ -234,6 +234,21 @@ namespace jyocr.Unit
             return Regex.IsMatch(str, "[a-zA-Z]");
         }
         #endregion
+
+        // 表格文字识别(异步接口)
+        public static string BaiduForm(string filePath, Image img = null)
+        {
+            if (AccessToken == "")
+            {
+                return "错误：请检查接口设置！";
+            }
+            string url = "https://aip.baidubce.com/rest/2.0/solution/v1/form_ocr/request?access_token=" + AccessToken;
+            string base64 = img == null ? Base64Helper.getFileBase64(filePath) : Base64Helper.getFileBase64("", Base64Helper.ImgToBytes(img));
+            string data = "image=" + HttpUtility.UrlEncode(base64) + "&is_sync=true&request_type=excel";
+            string result = HttpClient.Post(data, url);
+            string returnStr = ((JObject)JsonConvert.DeserializeObject(result))["result"]["result_data"].ToString();
+            return returnStr;
+        }
 
     }
 }

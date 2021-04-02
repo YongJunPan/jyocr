@@ -86,6 +86,7 @@
             this.MenuNotify = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.显示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ButtonForm = new System.Windows.Forms.Button();
             this.MenuPart.SuspendLayout();
             this.MenuLangBasic.SuspendLayout();
             this.MenuLangAccurate.SuspendLayout();
@@ -228,7 +229,7 @@
             this.ButtonTranslate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonTranslate.FlatAppearance.BorderSize = 0;
             this.ButtonTranslate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonTranslate.Location = new System.Drawing.Point(61, 4);
+            this.ButtonTranslate.Location = new System.Drawing.Point(92, 4);
             this.ButtonTranslate.Name = "ButtonTranslate";
             this.ButtonTranslate.Size = new System.Drawing.Size(25, 25);
             this.ButtonTranslate.TabIndex = 8;
@@ -244,7 +245,7 @@
             this.ButtonPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonPart.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonPart.ForeColor = System.Drawing.Color.Black;
-            this.ButtonPart.Location = new System.Drawing.Point(92, 4);
+            this.ButtonPart.Location = new System.Drawing.Point(123, 4);
             this.ButtonPart.Name = "ButtonPart";
             this.ButtonPart.Size = new System.Drawing.Size(80, 25);
             this.ButtonPart.TabIndex = 4;
@@ -311,7 +312,7 @@
             this.ButtonLang.FlatAppearance.BorderSize = 0;
             this.ButtonLang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLang.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonLang.Location = new System.Drawing.Point(172, 4);
+            this.ButtonLang.Location = new System.Drawing.Point(203, 4);
             this.ButtonLang.Name = "ButtonLang";
             this.ButtonLang.Size = new System.Drawing.Size(80, 25);
             this.ButtonLang.TabIndex = 4;
@@ -609,6 +610,21 @@
             this.退出ToolStripMenuItem.Text = "退出";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
+            // ButtonForm
+            // 
+            this.ButtonForm.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonForm.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonForm.BackgroundImage")));
+            this.ButtonForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonForm.FlatAppearance.BorderSize = 0;
+            this.ButtonForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonForm.Location = new System.Drawing.Point(61, 4);
+            this.ButtonForm.Name = "ButtonForm";
+            this.ButtonForm.Size = new System.Drawing.Size(25, 25);
+            this.ButtonForm.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.ButtonForm, "表格识别");
+            this.ButtonForm.UseVisualStyleBackColor = false;
+            this.ButtonForm.Click += new System.EventHandler(this.ButtonForm_Click);
+            // 
             // FmMain
             // 
             this.AllowDrop = true;
@@ -625,6 +641,7 @@
             this.Controls.Add(this.ButtonSet);
             this.Controls.Add(this.ButtonLang);
             this.Controls.Add(this.ButtonPart);
+            this.Controls.Add(this.ButtonForm);
             this.Controls.Add(this.ButtonCutPic);
             this.Controls.Add(this.ButtonCopy);
             this.Controls.Add(this.ButtonDelete);
@@ -705,6 +722,7 @@
         private System.Windows.Forms.ToolStripMenuItem 显示ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.Button ButtonTranslate;
+        private System.Windows.Forms.Button ButtonForm;
     }
 }
 

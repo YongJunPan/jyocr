@@ -224,15 +224,20 @@ namespace jyocr
                 //RichTextBoxValue.Text = OCRHelper.BaiduBasic(openFileDialog1.FileName).Trim();
                 //if (Setting.TextCopy)
                 //    ButtonCopy_Click(null, null);
-                ResultOutput(openFileDialog1.FileName);
+                ResultOutput(1, openFileDialog1.FileName);
             }
         }
         #endregion
 
         #region 截图识别
-        private void ButtonCutPic_Click(object sender, EventArgs e)
+        /// <summary>
+        /// OCR类别
+        /// 1 = 文字识别, 2 = 表格识别
+        /// </summary>
+        /// <param type="int"></param>
+        private void OCR_Type(int type)
         {
-            if(Setting.FormHide)
+            if (Setting.FormHide)
             {
                 this.Visible = false; // 截图时隐藏本窗体
                 System.Threading.Thread.Sleep(200); // 延时，避免把本窗体也截下来
@@ -251,7 +256,7 @@ namespace jyocr
                     //RichTextBoxValue.Text = OCRHelper.BaiduBasic("", img).Trim(); // 识别剪切板图片的文字
                     //if (Setting.TextCopy)
                     //    ButtonCopy_Click(null, null);
-                    ResultOutput("", img);
+                    ResultOutput(type, "", img);
                 }
             }
             catch (Exception ex)
@@ -342,7 +347,7 @@ namespace jyocr
                 //RichTextBoxValue.Text = OCRHelper.BaiduBasic(path).Trim();
                 //if (Setting.TextCopy)
                 //    ButtonCopy_Click(null, null);
-                ResultOutput(path);
+                ResultOutput(1, path);
             }
             catch (Exception ex)
             {
@@ -352,25 +357,36 @@ namespace jyocr
         #endregion
 
         #region 结果输出
-        private void ResultOutput(string path, Image img = null)
+        private void ResultOutput(int type, string path, Image img = null)
         {
-            if (img == null)
-                OCRHelper.BaiduBasic(path);
-            else
-                OCRHelper.BaiduBasic("", img);
-
-            // 段落
-            switch (Setting.Paragraph)
+            // 文字识别
+            if (type == 1)
             {
-                case 1:
-                    RichTextBoxValue.Text = OCRHelper.typeset_txt.Trim();
-                    break;
-                case 2:
-                    RichTextBoxValue.Text = OCRHelper.split_txt.Trim();
-                    break;
-                case 3:
-                    RichTextBoxValue.Text = OCRHelper.typeset_txt.Trim().Replace("\n", "").Replace("\r", "");
-                    break;
+                if (img == null)
+                    OCRHelper.BaiduBasic(path);
+                else
+                    OCRHelper.BaiduBasic("", img);
+
+                // 段落
+                switch (Setting.Paragraph)
+                {
+                    case 1:
+                        RichTextBoxValue.Text = OCRHelper.typeset_txt.Trim();
+                        break;
+                    case 2:
+                        RichTextBoxValue.Text = OCRHelper.split_txt.Trim();
+                        break;
+                    case 3:
+                        RichTextBoxValue.Text = OCRHelper.typeset_txt.Trim().Replace("\n", "").Replace("\r", "");
+                        break;
+                }
+            }
+            else // 表格识别
+            {
+                if (img == null)
+                    RichTextBoxValue.Text = OCRHelper.BaiduForm(path);
+                else
+                    RichTextBoxValue.Text = OCRHelper.BaiduForm("", img);
             }
 
             // 识别后自动复制
@@ -398,7 +414,7 @@ namespace jyocr
         {
             if (e.Button == MouseButtons.Left)
             {
-                MenuPart.Show((Button)sender, new Point(ButtonPart.Left - ButtonPart.Width - 10, ButtonPart.Top + ButtonPart.Height));
+                MenuPart.Show((Button)sender, new Point(ButtonPart.Location.X - ButtonPart.Left, ButtonPart.Location.Y + ButtonPart.Height));
             }
         }
         private void 自动分段ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -422,11 +438,6 @@ namespace jyocr
             RichTextBoxValue.Text = RichTextBoxValue.Text.Replace("\n", "").Replace("\r", "");
         }
         #endregion
-
-        private void RichTextBoxValue_TextChanged(object sender, EventArgs e)
-        {
-            LabelWordCount.Text = "字符数：" + RichTextBoxValue.Text.Trim().Length.ToString();
-        }
 
         #region 设置按钮
         private void ButtonSet_Click(object sender, EventArgs e)
@@ -474,11 +485,11 @@ namespace jyocr
             {
                 if (OCRHelper.Accurate)
                 {
-                    MenuLangAccurate.Show((Button)sender, new Point(ButtonLang.Left - ButtonLang.Width - 90, ButtonLang.Top + ButtonLang.Height));
+                    MenuLangAccurate.Show((Button)sender, new Point(ButtonLang.Location.X - ButtonLang.Left, ButtonLang.Top + ButtonLang.Height));
                 }
                 else
                 {
-                    MenuLangBasic.Show((Button)sender, new Point(ButtonLang.Left - ButtonLang.Width - 90, ButtonLang.Top + ButtonLang.Height));
+                    MenuLangBasic.Show((Button)sender, new Point(ButtonLang.Location.X - ButtonLang.Left, ButtonLang.Top + ButtonLang.Height));
                 }
             }
         }
@@ -645,10 +656,30 @@ namespace jyocr
         }
         #endregion
 
+        // 字符数提示
+        private void RichTextBoxValue_TextChanged(object sender, EventArgs e)
+        {
+            LabelWordCount.Text = "字符数：" + RichTextBoxValue.Text.Trim().Length.ToString();
+        }
+
+        // 翻译按钮
         private void ButtonTranslate_Click(object sender, EventArgs e)
         {
             if (RichTextBoxValue.Text != "")
                 Translate.goTranslate(RichTextBoxValue.Text.Replace("\n", "%0A"));
         }
+
+        // 文字识别截图按钮
+        private void ButtonCutPic_Click(object sender, EventArgs e)
+        {
+            OCR_Type(1);
+        }
+
+        // 表格识别截图按钮
+        private void ButtonForm_Click(object sender, EventArgs e)
+        {
+            OCR_Type(2);
+        }
+
     }
 }

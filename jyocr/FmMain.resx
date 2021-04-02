@@ -207,6 +207,15 @@
         cDCDRW8AAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="ButtonForm.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAMhJREFUWEft
+        V0kKwzAM9FN67qGH3vKeQg692MYfyF/6kDwtHRWlFNzIglohBQ0MAY2WQU7ACY5DIud8SylNPYme91LK
+        mUd8BxJP4GLMK4+rAZcjJ81GXDDjweNqIIHW9TLAoW5YDYi9IbqB4xgwotqAJX/egKSranlcDYjiO0Bx
+        1icOvfGhtWrdgBvQGRAo6apaHlcD4mrAkv+xgdY5+lfgBmwMKC+lkt6sFS+lMcYLJRlz+1pOQMIAlxlP
+        Oo5uRMv2j4ljf4TwBIMwslATToJbAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="MenuPart.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>274, 21</value>
   </metadata>

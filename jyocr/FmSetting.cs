@@ -14,6 +14,7 @@ namespace jyocr
             InitializeComponent();
         }
 
+        // 加载，控件显示已保存的设置
         private void FmSetting_Load(object sender, EventArgs e)
         {
             CheckBoxPlus.Checked = Setting.TextPlus;
@@ -36,11 +37,13 @@ namespace jyocr
             PanelSet.AutoScroll = false;
         }
 
+        // 跳转接口申请按钮
         private void ButtonAapply_Click(object sender, EventArgs e)
         {
             Process.Start("https://console.bce.baidu.com/ai/");
         }
 
+        // 测试按钮
         private void ButtonApiTest_Click(object sender, EventArgs e)
         {
             try
@@ -70,6 +73,7 @@ namespace jyocr
             }
         }
 
+        // 保存按钮
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             // 保存 ini 配置
@@ -233,6 +237,7 @@ namespace jyocr
         }
         #endregion
 
+        // 取消按钮
         private void ButtonExit_Click(object sender, EventArgs e)
         {
             this.Close();
