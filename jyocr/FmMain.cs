@@ -4,6 +4,8 @@ using jyocr.Unit;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using jyocr.Properties;
+using System.IO;
+using System.Text;
 
 namespace jyocr
 {
@@ -131,6 +133,8 @@ namespace jyocr
 
             // 读取 ini 配置
             IniHelper.IniLoad("Setting.ini");
+
+            Setting.IsOffline = IniHelper.GetValue("常规", "使用离线版") == "" ? false : bool.Parse(IniHelper.GetValue("常规", "使用离线版"));
 
             Setting.TextPlus = IniHelper.GetValue("常规", "识别后文本累加") == "" ? false : bool.Parse(IniHelper.GetValue("常规", "识别后文本累加"));
             Setting.TextCopy = IniHelper.GetValue("常规", "识别后自动复制") == "" ? false : bool.Parse(IniHelper.GetValue("常规", "识别后自动复制"));
@@ -359,36 +363,43 @@ namespace jyocr
         #region 结果输出
         private void ResultOutput(int type, string path, Image img = null)
         {
-            // 文字识别
-            if (type == 1)
+            if (Setting.IsOffline)
             {
-                if (img == null)
-                    OCRHelper.BaiduBasic(path);
-                else
-                    OCRHelper.BaiduBasic("", img);
+                RichTextBoxValue.Text = OCROffline.OCROffile(path, img);
 
-                // 段落
-                switch (Setting.Paragraph)
+            }
+            else
+            {
+                // 文字识别
+                if (type == 1)
                 {
-                    case 1:
-                        RichTextBoxValue.Text = OCRHelper.typeset_txt.Trim();
-                        break;
-                    case 2:
-                        RichTextBoxValue.Text = OCRHelper.split_txt.Trim();
-                        break;
-                    case 3:
-                        RichTextBoxValue.Text = OCRHelper.typeset_txt.Trim().Replace("\n", "").Replace("\r", "");
-                        break;
+                    if (img == null)
+                        OCRHelper.BaiduBasic(path);
+                    else
+                        OCRHelper.BaiduBasic("", img);
+
+                    // 段落
+                    switch (Setting.Paragraph)
+                    {
+                        case 1:
+                            RichTextBoxValue.Text = OCRHelper.typeset_txt.Trim();
+                            break;
+                        case 2:
+                            RichTextBoxValue.Text = OCRHelper.split_txt.Trim();
+                            break;
+                        case 3:
+                            RichTextBoxValue.Text = OCRHelper.typeset_txt.Trim().Replace("\n", "").Replace("\r", "");
+                            break;
+                    }
+                }
+                else // 表格识别
+                {
+                    if (img == null)
+                        RichTextBoxValue.Text = OCRHelper.BaiduForm(path);
+                    else
+                        RichTextBoxValue.Text = OCRHelper.BaiduForm("", img);
                 }
             }
-            else // 表格识别
-            {
-                if (img == null)
-                    RichTextBoxValue.Text = OCRHelper.BaiduForm(path);
-                else
-                    RichTextBoxValue.Text = OCRHelper.BaiduForm("", img);
-            }
-
             // 识别后自动复制
             if (Setting.TextCopy)
                 ButtonCopy_Click(null, null);

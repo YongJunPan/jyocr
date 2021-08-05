@@ -61,6 +61,7 @@
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.PictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.ButtonExit = new System.Windows.Forms.Button();
+            this.checkBoxOffline = new System.Windows.Forms.CheckBox();
             this.PanelBaidu.SuspendLayout();
             this.PanelHotkey.SuspendLayout();
             this.PanelSet.SuspendLayout();
@@ -324,6 +325,7 @@
             // PanelGeneral
             // 
             this.PanelGeneral.Controls.Add(this.CheckBoxPlus);
+            this.PanelGeneral.Controls.Add(this.checkBoxOffline);
             this.PanelGeneral.Controls.Add(this.CheckBoxTray);
             this.PanelGeneral.Controls.Add(this.CheckBoxStar);
             this.PanelGeneral.Controls.Add(this.CheckBoxCopy);
@@ -428,6 +430,16 @@
             this.ButtonExit.UseVisualStyleBackColor = false;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
+            // checkBoxOffline
+            // 
+            this.checkBoxOffline.AutoSize = true;
+            this.checkBoxOffline.Location = new System.Drawing.Point(151, 54);
+            this.checkBoxOffline.Name = "checkBoxOffline";
+            this.checkBoxOffline.Size = new System.Drawing.Size(84, 16);
+            this.checkBoxOffline.TabIndex = 31;
+            this.checkBoxOffline.Text = "使用离线版";
+            this.checkBoxOffline.UseVisualStyleBackColor = true;
+            // 
             // FmSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -498,5 +510,6 @@
         private System.Windows.Forms.ComboBox ComboBoxTranList;
         private System.Windows.Forms.ComboBox ComboBoxTranOption;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox checkBoxOffline;
     }
 }

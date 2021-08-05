@@ -1,0 +1,16 @@
+D:\code\jyocr\jyocr\bin\x86\Debug\jyocr.exe.config
+D:\code\jyocr\jyocr\bin\x86\Debug\jyocr.exe.manifest
+D:\code\jyocr\jyocr\bin\x86\Debug\jyocr.application
+D:\code\jyocr\jyocr\bin\x86\Debug\jyocr.exe
+D:\code\jyocr\jyocr\bin\x86\Debug\jyocr.pdb
+D:\code\jyocr\jyocr\bin\x86\Debug\Newtonsoft.Json.dll
+D:\code\jyocr\jyocr\bin\x86\Debug\Newtonsoft.Json.xml
+D:\code\jyocr\jyocr\obj\x86\Debug\jyocr.FmCutPic.resources
+D:\code\jyocr\jyocr\obj\x86\Debug\jyocr.FmMain.resources
+D:\code\jyocr\jyocr\obj\x86\Debug\jyocr.FmSetting.resources
+D:\code\jyocr\jyocr\obj\x86\Debug\jyocr.Properties.Resources.resources
+D:\code\jyocr\jyocr\obj\x86\Debug\jyocr.csproj.GenerateResource.Cache
+D:\code\jyocr\jyocr\obj\x86\Debug\jyocr.exe.manifest
+D:\code\jyocr\jyocr\obj\x86\Debug\jyocr.application
+D:\code\jyocr\jyocr\obj\x86\Debug\jyocr.exe
+D:\code\jyocr\jyocr\obj\x86\Debug\jyocr.pdb

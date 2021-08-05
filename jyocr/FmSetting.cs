@@ -22,6 +22,7 @@ namespace jyocr
             CheckBoxHide.Checked = Setting.FormHide;
             CheckBoxTray.Checked = Setting.FormTray;
             CheckBoxStar.Checked = Setting.SelfStart;
+            checkBoxOffline.Checked = Setting.IsOffline;
 
             TextBoxApiKey.Text = OCRHelper.ApiKey;
             TextBoxSecretKey.Text = OCRHelper.SecretKey;
@@ -90,6 +91,7 @@ namespace jyocr
             IniHelper.SetValue("常规", "截图时隐藏窗体", CheckBoxHide.Checked.ToString());
             IniHelper.SetValue("常规", "右下角显示托盘", CheckBoxTray.Checked.ToString());
             IniHelper.SetValue("常规", "开机自启", CheckBoxStar.Checked.ToString());
+            IniHelper.SetValue("常规", "使用离线版", checkBoxOffline.Checked.ToString());
 
             IniHelper.SetValue("翻译", "默认网址", ComboBoxTranList.SelectedIndex.ToString());
             IniHelper.SetValue("翻译", "翻译选项", ComboBoxTranOption.SelectedIndex.ToString());
@@ -105,6 +107,7 @@ namespace jyocr
             Setting.FormHide = CheckBoxHide.Checked;
             Setting.FormTray = CheckBoxTray.Checked;
             Setting.SelfStart = CheckBoxStar.Checked;
+            Setting.IsOffline = checkBoxOffline.Checked;
 
             Setting.HotkeyCut = tbHotkeyCut.Text.Trim();
             Setting.HotkeyShow = tbHotkeyShow.Text.Trim();

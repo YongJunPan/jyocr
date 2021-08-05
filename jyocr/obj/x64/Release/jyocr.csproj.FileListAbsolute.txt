@@ -1,0 +1,17 @@
+D:\code\jyocr\jyocr\bin\x64\Release\jyocr.exe.config
+D:\code\jyocr\jyocr\bin\x64\Release\jyocr.exe.manifest
+D:\code\jyocr\jyocr\bin\x64\Release\jyocr.application
+D:\code\jyocr\jyocr\bin\x64\Release\jyocr.exe
+D:\code\jyocr\jyocr\bin\x64\Release\jyocr.pdb
+D:\code\jyocr\jyocr\bin\x64\Release\Newtonsoft.Json.dll
+D:\code\jyocr\jyocr\bin\x64\Release\Newtonsoft.Json.xml
+D:\code\jyocr\jyocr\obj\x64\Release\jyocr.csprojResolveAssemblyReference.cache
+D:\code\jyocr\jyocr\obj\x64\Release\jyocr.FmCutPic.resources
+D:\code\jyocr\jyocr\obj\x64\Release\jyocr.FmMain.resources
+D:\code\jyocr\jyocr\obj\x64\Release\jyocr.FmSetting.resources
+D:\code\jyocr\jyocr\obj\x64\Release\jyocr.Properties.Resources.resources
+D:\code\jyocr\jyocr\obj\x64\Release\jyocr.csproj.GenerateResource.Cache
+D:\code\jyocr\jyocr\obj\x64\Release\jyocr.exe.manifest
+D:\code\jyocr\jyocr\obj\x64\Release\jyocr.application
+D:\code\jyocr\jyocr\obj\x64\Release\jyocr.exe
+D:\code\jyocr\jyocr\obj\x64\Release\jyocr.pdb

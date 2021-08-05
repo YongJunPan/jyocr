@@ -13,5 +13,6 @@ namespace jyocr.Unit
         public static int TranItem;         // 翻译网址
         public static int TranOption;       // 翻译选项
         public static int Paragraph = 1;    // 段落选项
+        public static bool IsOffline;       // 是否离线
     }
 }
